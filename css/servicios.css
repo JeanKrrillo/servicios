@@ -2,7 +2,7 @@
 .portada { border-bottom: 1px solid var(--tinta-08); overflow-x: clip; }
 .portada__marco {
   display: grid;
-  grid-template-rows: auto auto minmax(9rem, 1fr) auto auto auto auto;
+  grid-template-rows: auto minmax(9rem, 1fr) auto auto auto auto;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
   justify-items: center;
@@ -612,4 +612,3 @@
 }
 .caso__hallazgos--etiquetas { display: flex; flex-wrap: wrap; gap: .3rem; list-style: none; margin: .15rem 0 0; padding: 0; }
 .caso__hallazgos--etiquetas li { padding: .12rem .5rem; border: 1px solid var(--tinta-15); border-radius: var(--r-pill); font-size: var(--fs-micro); line-height: 1.4; color: var(--tinta-75); }
-.portada__sello { width: clamp(2.75rem, 8svh, 4.25rem); color: var(--tinta); }
