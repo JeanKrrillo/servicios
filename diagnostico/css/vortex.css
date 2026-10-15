@@ -1,0 +1,116 @@
+
+@import "tokens.css";
+.vortex-zone {
+    height: 100%;
+    background: var(--negro-vortex);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+}
+#vortex-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+#vortex-items-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.vortex-halo {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 55%;
+    aspect-ratio: 1;
+    height: auto;
+    border: 1px solid color-mix(in srgb, var(--ocre) 50%, transparent);
+    opacity: 0;
+    border-radius: 50%;
+    z-index: 5;
+    pointer-events: none;
+}
+.vortex-core {
+    width: clamp(115px, 19vh, 170px);
+    height: clamp(115px, 19vh, 170px);
+    background: radial-gradient(circle, var(--verde-oscuro) 0%, var(--tinta) 80%);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--dorado-premium);
+    z-index: 100;
+}
+.vortex-item {
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    color: #fff;
+    font: inherit;
+    border: 1px solid color-mix(in srgb, #fff 12%, transparent);
+    z-index: 50;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.vortex-item:focus-visible { outline: 2px solid var(--ocre); outline-offset: 3px; }
+.vortex-item:active { cursor: grabbing; }
+.vortex-item-label {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #ecebe5;
+    background: #121217;
+    padding: 2px 6px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--t-toque, .25s) ease;
+}
+.vortex-item:hover .vortex-item-label,
+.vortex-item:focus-visible .vortex-item-label { opacity: 1; z-index: 2; }
+.vortex-onda {
+    position: absolute; top: 50%; left: 50%;
+    width: 40%; aspect-ratio: 1; margin: -20% 0 0 -20%;
+    border: 2px solid var(--ocre); border-radius: 50%;
+    pointer-events: none; z-index: 5;
+}
+.vortex-escombro {
+    position: absolute; width: 6px; height: 6px; border-radius: 2px;
+    background: var(--ocre); pointer-events: none; z-index: 60;
+}
+.vortex-core.core-alto { border-color: var(--ocre); border-width: 2px; }
+.scanline {
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, color-mix(in srgb, var(--ocre) 1%, transparent) 50%);
+    background-size: 100% 4px;
+    position: absolute; pointer-events: none; z-index: 40;
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+.vortex-zone { width: min(100%, 640px); aspect-ratio: 1; height: auto !important; border-radius: 24px; background: #121217; }
+.vortex-centro { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; }
+.vortex-core { background: #121217; border: 1.5px solid #b07a1e; }
+.vortex-core span { font: 800 1.4rem/1 'JetBrains Mono', monospace; color: #ecebe5; letter-spacing: -.02em; }
+.vortex-zone { width: min(100%, 640px, calc(100svh - var(--alto-header, 110px) - 32px)); }

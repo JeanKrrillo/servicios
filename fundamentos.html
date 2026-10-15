@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cómo se trabaja aquí · jean.krrillo</title>
+  <meta name="description" content="Las reglas con las que se trabaja aquí, la razón de cada una y lo que todavía depende de empresas, con la fecha en que se revisa.">
+  <meta name="theme-color" content="#f3f2ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
+  <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
+  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fundamentos.css">
+  
+  <script src="diagnostico/js/notificacion.js" defer></script>
+  <script src="diagnostico/js/identidad.js" defer></script>
+  <script src="diagnostico/js/medir.js" defer></script>
+  <script src="diagnostico/js/historial.js" defer></script>
+  <script src="diagnostico/js/acceso-visor.js" defer></script>
+  <script src="js/comun.js" defer></script>
+  <link rel="stylesheet" href="css/pestanas.css">
+  <script src="js/pestanas.js" defer></script>
+  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js","js/granos.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+  <script src="js/musica.js" defer></script>
+</head>
+<body>
+  <header class="barra">
+    <div class="contenedor barra__fila">
+      <a class="marca-jk" href="./" aria-label="Volver a servicios"><span class="marca-jk__sello" aria-hidden="true"></span>jean.krrillo</a>
+      <button class="icono-boton" type="button" data-tema-boton aria-label="Cambiar tema">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  
+  <main class="contenedor fundamentos">
+    <header class="fundamentos__cabeza">
+      <h1>Cómo se trabaja aquí</h1>
+      <p class="texto-apoyo">Estas reglas valen igual para esta página, el autodiagnóstico y cada pedido, y cada una dice por qué existe, para que se pueda discutir punto por punto.</p>
+    </header>
+
+    <ul class="principios">
+        <li class="principio">
+          <img class="principio__dibujo tinta-img" src="animaciones/iconos/app_paint.svg" alt="" width="64" height="64" loading="lazy">
+          <div><h2>Qué decides tú</h2><p>Contestas en el orden que quieras y te saltas lo que no sepas, porque una respuesta forzada dice menos que una que no se dio. Lo que saltas no cuenta como bueno ni como malo, y el resultado dice qué faltó.</p></div>
+        </li>
+        <li class="principio">
+          <img class="principio__dibujo tinta-img" src="animaciones/iconos/nospam_paint.svg" alt="" width="64" height="64" loading="lazy">
+          <div><h2>Cómo se ofrece la ayuda</h2><p>La ayuda, el contacto y la medición de tu visita se ofrecen una vez, y si dices que no, no vuelven a salir, porque insistir convierte una oferta en presión.</p></div>
+        </li>
+        <li class="principio">
+          <img class="principio__dibujo tinta-img" src="animaciones/iconos/2fa_paint.svg" alt="" width="64" height="64" loading="lazy">
+          <div><h2>Qué pasa con lo que contestas</h2><p>Se guarda en tu celular con un apodo de pigmento y no con tu nombre, porque para orientarte no hace falta saber quién eres. Lo borras o te lo llevas en un archivo, y solo sale lo que aceptas, cifrado con una llave que no está en la página.</p></div>
+        </li>
+        <li class="principio">
+          <img class="principio__dibujo tinta-img" src="animaciones/iconos/mantenimiento_paint.svg" alt="" width="64" height="64" loading="lazy">
+          <div><h2>Qué se cobra y por qué</h2><p>La guía está abierta para que lo hagas por tu cuenta, y lo que se cobra son las horas de quien lo hace por ti. La cuota la eliges sin explicar por qué, porque nadie sabe mejor que tú cuánto puedes pagar.</p></div>
+        </li>
+        <li class="principio">
+          <img class="principio__dibujo tinta-img" src="animaciones/iconos/controlparental_paint.svg" alt="" width="64" height="64" loading="lazy">
+          <div><h2>Qué trabajo se reconoce</h2><p>Escuchar a alguien que teme perder su cuenta o acompañarle mientras recupera su celular es trabajo, aunque no se cobre igual que arreglar una compu, y se nombra para que no se dé por hecho.</p></div>
+        </li>
+        <li class="principio">
+          <img class="principio__dibujo tinta-img" src="animaciones/iconos/edicion_paint.svg" alt="" width="64" height="64" loading="lazy">
+          <div><h2>Lo que todavía no se cumple</h2><p>Cuando algo de esta página contradice estas reglas porque hoy no hay otra forma, se dice abajo con su razón y con lo que haría falta para dejarlo, en lugar de presentarlo como si fuera lo ideal.</p></div>
+        </li>
+    </ul>
+
+    <section class="concesiones" aria-labelledby="concesiones-t">
+      <h2 id="concesiones-t">Lo que todavía depende de empresas</h2>
+      <p class="texto-apoyo">Cada una se vuelve a revisar el 12 de enero de 2027, y si para entonces ya existe la forma de dejarla, se deja.</p>
+        <details class="concesion">
+          <summary><b>Google</b><span>guarda el historial cifrado</span></summary>
+          <p>Apps Script no cobra a este tamaño y solo guarda filas que se abren con una llave que Google no tiene. Para dejarlo hace falta un servidor propio o comunitario.</p>
+        </details>
+        <details class="concesion">
+          <summary><b>GitHub</b><span>guarda el código y las guías</span></summary>
+          <p>Ahí más gente puede leerlo y mandar correcciones. Para dejarlo hace falta una copia en Codeberg o similar.</p>
+        </details>
+        <details class="concesion">
+          <summary><b>WhatsApp, Instagram y Telegram</b><span>son los canales de contacto</span></summary>
+          <p>Son las apps que la gente ya tiene. Para dejarlo hace falta Signal o un canal propio que la gente use.</p>
+        </details>
+        <details class="concesion">
+          <summary><b>Medir tu visita</b><span>solo si lo aceptas</span></summary>
+          <p>Muestra dónde se traba la página para arreglarla. Para dejarlo hace falta medir solo lo que sirve, sin reconocer tu aparato.</p>
+        </details>
+        <details class="concesion">
+          <summary><b>Cobrar en dinero</b><span>por las horas de trabajo</span></summary>
+          <p>La renta y la comida se pagan con dinero. Para dejarlo hace falta intercambio o redes de apoyo para quien lo prefiera.</p>
+        </details>
+    </section>
+
+    <footer class="fundamentos__pie texto-apoyo">
+      <p>Esta forma de trabajar sale del apoyo mutuo y del cuidado de lo común, y no se presenta como la única respuesta. Si quieres leer de dónde vienen esas ideas, Anarquía en acción de Colin Ward muestra a gente que se organiza sin que nadie mande, El gobierno de los bienes comunes de Elinor Ostrom estudia comunidades que cuidan lo que comparten, y el capítulo 5 de Deuda de David Graeber trata de compartir sin llevar la cuenta.</p>
+      <p>Las reglas y el código están en <a href="https://github.com/JeanKrrillo/autodiagnostico-digital" target="_blank" rel="noopener">GitHub</a> y cualquiera puede proponer un cambio.</p>
+      <p><a href="./">Servicios</a> · <a href="autodiagnostico.html">Autodiagnóstico</a> · <a href="preguntas.html">Registro de líneas</a></p>
+    </footer>
+  </main>
+
+  <a class="firma" href="https://www.instagram.com/jean.krrillo/" target="_blank" rel="noopener">@jean.krrillo</a>
+</body>
+</html>

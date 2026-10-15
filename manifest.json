@@ -1,0 +1,11 @@
+{
+  "name": "jean.krrillo · Lo reviso, lo arreglo, te explico",
+  "short_name": "jean.krrillo",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f3f2ee",
+  "theme_color": "#f3f2ee",
+  "icons": [
+    { "src": "marca/jk-favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

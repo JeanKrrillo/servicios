@@ -1,0 +1,46 @@
+# Integración y despliegue continuos: cada subida a main se revisa y, si pasa, se publica en GitHub Pages.
+name: Revisar y publicar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  revisar:
+    name: Revisar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Archivos, llaves y peso
+        run: node .github/revisar.mjs
+      - name: Preparar lo que se publica (sin README ni .github)
+        run: |
+          mkdir -p _sitio
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'README.md' --exclude '_sitio' ./ _sitio/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _sitio
+
+  publicar:
+    name: Publicar
+    needs: revisar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4

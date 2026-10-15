@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#121217">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
+    <link rel="apple-touch-icon" href="marca/jk-favicon.svg">
+    <title>Inteligencia Digital 2026 — Cuestionario de Diagnóstico Digital</title>
+    <link rel="stylesheet" href="diagnostico/css/tailwind.css">
+    
+    
+    <link rel="stylesheet" href="diagnostico/vendor/phosphor/jk/phosphor-jk.css">
+    <script src="diagnostico/js/notificacion.js"></script>
+    <script src="diagnostico/js/tono.js"></script>
+    <link rel="stylesheet" href="diagnostico/css/tokens.css">
+    <link rel="stylesheet" href="diagnostico/css/styles.css">
+    <link rel="stylesheet" href="diagnostico/css/header.css">
+    <link rel="stylesheet" href="diagnostico/css/quiz.css">
+    <link rel="stylesheet" href="diagnostico/css/swipe.css">
+    <link rel="stylesheet" href="diagnostico/css/vortex.css">
+    <link rel="stylesheet" href="diagnostico/css/fracture.css">
+    <link rel="stylesheet" href="diagnostico/css/brand.css">
+    <link rel="stylesheet" href="diagnostico/css/disfraz.css">
+    <link rel="stylesheet" href="diagnostico/css/simulador.css">
+    <link rel="stylesheet" href="diagnostico/css/informe.css">
+    <link rel="stylesheet" href="diagnostico/css/autodiagnostico.css">
+    <link rel="stylesheet" href="css/pestanas.css">
+    <script src="js/pestanas.js" defer></script>
+  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+    <script src="js/musica.js" defer></script>
+</head>
+
+<body class="antialiased">
+
+    <div class="noise-overlay"></div>
+    <div id="reading-bar"></div>
+
+    <header id="header" class="jk-header header-authority">
+        <div class="jk-header__fila">
+            <div class="logo-container" role="img" aria-label="Tu riesgo hasta ahora">
+                <div class="donut-ring"></div>
+                <div class="donut-scanner"></div>
+                <span id="header-risk-val">0%</span>
+            </div>
+
+            <div class="jk-header__titulo">
+                <h1>Autodiagnóstico</h1>
+                <div class="jk-header__avance">
+                    <div class="progress-track"><div class="progress-fill" id="form-progress"></div></div>
+                    <span>avance</span>
+                </div>
+            </div>
+
+            <button type="button" class="jk-header__plazo" onclick="toggleCalendarInfo(true)" aria-label="Ver el calendario por dígito">
+                <span id="timer-label">Dígito</span>
+                <span id="timer">-- días</span>
+            </button>
+
+            <button type="button" class="jk-header__menu" id="menu-header" aria-expanded="false" aria-controls="menu-panel" aria-label="Menú">
+                <i class="ph ph-list" aria-hidden="true"></i>
+            </button>
+
+            <nav class="jk-header__panel" id="menu-panel" hidden aria-label="Más">
+                <span id="timer-next"></span>
+                <a class="jk-header__accion" href="index.html" data-ir-inicio><i class="ph ph-house" aria-hidden="true"></i><span>Ir a la página principal</span></a>
+                <button type="button" class="jk-header__accion" onclick="toggleQAModal(true)"><i class="ph ph-question" aria-hidden="true"></i><span>Preguntas frecuentes</span></button>
+                <button type="button" class="jk-header__accion" onclick="abrirAcuerdo()"><i class="ph ph-scroll" aria-hidden="true"></i><span>Acuerdo en el DOF</span></button>
+                <button type="button" class="jk-header__accion" onclick="const d = document.querySelector('.informe__tuyo'); d.open = true; d.scrollIntoView({ behavior: 'smooth', block: 'center' })"><i class="ph ph-trash" aria-hidden="true"></i><span>Tus respuestas y borrar</span></button>
+                <a class="jk-header__accion" href="fundamentos.html"><i class="ph ph-hand-heart" aria-hidden="true"></i><span>Cómo se trabaja aquí</span></a>
+                <button type="button" class="jk-header__accion" onclick="toggleTheme()" id="theme-pill"><i class="ph ph-moon" id="theme-pill-icon" aria-hidden="true"></i><span id="theme-pill-text">Tema</span></button>
+            </nav>
+        </div>
+        <nav class="stepper-nav" aria-label="Fases">
+            
+            <button type="button" class="stepper-item" onclick="goToStep(1)" id="nav-item-1">
+                <span class="stepper-label">Preguntas</span>
+                <span class="stepper-cuenta"></span>
+            </button>
+            <button type="button" class="stepper-item" onclick="goToStep(2)" id="nav-item-2">
+                <span class="stepper-label">Apps</span>
+                <span class="stepper-cuenta"></span>
+            </button>
+            <button type="button" class="stepper-item" onclick="goToStep(3)" id="nav-item-3">
+                <span class="stepper-label">Contraseña</span>
+                <span class="stepper-cuenta"></span>
+            </button>
+            <button type="button" class="stepper-item" onclick="goToStep(4)" id="nav-item-4">
+                <span class="stepper-label">Resultado</span>
+                <span class="stepper-cuenta"></span>
+            </button>
+        </nav>
+    </header>
+
+    
+    <dialog id="calendar-modal" class="hoja-diag" aria-labelledby="cal-titulo">
+        <div class="hoja-diag__cuerpo">
+            <div class="hoja-diag__cabeza">
+                <h3 id="cal-titulo">Fechas límite por dígito</h3>
+                <button type="button" class="hoja-diag__cerrar" onclick="toggleCalendarInfo(false)" aria-label="Cerrar"><i class="ph ph-x" aria-hidden="true"></i></button>
+            </div>
+            <p>La fecha depende del último dígito de tu número de celular.</p>
+            <ul class="cal-lista" id="cal-lista"></ul>
+            <p class="hoja-diag__fuente">Sale del <a href="https://www.dof.gob.mx/nota_to_pdf.php?fecha=30/06/2026&amp;edicion=VES" target="_blank" rel="noopener">Acuerdo P/CRT/EXT/25062026/084 del DOF</a>, publicado el 30 de junio de 2026. Revisado el 10 de octubre de 2026.</p>
+        </div>
+    </dialog>
+
+    
+    <dialog id="acuerdo-modal" class="hoja-diag hoja-diag--alta hoja-diag--ancha" aria-labelledby="acuerdo-titulo">
+        <div class="hoja-diag__cuerpo">
+            <div class="hoja-diag__cabeza">
+                <h3 id="acuerdo-titulo">Acuerdo P/CRT/EXT/08122025/144</h3>
+                <button type="button" class="hoja-diag__cerrar" onclick="document.getElementById('acuerdo-modal').close()" aria-label="Cerrar"><i class="ph ph-x" aria-hidden="true"></i></button>
+            </div>
+            <p class="hoja-diag__fuente">Publicado en el Diario Oficial de la Federación el 9 de diciembre de 2025. Si no se ve aquí, <a href="https://dof.gob.mx/nota_detalle_popup.php?codigo=5775677" target="_blank" rel="noopener">ábrelo en el DOF</a>.</p>
+            <iframe id="acuerdo-marco" class="hoja-diag__marco" title="Acuerdo en el Diario Oficial" referrerpolicy="no-referrer"></iframe>
+        </div>
+    </dialog>
+
+    
+    <dialog id="qa-modal" class="hoja-diag hoja-diag--alta" aria-labelledby="qa-titulo">
+        <div class="hoja-diag__cuerpo">
+            <div class="hoja-diag__cabeza">
+                <h3 id="qa-titulo">Preguntas frecuentes</h3>
+                <button type="button" class="hoja-diag__cerrar" onclick="toggleQAModal(false)" aria-label="Cerrar"><i class="ph ph-x" aria-hidden="true"></i></button>
+            </div>
+            <input type="search" id="qaModalSearchInput" class="hoja-diag__buscar" placeholder="Buscar una palabra" aria-label="Buscar en las preguntas">
+            <p class="hoja-diag__resultado" id="qa-resultado" aria-live="polite"></p>
+            <div id="qaModalContainer" class="hoja-diag__qa"><p>Cargando…</p></div>
+            <p class="hoja-diag__fuente">También están en <a href="preguntas.html">su propia página</a>, con los links al DOF.</p>
+        </div>
+    </dialog>
+
+    <main class="max-w-6xl mx-auto px-4 pt-10 pb-16" id="main-content">
+
+
+
+        <div id="master-stepper">
+
+            <section id="step-1" class="step-container active">
+                <div>
+                    <div class="fase-cabeza mb-6 px-2 text-center">
+                        <span class="t-subtitulo block mb-1">Fase 1 de 4</span>
+                        <h2 class="t-titulo mb-3">Preguntas</h2>
+                        <p class="t-parrafo max-w-2xl mx-auto">Casi todas tus cuentas dependen de tu celular. Estas 15 preguntas revisan qué resolver antes del plazo, sin respuestas buenas ni malas.</p>
+                    </div>
+
+                    <div class="saludo-apodo" id="saludo-apodo" hidden>
+                        <span class="saludo-apodo__gota" id="saludo-apodo-gota" aria-hidden="true" hidden></span>
+                        <p class="saludo-apodo__hola" id="saludo-hora">Hola</p>
+                        <p class="saludo-apodo__nombre"><b data-nombre-apodo></b></p>
+                        <button type="button" class="saludo-apodo__ver" id="saludo-apodo-ver" aria-expanded="false">¿Qué es ese pigmento?</button>
+                        <p class="saludo-apodo__desc" id="saludo-apodo-desc" hidden></p>
+                    </div>
+
+                    <details class="aviso-privado plegable">
+                        <summary>Es privado y sin nombre</summary>
+                        <p>Se guarda en tu celular para que sigas después, contesta en el orden que quieras y sáltate lo que no sepas.</p>
+                        <p id="aviso-envio" hidden>Si aceptaste compartir datos de tu visita, las respuestas también se mandan con lo que dice ese aviso. Todo sale cifrado desde tu celular y solo se abre con una llave que no está en esta página (RSA-OAEP y AES-GCM). Borrar lo quita de tu celular, y la copia que ya salió se borra si la pides con tu número.</p>
+                        <div class="aviso-privado__acciones">
+                            <button type="button" class="llevar-respuestas" onclick="llevarmeRespuestas()">Llevarme mis respuestas</button>
+                            <button type="button" class="borrar-todo" onclick="borrarTodoPaso(this)">Borrar todo</button>
+                        </div>
+                    </details>
+
+                    <nav id="indice-preguntas" aria-label="Preguntas">
+                        <span class="indice-titulo">Preguntas <b id="indice-cuenta">0 de 15</b></span>
+                        <div class="indice-lista"></div>
+                    </nav>
+
+                    <div id="quiz-container" class="relative">
+        <article class="q-card" id="q1" aria-labelledby="q1-t">
+            <p class="q-num">01</p>
+            <h3 class="q-titulo" id="q1-t">¿Sabes qué pasa con las líneas que no se registran?</h3>
+            <p class="q-porque">Hay un plazo para registrar tu número, y las líneas que no se registren a tiempo pueden ser suspendidas.</p>
+            <div class="q-dibujo">
+            <div class="dib-cal">
+                <div class="dib-cal__cabeza"><span id="cal-mes"></span><span class="dib-cal__limite">Fecha límite</span></div>
+                <div class="dib-cal__rejilla" id="calendar"></div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="1" data-respuesta="positivo" data-anim="none" aria-pressed="false">Sí, ya registré mi número</button>
+                <button type="button" class="choice-btn" data-q="1" data-respuesta="negativo" data-anim="burn" aria-pressed="false">No sabía nada de esto</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="1" data-respuesta="neutro" data-anim="none" aria-pressed="false">Sé que existe pero no sé qué hacer</button>
+            </div>
+        </article>
+        <article class="q-card" id="q2" aria-labelledby="q2-t">
+            <p class="q-num">02</p>
+            <h3 class="q-titulo" id="q2-t">¿Usas la misma contraseña en más de una cuenta?</h3>
+            <p class="q-porque">Si se filtra una contraseña repetida, abre todas las cuentas donde la usas.</p>
+            <div class="q-dibujo">
+            <div class="dib-espejo">
+                <i class="ph-bold ph-key dib-espejo__llave" aria-hidden="true"></i>
+                <div class="dib-espejo__cuentas">
+                    <span class="mirror-icon"><i class="ph ph-envelope-simple" aria-hidden="true"></i><i class="ph ph-lock-simple-open dib-abierto" aria-hidden="true"></i></span>
+                    <span class="mirror-icon"><i class="ph ph-bank" aria-hidden="true"></i><i class="ph ph-lock-simple-open dib-abierto" aria-hidden="true"></i></span>
+                    <span class="mirror-icon"><i class="ph ph-chat-circle-text" aria-hidden="true"></i><i class="ph ph-lock-simple-open dib-abierto" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="2" data-respuesta="negativo" data-anim="mirror" aria-pressed="false">Sí, repito alguna</button>
+                <button type="button" class="choice-btn" data-q="2" data-respuesta="positivo" data-anim="none" aria-pressed="false">No, cada cuenta tiene la suya</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="2" data-respuesta="neutro" data-anim="none" aria-pressed="false">No lo sé</button>
+            </div>
+        </article>
+        <article class="q-card" id="q3" aria-labelledby="q3-t">
+            <p class="q-num">03</p>
+            <h3 class="q-titulo" id="q3-t">Cuando una app te pide un código para entrar, ¿cómo te llega?</h3>
+            <p class="q-porque">Puede llegar por SMS o salir de una app, y el SMS depende de tu chip, así que si lo clonan reciben tu código.</p>
+            <div class="q-dibujo">
+            <div class="dib-interruptor">
+                <span>SMS</span><span>App</span>
+                <div id="toggle-knob" class="dib-interruptor__perilla"><i class="ph ph-chat-text" aria-hidden="true"></i> SMS</div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="3" data-respuesta="negativo" data-anim="toggle-sms" aria-pressed="false">Por mensaje de texto, SMS</button>
+                <button type="button" class="choice-btn" data-q="3" data-respuesta="positivo" data-anim="toggle-vault" aria-pressed="false">Lo saco de una app como Google Authenticator o Authy</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="3" data-respuesta="neutro" data-anim="none" aria-pressed="false">No lo tengo activado o no sé</button>
+            </div>
+        </article>
+        <article class="q-card" id="q4" aria-labelledby="q4-t">
+            <p class="q-num">04</p>
+            <h3 class="q-titulo" id="q4-t">Si pierdes tu correo, ¿podrías recuperarlo sin tu número?</h3>
+            <p class="q-porque">Si tu correo se recupera por SMS y pierdes el número, te quedas sin los dos.</p>
+            <div class="q-dibujo">
+            <svg class="dib-anillo" viewBox="0 0 100 100" aria-hidden="true">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2" opacity=".25"/>
+                <circle id="ouro-ring" cx="50" cy="50" r="40" fill="none" stroke-width="4" stroke-dasharray="10 6" stroke-linecap="round"/>
+                <text x="50" y="46" text-anchor="middle">Correo</text>
+                <text x="50" y="60" text-anchor="middle">Chip</text>
+            </svg>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="4" data-respuesta="positivo" data-anim="none" aria-pressed="false">Sí, tengo otro correo o códigos de recuperación</button>
+                <button type="button" class="choice-btn" data-q="4" data-respuesta="negativo" data-anim="spin" aria-pressed="false">No, solo con un SMS</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="4" data-respuesta="neutro" data-anim="none" aria-pressed="false">No sé</button>
+            </div>
+        </article>
+        <article class="q-card" id="q5" aria-labelledby="q5-t">
+            <p class="q-num">05</p>
+            <h3 class="q-titulo" id="q5-t">Cuando usas wifi público, ¿qué haces?</h3>
+            <p class="q-porque">En un wifi público otra persona conectada puede ver lo que mandas.</p>
+            <div class="q-dibujo">
+            <div class="dib-anzuelo">
+                <div id="wifi-hook" class="dib-anzuelo__hilo">
+                    <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 0v26a7 7 0 1 1-7-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+                </div>
+                <div id="data-box" class="dib-anzuelo__datos"><i class="ph ph-wifi-high" aria-hidden="true"></i> Tus datos</div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="5" data-respuesta="negativo" data-anim="hook" aria-pressed="false">Me conecto así nada más</button>
+                <button type="button" class="choice-btn" data-q="5" data-respuesta="positivo" data-anim="none" aria-pressed="false">Uso VPN o mis datos móviles</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="5" data-respuesta="neutro" data-anim="none" aria-pressed="false">No uso wifi público</button>
+            </div>
+        </article>
+        <article class="q-card" id="q6" aria-labelledby="q6-t">
+            <p class="q-num">06</p>
+            <h3 class="q-titulo" id="q6-t">¿Dónde guardas tus contraseñas?</h3>
+            <p class="q-porque">Un gestor de contraseñas las guarda cifradas y las llena por ti.</p>
+            <div class="q-dibujo">
+            <div class="dib-par">
+                <span id="safe-box" class="dib-par__obj"><i class="ph ph-vault" aria-hidden="true"></i><small>Gestor</small></span>
+                <span id="notebook" class="dib-par__obj"><i class="ph ph-notebook" aria-hidden="true"></i><small>Libreta</small></span>
+                <span id="browser-box" class="dib-par__obj"><i class="ph ph-browser" aria-hidden="true"></i><small>Navegador</small></span>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="6" data-respuesta="positivo" data-anim="safe" aria-pressed="false">En un gestor de contraseñas</button>
+                <button type="button" class="choice-btn" data-q="6" data-respuesta="negativo" data-anim="book" aria-pressed="false">Las memorizo o las anoto en papel o notas</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="6" data-respuesta="neutro" data-anim="browser" aria-pressed="false">El navegador las recuerda</button>
+            </div>
+        </article>
+        <article class="q-card" id="q7" aria-labelledby="q7-t">
+            <p class="q-num">07</p>
+            <h3 class="q-titulo" id="q7-t">¿Te ha llegado un código por SMS que no pediste?</h3>
+            <p class="q-porque">Si te llega un código que no pediste, alguien intentó entrar a esa cuenta.</p>
+            <div class="q-dibujo">
+            <div class="dib-radar">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" opacity=".2"/>
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" opacity=".2"/>
+                    <circle cx="50" cy="50" r="4" fill="currentColor" opacity=".35"/>
+                    <line class="radar-circle" x1="50" y1="50" x2="50" y2="4" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                <div id="threat-dots" class="dib-radar__puntos"></div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="7" data-respuesta="negativo" data-anim="dots" aria-pressed="false">Sí, me ha pasado</button>
+                <button type="button" class="choice-btn" data-q="7" data-respuesta="positivo" data-anim="none" aria-pressed="false">No, nunca</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="7" data-respuesta="neutro" data-anim="none" aria-pressed="false">No me acuerdo</button>
+            </div>
+        </article>
+        <article class="q-card" id="q8" aria-labelledby="q8-t">
+            <p class="q-num">08</p>
+            <h3 class="q-titulo" id="q8-t">¿Tu celular ha perdido la señal de repente y sin razón?</h3>
+            <p class="q-porque">Perder la señal de golpe puede ser SIM swapping, alguien pasa tu número a otro chip y recibe tus SMS.</p>
+            <div class="q-dibujo">
+            <div class="dib-senal">
+                <div id="signal-bars" class="dib-senal__barras"><i class="signal-bar"></i><i class="signal-bar"></i><i class="signal-bar"></i><i class="signal-bar"></i></div>
+                <span id="glitch-target" class="dib-senal__texto">Con señal</span>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="8" data-respuesta="negativo" data-anim="glitch" aria-pressed="false">Sí, y tardó horas o días en volver</button>
+                <button type="button" class="choice-btn" data-q="8" data-respuesta="positivo" data-anim="none" aria-pressed="false">No, nunca</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="8" data-respuesta="neutro" data-anim="none" aria-pressed="false">No lo sé</button>
+            </div>
+        </article>
+        <article class="q-card" id="q9" aria-labelledby="q9-t">
+            <p class="q-num">09</p>
+            <h3 class="q-titulo" id="q9-t">¿Tienes cuentas con un número que ya no usas?</h3>
+            <p class="q-porque">Cuando cancelas un número la operadora se lo da a otra persona, y si le llega un SMS de tu banco puede entrar a tu cuenta.</p>
+            <div class="q-dibujo">
+            <div class="flip-card" id="id-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"><small>Dueño del número</small><b>Tú</b></div>
+                    <div class="flip-card-back"><small>Nuevo dueño</small><b>Alguien más</b></div>
+                </div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="9" data-respuesta="negativo" data-anim="flip" aria-pressed="false">Sí, cambié de número sin actualizar alguna</button>
+                <button type="button" class="choice-btn" data-q="9" data-respuesta="positivo" data-anim="none" aria-pressed="false">No, siempre las actualizo</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="9" data-respuesta="neutro" data-anim="none" aria-pressed="false">Nunca lo había pensado</button>
+            </div>
+        </article>
+        <article class="q-card" id="q10" aria-labelledby="q10-t">
+            <p class="q-num">10</p>
+            <h3 class="q-titulo" id="q10-t">¿Tienes los códigos de respaldo de tus cuentas guardados fuera del celular?</h3>
+            <p class="q-porque">Al activar la verificación en dos pasos te dan códigos de respaldo para entrar si pierdes el celular.</p>
+            <div class="q-dibujo">
+            <div class="dib-impresora">
+                <div class="dib-impresora__ranura"></div>
+                <div class="dib-impresora__salida"><div id="paper-sheet" class="dib-impresora__hoja"><i></i><i></i><i></i><b></b></div></div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="10" data-respuesta="positivo" data-anim="print" aria-pressed="false">Sí, impresos o en mi gestor</button>
+                <button type="button" class="choice-btn" data-q="10" data-respuesta="negativo" data-anim="print-falla" aria-pressed="false">No sabía que existían</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="10" data-respuesta="neutro" data-anim="none" aria-pressed="false">No tengo verificación en dos pasos</button>
+            </div>
+        </article>
+        <article class="q-card" id="q11" aria-labelledby="q11-t">
+            <p class="q-num">11</p>
+            <h3 class="q-titulo" id="q11-t">¿Cuántas apps tienen guardado tu número?</h3>
+            <p class="q-porque">Entre más apps dependan de tu número, más se complica si lo pierdes. Bancos, redes, correo, transporte.</p>
+            <div class="q-dibujo">
+            <div class="dib-contador">
+                <span id="app-counter">0</span>
+                <span id="app-range-label">Mueve la barra</span>
+                <input type="range" min="0" max="30" value="0" id="app-slider" aria-label="Cuántas apps usan tu número" oninput="updateAppCounter(this.value)">
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="11" data-respuesta="neutro" data-anim="none" aria-pressed="false">No lo sé</button>
+            </div>
+        </article>
+        <article class="q-card" id="q12" aria-labelledby="q12-t">
+            <p class="q-num">12</p>
+            <h3 class="q-titulo" id="q12-t">¿Te robaron o perdiste el celular en el último año?</h3>
+            <p class="q-porque">Si alguien lo encuentra desbloqueado, tiene tus apps, tus SMS y tus contraseñas.</p>
+            <div class="q-dibujo">
+            <div id="panic-btn" class="dib-celular"><i class="ph ph-device-mobile" aria-hidden="true"></i><i class="ph ph-device-mobile-slash dib-celular__perdido" aria-hidden="true"></i></div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="12" data-respuesta="negativo" data-anim="panic" aria-pressed="false">Sí, me pasó</button>
+                <button type="button" class="choice-btn" data-q="12" data-respuesta="positivo" data-anim="none" aria-pressed="false">No</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="12" data-respuesta="neutro" data-anim="none" aria-pressed="false">No lo sé</button>
+            </div>
+        </article>
+        <article class="q-card" id="q13" aria-labelledby="q13-t">
+            <p class="q-num">13</p>
+            <h3 class="q-titulo" id="q13-t">¿Tu chip tiene PIN, distinto al de la pantalla?</h3>
+            <p class="q-porque">Sin ese PIN, quien saque tu chip y lo ponga en otro teléfono tiene tu número.</p>
+            <div class="q-dibujo">
+            <div class="dib-pin">
+                <div class="dib-pin__puntos" id="pin-display"><i class="pin-dot" id="pin-dot-1"></i><i class="pin-dot" id="pin-dot-2"></i><i class="pin-dot" id="pin-dot-3"></i><i class="pin-dot" id="pin-dot-4"></i></div>
+                <div class="dib-pin__teclado" id="keypad"><button type="button" class="keypad-key" onclick="pressKey(this)">1</button><button type="button" class="keypad-key" onclick="pressKey(this)">2</button><button type="button" class="keypad-key" onclick="pressKey(this)">3</button><button type="button" class="keypad-key" onclick="pressKey(this)">4</button><button type="button" class="keypad-key" onclick="pressKey(this)">5</button><button type="button" class="keypad-key" onclick="pressKey(this)">6</button><button type="button" class="keypad-key" onclick="pressKey(this)">7</button><button type="button" class="keypad-key" onclick="pressKey(this)">8</button><button type="button" class="keypad-key" onclick="pressKey(this)">9</button><span></span><button type="button" class="keypad-key" onclick="pressKey(this)">0</button><span></span>
+                    <div class="dib-pin__barra"><div id="keypad-break"></div></div>
+                </div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="13" data-respuesta="positivo" data-anim="key-success" aria-pressed="false">Sí, lo tengo activado</button>
+                <button type="button" class="choice-btn" data-q="13" data-respuesta="negativo" data-anim="key-fail" aria-pressed="false">No</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="13" data-respuesta="neutro" data-anim="none" aria-pressed="false">No sabía que existía</button>
+            </div>
+        </article>
+        <article class="q-card" id="q14" aria-labelledby="q14-t">
+            <p class="q-num">14</p>
+            <h3 class="q-titulo" id="q14-t">¿Vas a estar fuera de México en los próximos meses?</h3>
+            <p class="q-porque">Si la línea se suspende mientras estás fuera, recuperarla se complica mucho.</p>
+            <div class="q-dibujo">
+            <div class="dib-globo">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <ellipse cx="50" cy="50" rx="18" ry="44" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+                    <path d="M6 50h88M12 30h76M12 70h76" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/>
+                </svg>
+                <div id="globe-lock" class="dib-globo__candado"><i class="ph-fill ph-lock-simple" aria-hidden="true"></i></div>
+            </div>
+            </div>
+            <div class="q-opciones" data-opciones>
+                <button type="button" class="choice-btn" data-q="14" data-respuesta="negativo" data-anim="globe-lock" aria-pressed="false">Sí, voy a viajar</button>
+                <button type="button" class="choice-btn" data-q="14" data-respuesta="positivo" data-anim="none" aria-pressed="false">No, voy a estar en México</button>
+                <button type="button" class="choice-btn choice-btn--nose" data-q="14" data-respuesta="neutro" data-anim="none" aria-pressed="false">No lo sé</button>
+            </div>
+        </article>
+        <article class="q-card" id="q15" aria-labelledby="q15-t">
+            <p class="q-num">15</p>
+            <h3 class="q-titulo" id="q15-t">¿Cómo prefieres resolver lo que encuentres?</h3>
+            <p class="q-porque">Con esto se elige qué ayuda aparece primero en tu resultado.</p>
+            <div class="q-opciones q-opciones--grandes" data-opciones>
+                <button type="button" class="choice-btn choice-btn--grande" data-q="15" data-respuesta="negativo" data-anim="none" aria-pressed="false"><i class="ph ph-book-open-text" aria-hidden="true"></i><b>Por mi cuenta</b><span>Con una guía, a mi ritmo</span></button>
+                <button type="button" class="choice-btn choice-btn--grande" data-q="15" data-respuesta="positivo" data-anim="none" aria-pressed="false"><i class="ph ph-handshake" aria-hidden="true"></i><b>Con ayuda</b><span>Que alguien lo haga conmigo</span></button>
+            </div>
+        </article>
+                    </div> 
+                </div> 
+            </section> 
+
+            
+            <section id="step-2" class="step-container active">
+                <div class="fase-cabeza">
+                    <span class="t-subtitulo">Fase 2 de 4</span>
+                    <h2 class="t-titulo">Tus apps</h2>
+                    <p class="t-parrafo">Tres formas de decir qué apps dependen de tu número. Cada una trae apps distintas, y puedes hacer las tres, una o ninguna.</p>
+                </div>
+
+                
+                <article class="actividad" id="swipe-section" aria-labelledby="swipe-t">
+                    <header class="actividad__cabeza">
+                        <h3 class="actividad__titulo" id="swipe-t">Clasifica</h3>
+                        <p class="actividad__para">Si tu número deja de funcionar, ¿podrías entrar a cada app de otra forma?</p>
+                        <div class="actividad__cuenta"><span id="counter">0 de 21</span><div class="actividad__barra"><div id="progress-bar"></div></div><span id="pct-text">0%</span></div>
+                    </header>
+                    <div class="actividad__zona pane-interactive">
+                        <div class="swipe-zone" id="swipe-zone">
+                            <div id="stack-container" class="swipe-mazo"></div>
+                            <div id="swipe-hint" class="swipe-hint" aria-hidden="true"><i class="ph-fill ph-hand-pointing"></i></div>
+                        </div>
+                    </div>
+                    <div class="actividad__controles">
+                            <div class="actividad__direcciones" id="swipe-instr-buttons">
+                                <button type="button" class="swipe-instr-btn dir-left" onclick="triggerSwipe(-1)"><i class="ph-bold ph-arrow-left" aria-hidden="true"></i><span>Tiene otra forma</span></button>
+                                <button type="button" class="swipe-instr-btn dir-down" onclick="triggerSwipe(0)"><i class="ph-bold ph-arrow-down" aria-hidden="true"></i><span>No la uso</span></button>
+                                <button type="button" class="swipe-instr-btn dir-right" onclick="triggerSwipe(1)"><i class="ph-bold ph-arrow-right" aria-hidden="true"></i><span>Depende del SMS</span></button>
+                            </div>
+                            <div class="actividad__botones">
+                                <button type="button" onclick="undoSwipe()" id="btn-undo" class="btn-undo"><i class="ph ph-arrow-u-up-left" aria-hidden="true"></i> Deshacer</button>
+                                <button type="button" class="actividad__otra" onclick="volverAClasificar()">Volver a clasificar</button>
+                            </div>
+                    </div>
+                    <p class="marcas-linea">Marcas de sus dueños, sin afiliación.</p>
+                </article>
+
+                
+                <article class="actividad" id="vortex-section" aria-labelledby="vortex-t">
+                    <header class="actividad__cabeza">
+                        <h3 class="actividad__titulo" id="vortex-t">Órbita</h3>
+                        <p class="actividad__para">Estas apps giran alrededor de tu chip. Toca las que usas con tu número y el chip se las traga.</p>
+                    </header>
+                    <div class="actividad__zona">
+                        <div class="vortex-zone">
+                            <div class="vortex-halo" id="halo"></div>
+                            <canvas id="vortex-canvas"></canvas>
+                            <div class="vortex-centro" id="core-container">
+                                <div class="vortex-core" id="core"><span>SIM</span></div>
+                            </div>
+                            <div id="vortex-items-container"></div>
+                        </div>
+                    </div>
+                    <div class="actividad__controles">
+                        <div class="actividad__hud" id="vortex-hud">
+                            <div><span>Dependen del SMS</span><b id="risk-val">0%</b></div>
+                            <div><span>Apps tragadas</span><b id="chain-val">0</b></div>
+                        </div>
+                        <button type="button" class="actividad__otra" onclick="resetVortex()">Volver a empezar la órbita</button>
+                    </div>
+                    <p class="marcas-linea">Marcas de sus dueños, sin afiliación.</p>
+                </article>
+
+                
+                <article class="actividad" id="fracture-section" aria-labelledby="fracture-t">
+                    <header class="actividad__cabeza">
+                        <h3 class="actividad__titulo" id="fracture-t">Fractura</h3>
+                        <p class="actividad__para">El SMS es una sola pieza. Toca las apps que entran con tu número y mira cómo se agrieta.</p>
+                    </header>
+                    <div class="actividad__zona">
+                        <div class="fracture-zone" id="fracture-container"></div>
+                    </div>
+                    <div class="actividad__controles">
+                        <button type="button" class="actividad__otra" onclick="resetFracture(); updateCalculatedRisk(); Estado.guardar()">Quitar todas</button>
+                    </div>
+                    <p class="marcas-linea">Marcas de sus dueños, sin afiliación.</p>
+                </article>
+            </section>
+
+            
+            <section id="step-3" class="step-container active">
+                <div class="fase-cabeza">
+                    <span class="t-subtitulo">Fase 3 de 4</span>
+                    <h2 class="t-titulo">Tu contraseña</h2>
+                    <p class="t-parrafo">Prueba una parecida a la tuya, nunca la tuya, y mira cuánto tarda una compu en adivinarla.</p>
+                </div>
+
+                <div class="simulador">
+                    <div class="cronometro" id="hackeo-timer-block">
+                        <label class="cronometro__etiqueta" for="hive-pass-tester">Prueba una contraseña</label>
+                        <div class="cronometro__fila">
+                            <input type="text" id="hive-pass-tester" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Escribe aquí">
+                            <button type="button" class="cronometro__generar" onclick="generarPasswordSegura()">Generar</button>
+                        </div>
+                        <p class="cronometro__tiempo" id="hive-time-display" aria-live="polite"></p>
+                        <p class="cronometro__nivel" id="hive-risk-badge">Escribe o toca una celda de la tabla</p>
+                        <details class="plegable tabla-tiempos__leer">
+                            <summary>Cómo leer la tabla</summary>
+                        <ul class="tabla-tiempos__leyenda">
+                            <li><i style="background:var(--n0)"></i>Al instante</li>
+                            <li><i style="background:var(--n1)"></i>Minutos u horas</li>
+                            <li><i style="background:var(--n2)"></i>Días o meses</li>
+                            <li><i style="background:var(--n3)"></i>Años</li>
+                            <li><i style="background:var(--n4)"></i>Siglos</li>
+                            <li><i style="background:var(--n5)"></i>Más que eso</li>
+                        </ul>
+                        <p class="tabla-tiempos__claves">a años, k mil, M millones, Md mil millones, Bn billones, Bd mil billones, Tn trillones. Con una tarjeta gráfica RTX 5090 probando sin parar.</p>
+                        </details>
+                    </div>
+
+                    <div class="tabla-tiempos">
+                        <div class="tabla-tiempos__ejes"><span>Largo, en caracteres</span><span>Lo que trae</span></div>
+                        <div id="hive-matrix-body" class="hive-table" role="grid" aria-label="Tiempo para adivinar una contraseña"></div>
+                        <button type="button" class="hive-todos" id="hive-todos" aria-expanded="false" aria-controls="hive-matrix-body">Ver todos los largos</button>
+                        <p class="cronometro__nota tabla-tiempos__privado"><i class="ph ph-lock-simple" aria-hidden="true"></i> Se calcula en tu celular y no se manda a ningún lado. Solo se guarda la celda de la tabla, nunca lo que escribes.</p>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section id="step-4" class="step-container active">
+                <div class="fase-cabeza">
+                    <span class="t-subtitulo">Fase 4 de 4</span>
+                    <h2 class="t-titulo">Tu resultado</h2>
+                    <p class="t-parrafo">Se actualiza con cada cosa que contestas.</p>
+                </div>
+
+                <div class="informe" id="audit-report-print">
+                    <div class="informe__resultado">
+                        <div class="informe__anillo">
+                            <div id="riskDonutFinal" class="anillo-final" aria-hidden="true"></div>
+                            <span id="final-risk-num">--</span>
+                        </div>
+                        <div class="informe__lectura">
+                            <h3 id="final-risk-tag">Sin respuestas todavía</h3>
+                            <p id="informe-frase"></p>
+                            <p class="informe__cobertura" id="informe-cobertura"></p>
+                            <p class="informe__visita">Tu nombre <b id="report-meta" data-nombre-apodo></b> · <span id="report-date"></span></p>
+                        <details class="informe__como plegable">
+                                <summary>Cómo sale este número</summary>
+                                <p>Se juntan dos partes, tus respuestas y tus apps, y cada una vale la mitad. Si solo contestaste una, esa es todo el resultado.</p>
+                                <p>En las preguntas, las que te pueden dejar sin entrar a tus cuentas pesan el triple que las de contexto, como si tus códigos llegan por SMS, cómo recuperas tu correo, si tienes códigos de respaldo o si ya viste señales de un ataque. Una respuesta de riesgo cuenta entera, no sé cuenta la mitad y la buena no suma.</p>
+                                <p>En las apps, un banco o tu correo pesan cinco veces más que un juego. Las que clasificas como dependientes del SMS cuentan enteras, y las que tocas en la Órbita o la Fractura cuentan un poco más de la mitad, porque ahí solo dices que la usas con tu número.</p>
+                                <p>Si tus códigos llegan por SMS y tu correo solo se recupera por SMS, perder el número te deja sin las dos llaves, así que el riesgo no baja de 70 %. La contraseña que pruebas no cuenta.</p>
+                            </details>
+                        </div>
+                    </div>
+
+
+                    <div class="informe__bloque" id="informe-importante" hidden>
+                        <h4>Lo más importante en tu caso</h4>
+                        <p id="informe-importante-texto"></p>
+                    </div>
+
+                    <div class="informe__dos">
+                        <div class="informe__bloque">
+                            <h4>Conviene revisar</h4>
+                            <ul class="informe__lista" id="informe-revisar"></ul>
+                        </div>
+                        <details class="informe__bloque plegable informe__cubierto">
+                            <summary>Ya tienes cubierto <span id="informe-cubierto-cuenta"></span></summary>
+                            <ul class="informe__lista informe__lista--bien" id="informe-cubierto"></ul>
+                        </details>
+                    </div>
+
+                    <div class="informe__bloque">
+                        <h4>Apps que dependen de tu número</h4>
+                        <p class="informe__nota">De la más importante a la menos.</p>
+                        <ul class="informe__apps" id="informe-apps"></ul>
+                        <p class="marcas-linea">Marcas de sus dueños, sin afiliación.</p>
+                    </div>
+
+                    <div class="informe__bloque informe__sigue" id="informe-sigue">
+                        <h4>Qué sigue</h4>
+                        <div class="informe__caminos">
+                            <a class="camino camino--guia" id="informe-guia" target="_blank" rel="noopener">
+                                <i class="ph ph-book-open-text" aria-hidden="true"></i>
+                                <b>Hacerlo por tu cuenta</b>
+                                <span>Con la guía abierta</span>
+                            </a>
+                            <a class="camino camino--ayuda" id="informe-pedir" href="index.html#pedir-2fa">
+                                <i class="ph ph-handshake" aria-hidden="true"></i>
+                                <b>Pedir ayuda</b>
+                                <span>Tu resultado ya va en el mensaje</span>
+                            </a>
+                        </div>
+                        <details class="plegable informe__herramientas">
+                            <summary>Revisar tu contraseña en otro lado</summary>
+                        <a class="informe__herramienta" id="informe-fuerza-clave" target="_blank" rel="noopener"><i class="ph ph-arrow-square-out" aria-hidden="true"></i> Probar qué tan fuerte es tu contraseña, en Bitwarden</a>
+                        <a class="informe__herramienta" id="informe-filtrada-clave" target="_blank" rel="noopener"><i class="ph ph-arrow-square-out" aria-hidden="true"></i> Ver si tu contraseña ya se filtró, en Have I Been Pwned</a>
+                        </details>
+                    </div>
+
+                    <div class="informe__bloque contacto">
+                        <h4>¿Quieres que te contacten sobre tu resultado?</h4>
+                        <p class="informe__nota">Es opcional. Escribe por Instagram con tu resultado ya copiado, o deja por dónde y se manda cifrado con tu resultado.</p>
+                        <div class="contacto__ig-fila">
+                            <button type="button" class="contacto__ig" onclick="Informe.escribirInstagram(this)"><i class="ph ph-instagram-logo" aria-hidden="true"></i> Escribir a @jean.krrillo en Instagram</button>
+                            <figure class="contacto__qr">
+                                <img src="marca/qr_instagram.png" alt="Código QR del Instagram @jean.krrillo" width="111" height="124" loading="lazy">
+                                <figcaption>Escanéalo con tu celular</figcaption>
+                            </figure>
+                        </div>
+                        <form class="contacto__form" id="contacto-form" onsubmit="return Informe.guardarContacto(this)">
+                            <label for="contacto-plataforma">O deja por dónde te contactan</label>
+                            <div class="contacto__fila">
+                                <select id="contacto-plataforma" name="plataforma" onchange="Informe.ajustarContacto(this.form)">
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="telegram">Telegram</option>
+                                    <option value="signal">Signal</option>
+                                    <option value="correo">Correo</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <input id="contacto-medio" name="contacto" type="text" inputmode="tel" autocomplete="tel" placeholder="Tu número de WhatsApp">
+                                <button type="submit">Guardar</button>
+                            </div>
+                            <p class="contacto__aviso" aria-live="polite"></p>
+                            <button type="button" class="contacto__borrar borrar-respuesta" hidden onclick="Informe.borrarContacto(this.form)">Quitar mi contacto</button>
+                        </form>
+                    </div>
+
+                    <details class="informe__bloque informe__tuyo plegable">
+                        <summary>Tus respuestas</summary>
+                        <p class="informe__nota">Están guardadas en este celular con el nombre <b data-nombre-apodo></b>. Puedes llevarte el resultado en texto o borrar todo.</p>
+                        <div class="informe__acciones">
+                            <button type="button" class="actividad__otra" onclick="Informe.copiarTexto(this)"><i class="ph ph-copy" aria-hidden="true"></i> Copiar mi resultado</button>
+                            <button type="button" class="actividad__otra borrar-todo" onclick="borrarTodoPaso(this)"><i class="ph ph-trash" aria-hidden="true"></i> Borrar todo</button>
+                        </div>
+                        <details class="informe__guardar">
+                            <summary>Ver el texto</summary>
+                            <textarea id="results-copy-area" readonly rows="8" aria-label="Tu resultado en texto"></textarea>
+                        </details>
+                    </details>
+                </div>
+            </section>
+
+        </div>
+
+        
+        <p class="aviso-diag">Este diagnóstico revisa tu seguridad digital. No está asociado al registro de líneas, no promueve vincular tu CURP y no se hace cargo de una línea suspendida.</p>
+
+        
+        
+        <footer class="pie-diag">
+            <nav class="pie-diag__links" aria-label="Más">
+                <a href="index.html">Ver servicios</a>
+                <a href="preguntas.html">Preguntas del registro</a>
+                <a href="fundamentos.html">Cómo se trabaja aquí</a>
+                <a href="index.html">Servicios</a>
+            </nav>
+            <p class="pie-diag__firma">@jean.krrillo</p>
+        </footer>
+    </main>
+
+    
+    
+    <script src="diagnostico/vendor/gsap.min.js" defer></script>
+    <script src="diagnostico/vendor/Draggable.min.js" defer></script>
+    <script src="diagnostico/vendor/ScrollToPlugin.min.js" defer></script>
+    <script src="diagnostico/vendor/confetti.browser.min.js" defer></script>
+    
+    <script src="diagnostico/js/engine/ponderacion_riesgo.js" defer></script>
+    <script src="diagnostico/js/engine/risk-core.js" defer></script>
+    
+    <script src="diagnostico/js/identidad.js" defer></script>
+    <script src="diagnostico/js/medir.js" defer></script>
+    <script src="diagnostico/js/estado.js" defer></script>
+    <script src="diagnostico/js/historial.js" defer></script>
+    <script src="diagnostico/js/pigmentos-datos.js" defer></script>
+    <script src="diagnostico/js/apodo.js" defer></script>
+    <script src="diagnostico/js/preguntas-datos.js" defer></script>
+    <script src="diagnostico/js/header.js" defer></script>
+    <script src="diagnostico/js/app.js" defer></script>
+    <script src="diagnostico/js/quiz.js" defer></script>
+    <script src="diagnostico/js/swipe.js" defer></script>
+    <script src="diagnostico/js/vortex.js" defer></script>
+    <script src="diagnostico/js/fracture.js" defer></script>
+    <script src="diagnostico/js/informe.js" defer></script>
+    <script src="diagnostico/js/retomar.js" defer></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+:root,
+body.theme-light,
+[data-theme="light"] {
+  --bg-fondo: var(--papel);           
+  --bg-tarjeta: var(--papel);         
+  --borde-tarjeta: var(--papel);      
+  --texto-principal: var(--tinta);    
+  --texto-secundario: var(--tinta);   
+  --texto-muteado: var(--tinta);      
+  --color-acento: var(--ocre);       
+  --dorado-acento: var(--ocre);      
+  --color-alerta: var(--ocre);       
+  --rojo-escarlata: var(--ocre);     
+  --verde-forense: var(--tinta);      
+  --verde-mutated: var(--tinta);      
+  --dorado-premium: var(--ocre);     
+  --dorado-oscuro: var(--ocre);      
+  --crema-fondo: var(--papel);        
+  --crema-tarjeta: var(--papel);      
+  --rojo-alerta: var(--ocre);        
+  --texto-2: var(--tinta);            
+  --texto-3: var(--tinta);            
+  --cristal: color-mix(in srgb, var(--papel) 88%, transparent);
+  --borde-cristal: color-mix(in srgb, var(--tinta) 12%, transparent);
+  --negro-vortex: var(--tinta);
+  --verde-oscuro: var(--tinta);
+  --naranja-fractura: var(--ocre);
+  --naranja-fractura-glow: color-mix(in srgb, var(--ocre) 40%, transparent);
+  --naranja-fractura-border: color-mix(in srgb, var(--ocre) 30%, transparent);
+  --risk-accent: var(--ocre);
+  --risk-glow: color-mix(in srgb, var(--ocre) 15%, transparent);
+  --risk-border: color-mix(in srgb, var(--ocre) 40%, transparent);
+  --body-pt-desktop: 130px;
+  --body-pt-tablet: 125px;
+  --body-pt-mobile: 92px;
+  --body-pt-small: 86px;
+  --body-pt-xs: 80px;
+  --stepper-dot-size: 3rem;
+}
+.btn-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--borde-tarjeta);
+  color: var(--texto-secundario);
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+.btn-theme-toggle:hover {
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+  background-color: color-mix(in srgb, var(--ocre) 8%, transparent);
+}
+.btn-theme-toggle svg {
+  pointer-events: none;
+}
+.btn-theme-toggle .icon-sun {
+  display: none !important;
+}
+.btn-theme-toggle .icon-moon {
+  display: block !important;
+}
+:root {
+  --space-3xs: clamp(0.25rem,  0.20rem + 0.25vw, 0.375rem);
+  --space-2xs: clamp(0.375rem, 0.30rem + 0.36vw, 0.5rem);
+  --space-xs:  clamp(0.5rem,   0.41rem + 0.45vw, 0.75rem);
+  --space-sm:  clamp(0.75rem,  0.61rem + 0.71vw, 1rem);
+  --space-md:  clamp(1rem,     0.82rem + 0.89vw, 1.5rem);
+  --space-lg:  clamp(1.5rem,   1.23rem + 1.34vw, 2.5rem);
+  --space-xl:  clamp(2rem,     1.55rem + 2.23vw, 3.5rem);
+  --space-2xl: clamp(2.5rem,   1.79rem + 3.57vw, 5rem);
+  --fs-titulo:    clamp(1.8rem,   1.39rem + 2.05vw, 3rem);
+  --fs-h2:        clamp(1.45rem,  1.20rem + 1.25vw, 2.2rem);
+  --fs-h3:        clamp(1.2rem,   1.05rem + 0.75vw, 1.65rem);
+  --fs-parrafo:   clamp(0.925rem, 0.88rem + 0.22vw, 1.05rem);
+  --fs-subtitulo: clamp(0.8rem,   0.75rem + 0.27vw, 0.95rem);
+  --fs-enfasis:   clamp(0.8rem,   0.77rem + 0.18vw, 0.9rem);
+  --fs-acompan:   clamp(0.72rem,  0.69rem + 0.16vw, 0.825rem);
+  --fs-micro:     clamp(0.62rem,  0.59rem + 0.16vw, 0.72rem);
+  --r-xs:   4px;     
+  --r-sm:   8px;
+  --r-md:   10px;    
+  --r-lg:   18px;    
+  --r-xl:   24px;    
+  --r-2xl:  32px;
+  --r-pill: 9999px;  
+  --r-full: 50%;     
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);           
+  --ease-inout:    cubic-bezier(0.4, 0, 0.2, 1);            
+  --ease-arcade:   cubic-bezier(0.34, 1.56, 0.64, 1);       
+  --ease-pulsador: cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  --dur-instant: .15s;
+  --dur-fast:    .2s;
+  --dur-base:    .3s;
+  --dur-slow:    .4s;
+  --dur-panel:   .6s;
+  --max-width-container: 1400px;  
+  --max-width-content:   1060px;  
+  --max-width-modal:      820px;
+  --measure:       68ch;  
+  --measure-tight: 52ch;  
+  --stepper-altura: 86px;
+}
+.surface-1 {                      
+  background-color: var(--papel);
+}
+.surface-2 {                      
+  background-color: var(--papel);
+}
+.surface-3 {                      
+  background-color: var(--papel);
+}
+.text-soft {                      
+  color: var(--texto-2);
+  font-weight: 500;                         
+}
+.text-softer {                    
+  color: var(--texto-3);
+  font-weight: 700;                         
+}
+.text-strong {                    
+  color: var(--verde-forense);
+}
+.surface-fixed {
+  background-color: var(--papel);
+}
+.border-soft {
+  border-color: color-mix(in srgb, var(--tinta) 22%, transparent);
+}
+.progress-card-surface {
+  background-color: color-mix(in srgb, var(--papel) 60%, transparent);
+  border-color: var(--papel);
+}
+.text-ink {
+  color: var(--verde-forense);
+}
