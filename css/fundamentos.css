@@ -25,7 +25,18 @@
 .fundamentos__pie { margin-top: var(--space-xl); display: grid; gap: .4rem; max-width: var(--ancho-texto); }
 .fundamentos__pie p { margin: 0; }
 .fundamentos__pie a { color: var(--tinta); }
+.titulo-chico { font-size: var(--fs-h3); }
+.lista-chica, .lista-principios { margin: 0 0 .7rem; padding-left: 1.1rem; display: grid; gap: .45rem; font-size: var(--fs-chico); line-height: 1.45; max-width: var(--ancho-texto); }
+.lista-principios { font-size: var(--fs-texto); gap: var(--grupo); }
+.lista-chica li::marker, .lista-principios li::marker { color: var(--ocre); }
+.letra-chica .concesion > summary b { font-size: var(--fs-chico); }
+.concesion[open] .lista-chica { animation: concesion-abre var(--t-panel) var(--ease-out) both; }
+.lecturas { margin-top: var(--space-lg); }
+.lecturas h2 { font-size: var(--fs-texto); margin-bottom: var(--junto); }
+.privacidad-enlace { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: .18em; cursor: pointer; }
+@media (hover: hover) { .privacidad-enlace:hover { text-decoration-color: var(--ocre); } }
+.privacidad-enlace:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
   .concesion > summary::after { transition: none; }
-  .concesion[open] p { animation: none; }
+  .concesion[open] p, .concesion[open] .lista-chica { animation: none; }
 }

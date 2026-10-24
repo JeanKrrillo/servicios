@@ -68,3 +68,17 @@
 .tabla-concesiones { min-width: 640px; border-collapse: collapse; font-size: var(--fs-chico, .9rem); }
 .tabla-concesiones th, .tabla-concesiones td { padding: .6em .7em; text-align: left; vertical-align: top; border-bottom: 1px solid var(--tinta-15); }
 .tabla-concesiones th { font-weight: 600; }
+.digitos { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; margin: var(--space-xs) 0; }
+.digitos__pregunta { flex: 1 0 100%; font-weight: 600; }
+.digito {
+  min-width: 44px; min-height: 44px; border: 1.5px solid var(--tinta-15); border-radius: var(--r-md); background: var(--papel); color: var(--tinta);
+  font: 500 var(--fs-texto)/1 var(--f-numero); transition: border-color var(--t-toque) ease, transform var(--t-toque) var(--ease-rebote);
+}
+@media (hover: hover) { .digito:hover { border-color: var(--tinta); } }
+.digito:active { transform: scale(.94); }
+.digito:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
+.digito[aria-pressed="true"] { border-color: var(--tinta); background: var(--tinta); color: var(--papel); }
+.digitos__tuya { font-weight: 700; }
+.fechas tr.es-tuya td { font-weight: 700; color: var(--ocre-texto); }
+.qa__respuesta ol, .qa__respuesta ul { padding-left: 1.2rem; display: grid; gap: .35rem; }
+.qa__respuesta code { font: 500 var(--fs-chico)/1.45 var(--f-numero); overflow-wrap: anywhere; }

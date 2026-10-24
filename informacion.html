@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Información útil · jean.krrillo</title>
+  <meta name="description" content="Qué incluye cada pedido, cómo se paga y qué pasa con tus datos.">
+  <meta name="theme-color" content="#f3f2ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
+  <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
+  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fundamentos.css">
+  <script src="diagnostico/js/notificacion.js" defer></script>
+  <script src="diagnostico/js/identidad.js" defer></script>
+  <script src="diagnostico/js/medir.js" defer></script>
+  <script src="diagnostico/js/historial.js" defer></script>
+  <script src="diagnostico/js/acceso-visor.js" defer></script>
+  <script src="js/comun.js" defer></script>
+  <link rel="stylesheet" href="css/pestanas.css">
+  <script src="js/pestanas.js" defer></script>
+  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+  <script src="js/musica.js" defer></script>
+</head>
+<body>
+  <header class="barra">
+    <div class="contenedor barra__fila">
+      <a class="marca-jk" href="./" aria-label="jean.krrillo, ir al inicio"><span class="marca-jk__sello" aria-hidden="true"></span>jean.krrillo</a>
+      <button class="icono-boton" type="button" data-tema-boton aria-label="Cambiar a tema oscuro">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  
+  <main class="contenedor fundamentos letra-chica">
+    <header class="fundamentos__cabeza">
+      <h1 class="titulo-chico">Información útil</h1>
+      <p class="texto-apoyo">Para quien quiera saber qué incluye cada pedido, cómo se paga y qué pasa con sus datos.</p>
+    </header>
+
+    <details class="concesion">
+      <summary><b>Antes de pedir</b><span>qué incluye, cómo se paga y tus datos</span></summary>
+      <p>Lo que hago es lo que aparece en tu pedido, parte por parte, y lo que no aparece ahí no va incluido. Si en el camino hace falta algo más, te aviso y tú decides antes de que se cobre.</p>
+      <p>El precio que te paso por escrito es el máximo, y si algo cambia te aviso antes de cobrar. En web, apps, casa inteligente y en trabajos de más de 1,000 pesos se paga la mitad antes, con recibo. Cómo se paga todavía no está definido.</p>
+      <p>Lo que se va a hacer queda por escrito, tienes una ronda de cambios y lo que pidas de más se cobra aparte.</p>
+      <p>El trabajo se hace dentro de tus cuentas, con el acceso que me prestes, y no leo tus mensajes. Al terminar cierro las sesiones, tú cambias las contraseñas que prestaste y tus archivos se borran, y te lo confirmo por escrito. Tu caso solo se publica si tú quieres, y sin tus datos.</p>
+      <p>Todavía no recupero cuentas robadas. En web y apps no van incluidos el dominio, el servidor, subirla a las tiendas de apps ni revisar normas de seguridad, y en casa inteligente las piezas las compras tú o se pagan al costo antes de empezar.</p>
+      <p>En limpieza de compu y equipos más rápidos, si tu compu ya no tiene arreglo pagas solo el diagnóstico, que son 100 pesos.</p>
+      <p>Tu visita solo se mide si dices que sí, y qué se mide está en <button class="privacidad-enlace" type="button" data-privacidad>Privacidad</button>.</p>
+    </details>
+
+    <footer class="fundamentos__pie texto-apoyo">
+      <p><a href="./#necesidad">Servicios</a> · <a href="autodiagnostico.html">Autodiagnóstico</a> · <a href="principios.html">Principios</a></p>
+    </footer>
+  </main>
+
+  <a class="firma" href="https://www.instagram.com/jean.krrillo/" target="_blank" rel="noopener">@jean.krrillo</a>
+</body>
+</html>

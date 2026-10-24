@@ -49,8 +49,8 @@ body { padding-bottom: var(--alto-pestanas); }
 .pestanas-hoja::backdrop { background: color-mix(in srgb, var(--tinta) 30%, transparent); }
 .pestanas-hoja__caja { position: relative; padding: .75rem max(1.25rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left)); overflow-y: auto; max-height: 80dvh; }
 .pestanas-hoja__cerrar {
-  position: absolute; top: .4rem; right: .5rem; display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
-  border: 0; border-radius: 50%; background: none; color: var(--tinta); cursor: pointer; transition: transform .15s ease;
+  position: absolute; top: .4rem; right: .5rem; display: inline-flex; align-items: center; gap: .35rem; min-width: 44px; height: 44px; padding: 0 .7rem;
+  border: 0; border-radius: var(--r-pill, 999px); font: 700 var(--fs-chico, .85rem)/1 var(--f-titulo, sans-serif); background: none; color: var(--tinta); cursor: pointer; transition: transform .15s ease;
 }
 .pestanas-hoja__cerrar svg { width: 1.15rem; height: 1.15rem; }
 .indice { margin: 0; padding: 0; list-style: none; }
@@ -71,12 +71,14 @@ body { padding-bottom: var(--alto-pestanas); }
 .glosa--hoja { bottom: var(--alto-pestanas); }
 @media print { .pestanas { display: none; } body { padding-bottom: 0; } }
 .musica-aviso {
-  position: fixed; z-index: 60; transform: translateY(-50%); white-space: nowrap;
+  position: fixed; z-index: 60; white-space: nowrap; max-width: calc(100vw - 16px);
   color: var(--tinta-75); font: 600 var(--fs-micro, .72rem)/1 var(--f-texto, sans-serif);
   pointer-events: none; opacity: 0; animation: musica-aviso 5s ease-in-out forwards;
 }
 @keyframes musica-aviso { 0% { opacity: 0; } 10% { opacity: 1; } 30% { opacity: .25; } 50% { opacity: 1; } 70% { opacity: .25; } 90% { opacity: 1; } 100% { opacity: 0; } }   
 @keyframes musica-aviso-quieto { 0% { opacity: 1; } 100% { opacity: 0; } }
+.barra__fila .privacidad-boton { margin-left: auto; font-size: var(--fs-chico); }
+.barra__fila .privacidad-boton + .musica-boton { margin-left: 0; }
 .barra__fila .musica-boton { margin-left: auto; margin-right: calc(var(--space-sm, .75rem) * -1 + .25rem); color: inherit; cursor: pointer; }
 @media (hover: hover) { .barra__fila .musica-boton:hover { background: color-mix(in srgb, var(--tinta) 8%, transparent); } }
 .musica-boton:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }

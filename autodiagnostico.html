@@ -42,7 +42,7 @@
 
     <header id="header" class="jk-header header-authority">
         <div class="jk-header__fila">
-            <div class="logo-container" role="img" aria-label="Tu riesgo hasta ahora">
+            <div class="logo-container" role="img" aria-label="Tu porcentaje por revisar hasta ahora">
                 <div class="donut-ring"></div>
                 <div class="donut-scanner"></div>
                 <span id="header-risk-val">0%</span>
@@ -71,7 +71,7 @@
                 <button type="button" class="jk-header__accion" onclick="toggleQAModal(true)"><i class="ph ph-question" aria-hidden="true"></i><span>Preguntas frecuentes</span></button>
                 <button type="button" class="jk-header__accion" onclick="abrirAcuerdo()"><i class="ph ph-scroll" aria-hidden="true"></i><span>Acuerdo en el DOF</span></button>
                 <button type="button" class="jk-header__accion" onclick="const d = document.querySelector('.informe__tuyo'); d.open = true; d.scrollIntoView({ behavior: 'smooth', block: 'center' })"><i class="ph ph-trash" aria-hidden="true"></i><span>Tus respuestas y borrar</span></button>
-                <a class="jk-header__accion" href="fundamentos.html"><i class="ph ph-hand-heart" aria-hidden="true"></i><span>Cómo se trabaja aquí</span></a>
+                <a class="jk-header__accion" href="principios.html"><i class="ph ph-hand-heart" aria-hidden="true"></i><span>Principios</span></a>
                 <button type="button" class="jk-header__accion" onclick="toggleTheme()" id="theme-pill"><i class="ph ph-moon" id="theme-pill-icon" aria-hidden="true"></i><span id="theme-pill-text">Tema</span></button>
             </nav>
         </div>
@@ -146,7 +146,7 @@
                     <div class="fase-cabeza mb-6 px-2 text-center">
                         <span class="t-subtitulo block mb-1">Fase 1 de 4</span>
                         <h2 class="t-titulo mb-3">Preguntas</h2>
-                        <p class="t-parrafo max-w-2xl mx-auto">Casi todas tus cuentas dependen de tu celular. Estas 15 preguntas revisan qué resolver antes del plazo, sin respuestas buenas ni malas.</p>
+                        <p class="t-parrafo max-w-2xl mx-auto">Casi todas tus cuentas dependen de tu celular. Estas 15 preguntas revisan si dependes del SMS en cualquier cuenta, sin respuestas buenas ni malas.</p>
                     </div>
 
                     <div class="saludo-apodo" id="saludo-apodo" hidden>
@@ -160,7 +160,7 @@
                     <details class="aviso-privado plegable">
                         <summary>Es privado y sin nombre</summary>
                         <p>Se guarda en tu celular para que sigas después, contesta en el orden que quieras y sáltate lo que no sepas.</p>
-                        <p id="aviso-envio" hidden>Si aceptaste compartir datos de tu visita, las respuestas también se mandan con lo que dice ese aviso. Todo sale cifrado desde tu celular y solo se abre con una llave que no está en esta página (RSA-OAEP y AES-GCM). Borrar lo quita de tu celular, y la copia que ya salió se borra si la pides con tu número.</p>
+                        <p id="aviso-envio" hidden>Si aceptaste que se mida tu visita, las respuestas también se mandan con lo que dice ese aviso. Todo sale cifrado desde tu celular y solo se abre con una llave que no está en esta página (RSA-OAEP y AES-GCM). Borrar lo quita de tu celular, y la copia que ya salió se borra si la pides con tu número.</p>
                         <div class="aviso-privado__acciones">
                             <button type="button" class="llevar-respuestas" onclick="llevarmeRespuestas()">Llevarme mis respuestas</button>
                             <button type="button" class="borrar-todo" onclick="borrarTodoPaso(this)">Borrar todo</button>
@@ -176,7 +176,7 @@
         <article class="q-card" id="q1" aria-labelledby="q1-t">
             <p class="q-num">01</p>
             <h3 class="q-titulo" id="q1-t">¿Sabes qué pasa con las líneas que no se registran?</h3>
-            <p class="q-porque">Hay un plazo para registrar tu número, y las líneas que no se registren a tiempo pueden ser suspendidas.</p>
+            <p class="q-porque">Hay un plazo para registrar tu número, y si no lo registras a tiempo tu compañía suspende la línea.</p>
             <div class="q-dibujo">
             <div class="dib-cal">
                 <div class="dib-cal__cabeza"><span id="cal-mes"></span><span class="dib-cal__limite">Fecha límite</span></div>
@@ -352,7 +352,7 @@
         <article class="q-card" id="q11" aria-labelledby="q11-t">
             <p class="q-num">11</p>
             <h3 class="q-titulo" id="q11-t">¿Cuántas apps tienen guardado tu número?</h3>
-            <p class="q-porque">Entre más apps dependan de tu número, más se complica si lo pierdes. Bancos, redes, correo, transporte.</p>
+            <p class="q-porque">Entre más apps dependen de tu número, como bancos, redes, correo o transporte, más se complica si lo pierdes.</p>
             <div class="q-dibujo">
             <div class="dib-contador">
                 <span id="app-counter">0</span>
@@ -420,7 +420,7 @@
             <h3 class="q-titulo" id="q15-t">¿Cómo prefieres resolver lo que encuentres?</h3>
             <p class="q-porque">Con esto se elige qué ayuda aparece primero en tu resultado.</p>
             <div class="q-opciones q-opciones--grandes" data-opciones>
-                <button type="button" class="choice-btn choice-btn--grande" data-q="15" data-respuesta="negativo" data-anim="none" aria-pressed="false"><i class="ph ph-book-open-text" aria-hidden="true"></i><b>Por mi cuenta</b><span>Con una guía, a mi ritmo</span></button>
+                <button type="button" class="choice-btn choice-btn--grande" data-q="15" data-respuesta="negativo" data-anim="none" aria-pressed="false"><i class="ph ph-book-open-text" aria-hidden="true"></i><b>Por mi cuenta</b><span>Con una guía, lo hago yo</span></button>
                 <button type="button" class="choice-btn choice-btn--grande" data-q="15" data-respuesta="positivo" data-anim="none" aria-pressed="false"><i class="ph ph-handshake" aria-hidden="true"></i><b>Con ayuda</b><span>Que alguien lo haga conmigo</span></button>
             </div>
         </article>
@@ -567,9 +567,9 @@
                         <details class="informe__como plegable">
                                 <summary>Cómo sale este número</summary>
                                 <p>Se juntan dos partes, tus respuestas y tus apps, y cada una vale la mitad. Si solo contestaste una, esa es todo el resultado.</p>
-                                <p>En las preguntas, las que te pueden dejar sin entrar a tus cuentas pesan el triple que las de contexto, como si tus códigos llegan por SMS, cómo recuperas tu correo, si tienes códigos de respaldo o si ya viste señales de un ataque. Una respuesta de riesgo cuenta entera, no sé cuenta la mitad y la buena no suma.</p>
+                                <p>En las preguntas, las que te pueden dejar sin entrar a tus cuentas pesan el triple que las de contexto, como si tus códigos llegan por SMS, cómo recuperas tu correo, si tienes códigos de respaldo o si ya viste señales de un ataque. Una respuesta por revisar cuenta entera, no sé cuenta la mitad y la buena no suma.</p>
                                 <p>En las apps, un banco o tu correo pesan cinco veces más que un juego. Las que clasificas como dependientes del SMS cuentan enteras, y las que tocas en la Órbita o la Fractura cuentan un poco más de la mitad, porque ahí solo dices que la usas con tu número.</p>
-                                <p>Si tus códigos llegan por SMS y tu correo solo se recupera por SMS, perder el número te deja sin las dos llaves, así que el riesgo no baja de 70 %. La contraseña que pruebas no cuenta.</p>
+                                <p>Si tus códigos llegan por SMS y tu correo solo se recupera por SMS, perder el número te deja sin las dos cosas, así que lo que queda por revisar no baja de 70 por ciento. La contraseña que pruebas no cuenta.</p>
                             </details>
                         </div>
                     </div>
@@ -673,9 +673,9 @@
         <footer class="pie-diag">
             <nav class="pie-diag__links" aria-label="Más">
                 <a href="index.html">Ver servicios</a>
-                <a href="preguntas.html">Preguntas del registro</a>
-                <a href="fundamentos.html">Cómo se trabaja aquí</a>
-                <a href="index.html">Servicios</a>
+                <a href="preguntas.html" data-hasta="2027-01-15">Registro de líneas</a>
+                <a href="informacion.html">Información útil</a>
+                <a href="principios.html">Principios</a>
             </nav>
             <p class="pie-diag__firma">@jean.krrillo</p>
         </footer>

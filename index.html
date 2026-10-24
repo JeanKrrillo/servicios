@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>jean.krrillo · Lo reviso, lo arreglo, te explico</title>
-  <meta name="description" content="Once defensas digitales con precio, tiempo y riesgos a la vista. Guías abiertas, cuotas por hora y autodiagnóstico de seguridad.">
+  <title>jean.krrillo · Ayuda con cuentas, compu, fotos y páginas web</title>
+  <meta name="description" content="Protege tus cuentas, limpia tu compu, digitaliza fotos o haz tu página web. Precio y tiempo por escrito antes de empezar. Hay ayuda sin costo para quien la necesita.">
   <meta name="theme-color" content="#f3f2ee" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
@@ -14,6 +14,7 @@
   <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/servicios.css">
+  <link rel="stylesheet" href="css/calculadora.css">
   <script src="diagnostico/js/notificacion.js" defer></script>
   <script src="diagnostico/js/identidad.js" defer></script>
   <script src="diagnostico/js/medir.js" defer></script>
@@ -26,15 +27,19 @@
   <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js","js/granos.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
   <script src="js/musica.js" defer></script>
   <script src="js/datos-servicios.js" defer></script>
+  <script src="js/datos-precios.js" defer></script>
+  <script src="js/datos-codigos.js" defer></script>
+  <script src="js/precios.js" defer></script>
   <script src="js/servicios.js" defer></script>
+  <script src="js/calculadora.js" defer></script>
 </head>
 <body>
-  <a class="sr-only" href="#necesidad">Saltar a qué necesitas</a>
+  <a class="sr-only" href="#necesidad">Ir a ¿Qué necesitas?</a>
 
   <header class="barra">
     <div class="contenedor barra__fila">
-      <a class="marca-jk" href="./" aria-label="jean.krrillo, inicio"><span class="marca-jk__sello" aria-hidden="true"></span>jean.krrillo</a>
-      <button class="icono-boton" type="button" data-tema-boton aria-label="Cambiar tema">
+      <a class="marca-jk" href="./" aria-label="jean.krrillo, ir al inicio"><span class="marca-jk__sello" aria-hidden="true"></span>jean.krrillo</a>
+      <button class="icono-boton" type="button" data-tema-boton aria-label="Cambiar a tema oscuro">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg>
       </button>
     </div>
@@ -42,15 +47,14 @@
 
   <main>
     
-    <section class="portada" aria-labelledby="portada-nombre">
+    <section class="portada" id="inicio" aria-labelledby="portada-nombre">
       <div class="contenedor portada__marco">
         <ul class="actos" id="actos" aria-label="Cómo se trabaja">
           <li class="es-actual">Lo reviso</li>
           <li>Lo arreglo</li>
           <li>Te explico</li>
         </ul>
-
-        <div class="carrusel" id="carrusel" aria-roledescription="carrusel" aria-label="Las 11 defensas">
+        <div class="carrusel" id="carrusel" aria-roledescription="carrusel" aria-label="Los 11 servicios">
           <div class="carrusel__pista" id="carrusel-pista">
             
             <span class="pieza es-actual"><img class="pieza__img tinta-img" src="animaciones/iconos/2fa_paint.svg" alt="" width="2048" height="2048" fetchpriority="high"></span>
@@ -61,8 +65,6 @@
           <h1 class="carrusel__nombre" id="portada-nombre">Cuentas seguras</h1>
           <p class="carrusel__detalle" id="portada-detalle">Activo 2FA · Adiós SMS</p>
         </div>
-
-
         <div class="portada__acciones">
           <button class="boton" type="button" data-pedir>Pedir ayuda</button>
         </div>
@@ -70,187 +72,152 @@
     </section>
 
     
-    <section class="seccion" id="necesidad" aria-labelledby="necesidad-titulo">
+    <section class="seccion" id="necesidad" aria-labelledby="necesidad-titulo" data-paso="1">
       <div class="contenedor">
-        <header class="seccion__cabeza aparece">
-          <p class="saludo" id="saludo" hidden><span class="saludo__gota" aria-hidden="true"></span><span id="saludo-texto"></span></p>
-          <h2 id="necesidad-titulo">¿Qué necesitas?</h2>
-        </header>
-        <div class="grupos aparece" id="grupos" role="group" aria-labelledby="necesidad-titulo"></div>
-        <div class="mapa-defensas aparece" id="mapa-defensas" role="group" aria-label="Las 11 defensas; en ocre, las de lo que elegiste"></div>
-        <ol class="defensas" id="lista-defensas"></ol>
-        <p class="texto-apoyo medida aparece">Precios con <a class="ref" href="#cuotas">cuota justa</a>; la tuya la eliges al pedir. <a class="ref" href="#pasos">Cómo va un pedido</a>.</p>
-        <p class="defensas__limite medida aparece">Solo en lo tuyo, nunca en cuentas ajenas.</p>
+        <p class="saludo" id="saludo" hidden><span class="saludo__gota" aria-hidden="true"></span><span id="saludo-texto"></span></p>
+        <div class="etapa" data-n="1">
+          <h2 id="necesidad-titulo"><span class="paso" data-n="1">1</span> ¿Qué necesitas?</h2>
+          <p class="paso__ayuda">Toca lo que se parece a lo tuyo, o baja y ve los 11.</p>
+          <div class="grupos aparece" id="grupos" role="group" aria-labelledby="necesidad-titulo"></div>
+          <div class="buscar">
+            <label class="paso__ayuda" for="buscar-servicio">¿Buscas algo en concreto?</label>
+            <input class="buscar__campo" id="buscar-servicio" name="buscar" type="search" autocomplete="off" enterkeyhint="search" placeholder="Escribe lo que te pasa">
+            <ul class="buscar__resultados" id="buscar-resultados" aria-live="polite"></ul>
+            <button class="buscar__idea" type="button" aria-expanded="false" aria-controls="buscar-burbujas">¿No tienes idea?</button>
+            <ul class="burbujas" id="buscar-burbujas" hidden></ul>
+          </div>
+          <div class="mapa-defensas aparece" id="mapa-defensas" role="group" aria-label="Los 11 servicios; en ocre, los de lo que elegiste"></div>
+        </div>
+
+        <div class="calc" id="precios">
+          <div class="calc__pasos">
+            <fieldset class="calc__cuotas etapa" id="cuotas" data-n="2">
+              <legend><span class="paso" data-n="2">2</span> Tu cuota. <span class="paso__ayuda">Elige la tuya.</span></legend>
+              <div class="cuotas-opciones" id="cuota-opciones"></div>
+            </fieldset>
+            <div class="etapa" data-n="3">
+            <p class="paso__titulo"><span class="paso" data-n="3">3</span> Tu servicio. <span class="paso__ayuda">Ábrelo y escribe cuántos.</span></p>
+            <div id="calc-servicios"></div>
+            <details class="plegable calc__codigo">
+              <summary>¿Tienes un código?</summary>
+              <div class="calc__codigo-fila">
+                <input id="codigo-campo" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" aria-label="Código">
+                <button class="boton boton--linea boton--chico" type="button" id="codigo-aplicar">Aplicar</button>
+              </div>
+              <p class="texto-apoyo" id="codigo-estado" role="status"></p>
+            </details>
+            </div>
+          </div>
+
+          <aside class="total etapa" id="total" aria-label="Tu total" data-n="4">
+            <button class="total__abrir" type="button" id="total-abrir" aria-haspopup="dialog">
+              <span class="total__titulo"><span class="paso" data-n="4">4</span> <span id="total-titulo">Tu pedido</span></span>
+              <span class="total__cifra" id="total-cifra">Elige un servicio para ver tu precio</span>
+            </button>
+            <ul class="total__lineas" id="total-lineas"></ul>
+            <ul class="total__saber" id="total-saber"></ul>
+            <p class="total__fecha" id="total-fecha"></p>
+            <button class="boton boton--chico" type="button" id="total-pedir" disabled>Pedir esto</button>
+          </aside>
+        </div>
       </div>
     </section>
 
     
-    <section class="seccion" id="como" aria-labelledby="como-titulo">
-      <div class="contenedor">
-        <header class="seccion__cabeza aparece">
-          <h2 id="como-titulo">Cómo funciona</h2>
-          <p class="medida">Por escrito y a distancia, con el precio antes de empezar.</p>
-        </header>
-
-        <div class="franja aparece" id="cuotas">
-          <div class="franja__cabeza">
-            <h3>Cuotas por hora</h3>
-            <p class="texto-apoyo">La eliges tú, sin dar razones ni pruebas.</p>
-          </div>
-          <div class="cuotas-fila" id="tabla-cuotas"></div>
-        </div>
-
-        <div class="franja aparece" id="pasos">
-          <div class="franja__cabeza">
-            <h3>Cómo va un pedido</h3>
-          </div>
-          <ol class="linea-tiempo">
-          <li><span>Tocas <a class="ref" href="#necesidad">opciones</a> y mandas el mensaje armado por Instagram a <a href="https://www.instagram.com/jean.krrillo/" target="_blank" rel="noopener">@jean.krrillo</a>.</span></li>
-          <li><span>Te llega qué tiene, cuánto tarda y <a class="ref" href="#precio">cuesta</a>, y la guía para hacerlo tú si existe.</span></li>
-          <li><span>Si decides que se haga, prestas tu acceso o tu equipo, porque se trabaja dentro de tus cuentas.</span></li>
-          <li><span>Recibes el reporte, <a class="ref" href="#casos">como estos</a>: qué se encontró, qué cambió y cómo seguir.</span></li>
-          <li><span>Se cierran sesiones, cambias contraseñas y se borran tus archivos, por escrito.</span></li>
-        </ol>
-        </div>
-
-        <p class="aparte-linea aparece">¿No sabes qué tiene? Unas preguntas miden qué tan expuesto está lo tuyo. <a class="enlace-flecha" href="autodiagnostico.html">Hacer el autodiagnóstico <span aria-hidden="true">→</span></a></p>
-        <div class="como__mas aparece">
-        <details class="plegable" id="precio">
-          <summary>Cómo sale el precio</summary>
-          <p>Horas de trabajo × tarifa de tu <a class="ref" href="#cuotas">cuota</a> × factor de riesgo, redondeado a $10.</p>
-          <p><b>Ejemplo:</b> Cuentas seguras tarda 1 h. Con cuota justa: 1 × $250 × 1.2 = <b>$300</b>. Con mutua: <b>$0</b>.</p>
-          <p>El factor sube con lo que se arriesga, no con lo difícil que se vea:</p>
-          <ul class="factores" id="lista-factores"></ul>
-          <p>Se cobran las horas que tarda hoy el trabajo: si algo tomaba 5 h y ahora toma 2, se cobran 2.</p>
-        </details>
-        <details class="plegable" id="reglas">
-          <summary>Reglas de cobro</summary>
-          <ul>
-            <li><b>Mutua:</b> $0 siempre, sin mínimo ni cobro por diagnóstico.</li>
-            <li>Las demás cuotas: mínimo $150 por trabajo.</li>
-            <li><a class="ref" href="#defensa-limpieza">Compu</a> sin arreglo: $100 por el diagnóstico.</li>
-            <li><a class="ref" href="#defensa-web">Web</a>, <a class="ref" href="#defensa-app">apps</a> e <a class="ref" href="#defensa-casa">IoT</a>: alcance por escrito, 50 % de anticipo y una ronda de cambios; lo extra va por hora.</li>
-            <li>Más de $1,000: 50 % de anticipo con recibo.</li>
-            <li>Piezas y aparatos que se quedan contigo: los compras tú, o se pagan al costo antes.</li>
-            <li>Sin descuentos, cuentas regresivas ni concursos; la tabla es la misma en todos lados.</li>
+    <section class="seccion" id="laboratorio" aria-labelledby="laboratorio-titulo">
+      <div class="contenedor laboratorio aparece">
+        <h2 id="laboratorio-titulo">Laboratorio de servicios nuevos</h2>
+        <p class="medida">Pruebas servicios nuevos antes de que salgan, me cuentas qué mejorar y recibes algunos a cambio.</p>
+        <details class="plegable">
+          <summary>Qué recibes</summary>
+          <p>Tienes prioridad cuando pides ayuda, y recibes estos servicios.</p>
+          <ul class="lista-simple">
+            <li>Cuentas seguras, para dejar los códigos por mensaje y activar 2FA</li>
+            <li>Correo sin spam</li>
+            <li>Equipos más rápidos</li>
+            <li>Código sin errores, solo scripts cortos</li>
+            <li>Casa inteligente, solo focos, enchufes, NFC y RFID</li>
           </ul>
+          <p>Quienes llevan más tiempo en el laboratorio reciben además Control parental, Limpieza de compu, Fotos a digital, Edición de video, Páginas web, Apps móviles y Casa inteligente con muchos aparatos.</p>
         </details>
-        </div>
+        <button class="boton boton--linea boton--chico" type="button" id="boton-laboratorio">Quiero participar</button>
       </div>
     </section>
-
     
     <section class="seccion" id="casos" aria-labelledby="casos-titulo">
       <div class="contenedor">
         <header class="seccion__cabeza aparece">
           <h2 id="casos-titulo">Casos resueltos</h2>
           <p class="medida casos__cuenta" id="casos-cuenta">Reportes de entrega, sin datos de nadie. Solo se publica si tú lo eliges.</p>
+          <p class="paso__ayuda">Toca un sello para ver qué se hizo.</p>
         </header>
-        <ol class="casos" id="lista-casos"></ol>
+        <div class="casos-grupos" id="lista-casos"></div>
         <p class="vacio aparece" id="casos-vacio" hidden>Todavía no hay casos publicados.</p>
-        <p class="texto-apoyo medida aparece">Cada trimestre: cuántas personas pagaron y cuántas usaron cuota mutua.</p>
       </div>
     </section>
 
     
-    <section class="seccion" id="preguntas" aria-labelledby="preguntas-titulo">
+    <section class="seccion seccion--ultima" id="preguntas" aria-labelledby="preguntas-titulo">
       <div class="contenedor">
-        <header class="seccion__cabeza aparece">
-          <h2 id="preguntas-titulo">Preguntas antes de pedir</h2>
-        </header>
-        <div class="preguntas aparece">
-          <details class="plegable">
-            <summary>¿Nos vemos en persona?</summary>
-            <p>Casi siempre es a distancia. En persona solo cuando hace falta: entregar fotos o tu compu, instalar aparatos en tu casa o platicar el control parental.</p>
+        <header class="seccion__cabeza aparece"><h2 id="preguntas-titulo">Preguntas</h2></header>
+        <div class="temas aparece">
+          <details class="plegable tema"><summary>Lo básico <span class="tema__cuenta">8</span></summary>
+            <div class="preguntas">
+              <details class="plegable"><summary>¿Nos vemos en persona?</summary><p>Casi nunca. Trabajamos a distancia, y nos vemos solo para entregar fotos o tu compu, instalar aparatos en tu casa o platicar el control parental.</p></details>
+              <details class="plegable"><summary>¿Me van a llamar o a ver mientras trabajan?</summary><p>No. Todo va por escrito. El reporte final muestra lo que se hizo.</p></details>
+              <details class="plegable"><summary>¿Puedo hacerlo yo?</summary><p>Sí. Si existe una guía, te llega primero.</p></details>
+              <details class="plegable"><summary>¿Por qué confiar?</summary><p>Los <a class="ref" href="#casos">casos resueltos</a> están publicados y cada trabajo deja un reporte.</p></details>
+              <details class="plegable"><summary>Me robaron una cuenta, ¿la recuperan?</summary><p>Todavía no. Con <a class="ref" href="#defensa-2fa">Cuentas seguras</a> protegemos las demás para que no entren a otra.</p></details>
+              <details class="plegable"><summary>¿Pueden ver los mensajes de mis hijas, hijos o mi pareja?</summary><p>No. Solo trabajamos en lo tuyo. <a class="ref" href="#defensa-parental">Control parental</a> pone filtros por edad, tiempo y compras.</p></details>
+              <details class="plegable"><summary>No sé usar la app del banco, ¿me la dejan lista?</summary><p>Sí, con <a class="ref" href="#defensa-app">Apps móviles</a> instalamos y configuramos una app que ya existe.</p></details>
+              <details class="plegable"><summary>¿Qué es el trueque de conocimiento?</summary><p>Pagar la <a class="ref" href="#cuotas">cuota comunitaria</a> enseñando algo. El <a class="ref" href="#laboratorio">laboratorio</a> es otra cosa, ahí pruebas servicios nuevos antes de que se cobren.</p></details>
+            </div>
           </details>
-          <details class="plegable">
-            <summary>¿Me van a llamar o a ver mientras trabajas?</summary>
-            <p>No. Todo va por escrito y se trabaja a su ritmo, sin verlo en vivo. El reporte de entrega es la prueba de lo que se hizo.</p>
+          <details class="plegable tema"><summary>Dinero <span class="tema__cuenta">9</span></summary>
+            <div class="preguntas">
+              <details class="plegable"><summary>¿Cuánto cuesta?</summary><p>Lo ves al momento en la <a class="ref" href="#precios">calculadora</a>, y lo confirmamos por escrito antes de empezar.</p></details>
+              <details class="plegable"><summary>¿Qué cuota me toca?</summary><p>La que tú elijas. Cada una dice para quién suele ser y no se revisa. La mutua se platica solo si pides un servicio y dejas tu contacto.</p></details>
+              <details class="plegable"><summary>¿Piden pruebas de que no puedo pagar?</summary><p>No. Ni documentos ni que cuentes tu caso. Si pides con la mutua y dejas tu contacto, lo demás sale al platicar.</p></details>
+              <details class="plegable"><summary>¿La mutua de verdad es 0?</summary><p>Sí, para quien entra en la cuota mutua. Sin mínimo ni diagnóstico. Las piezas que se quedan contigo las compras tú.</p></details>
+              <details class="plegable"><summary>¿Hay un precio mínimo?</summary><p>Sí, 150 pesos en justa y solidaria, y 100 en comunitaria. La mutua no tiene.</p></details>
+              <details class="plegable"><summary>¿Por qué cobran menos horas si usan IA?</summary><p>Cobramos por lo que queda resuelto, no por horas. Lo que pagas es saber qué pedirle a la herramienta y resolver si falla.</p></details>
+              <details class="plegable"><summary>¿Pago por adelantado?</summary><p>Solo la mitad, en web, apps y casa inteligente, y en trabajos de más de 1,000 pesos, con recibo.</p></details>
+              <details class="plegable"><summary>¿Hay descuentos?</summary><p>Sí, 10 por ciento si pides dos servicios distintos, de 10 a 20 por ciento si incluyes a más personas, y los códigos de descuento. No se suman, se aplica el mayor.</p></details>
+              <details class="plegable"><summary>¿Quién paga las piezas?</summary><p>Tú, o se cobran al costo antes de empezar.</p></details>
+            </div>
           </details>
-          <details class="plegable">
-            <summary>¿Puedo hacerlo yo?</summary>
-            <p>Sí. Si existe una guía para hacerlo por tu cuenta, te llega primero.</p>
+          <details class="plegable tema"><summary>Cómo va <span class="tema__cuenta">2</span></summary>
+            <div class="preguntas">
+              <details class="plegable"><summary>¿Cómo pido ayuda?</summary><p>Arma tu pedido en la <a class="ref" href="#precios">calculadora</a>, escribe lo que quieras agregar y envía. Jean lo lee y te responde.</p></details>
+              <details class="plegable"><summary>¿Qué recibo al final?</summary><p>Un reporte con qué se encontró, qué se cambió, qué no se pudo y cómo seguir.</p></details>
+            </div>
           </details>
-          <details class="plegable">
-            <summary>¿Por qué confiar?</summary>
-            <p>Los <a class="ref" href="#casos">casos resueltos</a> están publicados aquí y cada trabajo deja un reporte de qué se hizo.</p>
+          <details class="plegable tema"><summary>Confianza y datos <span class="tema__cuenta">5</span></summary>
+            <div class="preguntas">
+              <details class="plegable"><summary>¿Por qué necesitan mi contraseña?</summary><p>Porque el trabajo se hace dentro de tus cuentas. Al terminar cerramos sesiones y tú cambias las contraseñas que prestaste.</p></details>
+              <details class="plegable"><summary>¿Qué pasa con mis fotos y archivos?</summary><p>Se borran al terminar, con confirmación por escrito.</p></details>
+              <details class="plegable"><summary>¿Publican mi caso?</summary><p>Solo si tú lo eliges, sin tus datos y con nombre de pigmento.</p></details>
+              <details class="plegable"><summary>¿Pueden entrar a la cuenta de mi pareja o de otra persona?</summary><p>No. Solo trabajamos en lo tuyo.</p></details>
+              <details class="plegable" data-hasta="2027-01-15"><summary>Me llegó un mensaje que dice que si no registro mi línea pierdo mi número, ¿es cierto?</summary><p>No. Te suspenden 72 horas después de tu fecha y, al registrarte, vuelves con el mismo número. Sale del <a href="https://dof.gob.mx/nota_detalle_popup.php?codigo=5775677" target="_blank" rel="noopener" data-hoja="Diario Oficial">Diario Oficial, Acuerdo P/CRT/EXT/08122025/144</a>, revisado en agosto de 2026.</p></details>
+            </div>
           </details>
-          <details class="plegable">
-            <summary>Me robaron una cuenta, ¿la recuperas?</summary>
-            <p>Todavía no se ofrece recuperar cuentas robadas. Sí se cierran las demás puertas con <a class="ref" href="#defensa-2fa">Cuentas seguras</a>.</p>
-          </details>
-          <details class="plegable">
-            <summary>¿Puedes ver los mensajes de mi hijo o de mi pareja?</summary>
-            <p>No. Solo se trabaja en lo tuyo, y leer mensajes privados no se hace. <a class="ref" href="#defensa-parental">Control parental</a> pone filtros por edad, tiempo y compras, con un acuerdo familiar.</p>
-          </details>
-          <details class="plegable">
-            <summary>No sé usar la app del banco, ¿me la dejas lista?</summary>
-            <p>Sí, va en <a class="ref" href="#defensa-app">Apps móviles</a>: instalar y configurar una app que ya existe.</p>
-          </details>
-          <details class="plegable">
-            <summary>¿Qué es el trueque de conocimiento?</summary>
-            <p>Pagar la <a class="ref" href="#cuotas">cuota comunitaria</a> enseñando algo a cambio. Los <a class="ref" href="#voluntarios">mordentes</a> son otra cosa: prueban los servicios nuevos antes de que se cobren.</p>
+          <details class="plegable tema"><summary>Casos de cada perfil <span class="tema__cuenta">2</span></summary>
+            <div class="preguntas">
+              <details class="plegable"><summary>Tengo un negocio, ¿qué cuota uso?</summary><p>La justa, el mismo precio que para una persona. Si quieres aportar más, la solidaria sostiene las cuotas comunitarias y la ayuda con cuota mutua.</p></details>
+              <details class="plegable"><summary>¿Qué es el laboratorio?</summary><p>Pruebas servicios nuevos antes de que se cobren y me cuentas qué mejorar. A cambio tienes prioridad cuando pides ayuda y recibes algunos servicios.</p></details>
+            </div>
           </details>
         </div>
       </div>
     </section>
 
-    
-    <section class="seccion seccion--ultima" aria-label="Mordentes y lo que circula">
-      <div class="contenedor dos-col">
-        <div class="aparece" id="voluntarios">
-          <h2>Mordentes del laboratorio</h2>
-          <p class="medida">Prueban los <a class="ref" href="#necesidad">servicios</a> nuevos antes de que se cobren, y reciben servicios a cambio.</p>
-          <details class="plegable" id="trato-mordente">
-            <summary>Qué das y qué recibes</summary>
-        <div class="voluntarios aparece">
-          <div>
-            <h3>Recibes</h3>
-            <ul class="lista-simple">
-              <li>Prioridad al <a class="ref" href="#pasos">pedir ayuda</a></li>
-              <li>Servicios nuevos antes que nadie</li>
-              <li>Servicios por trueque mientras pruebas</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Ayudas a</h3>
-            <ul class="lista-simple">
-              <li>Probar con tu uso real</li>
-              <li>Decir qué falla o no se entiende</li>
-              <li>Prestar una cuenta de prueba</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Siempre</h3>
-            <ul class="lista-simple">
-              <li>Sabes qué se prueba, por escrito</li>
-              <li>Solo datos de prueba</li>
-              <li>Al terminar cambias tu contraseña</li>
-              <li>Nunca en cuentas ajenas</li>
-            </ul>
-          </div>
-        </div>
-          </details>
-          <button class="boton boton--linea boton--chico" type="button" id="boton-voluntario">Quiero ser mordente</button>
-        </div>
-        <div class="aparece" id="notas">
-          <h2>Lo que circula</h2>
-          <p class="medida">Frases que se comparten, revisadas con su fuente.</p>
-        <article class="nota" aria-labelledby="nota-frase">
-          <h3 class="nota__frase" id="nota-frase">Si no registras tu línea pierdes tu número</h3>
-          <p class="nota__linea"><span class="nota__veredicto"><span class="sr-only">Veredicto </span>Falso.</span> Te suspenden 72 horas después de tu fecha y vuelves con el mismo número al registrarte.</p>
-          <p class="nota__fuente"><a href="https://dof.gob.mx/nota_detalle_popup.php?codigo=5775677" target="_blank" rel="noopener">Diario Oficial, Acuerdo P/CRT/EXT/08122025/144</a> · revisada en agosto de 2026</p>
-        </article>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="pie">
     <div class="contenedor pie__fila">
       <span class="pincel pincel--fino" aria-hidden="true"></span>
-      <p>Todo está aquí: <a class="ref" href="#necesidad">qué necesitas</a> · <a class="ref" href="#como">cómo funciona</a> · <a class="ref" href="#casos">casos</a> · <a class="ref" href="#preguntas">preguntas</a> · <a class="ref" href="#voluntarios">mordentes</a></p>
-      <p><a href="preguntas.html">Preguntas sobre el registro de líneas</a> · <a href="autodiagnostico.html">Autodiagnóstico</a> · <a href="fundamentos.html">Cómo se trabaja aquí</a></p>
+      <p><a href="https://www.instagram.com/jean.krrillo/" target="_blank" rel="noopener">@jean.krrillo</a></p>
+      <p><a href="informacion.html">Información útil</a> · <a href="principios.html">Principios</a> · <button class="pie__privacidad" type="button" data-privacidad>Privacidad</button></p>
     </div>
   </footer>
 
@@ -260,22 +227,15 @@
   <dialog class="hoja" id="pedido" aria-labelledby="pedido-titulo">
     <div class="hoja__marco">
       <div class="hoja__cabeza">
-        <div>
-          <p class="antetitulo" id="pedido-paso">Paso 1 de 6</p>
-          <h2 class="pedido__titulo" id="pedido-titulo" tabindex="-1" autofocus>¿Qué pasó?</h2>
-        </div>
+        <h2 class="pedido__titulo" id="pedido-titulo" tabindex="-1">Tu pedido</h2>
         <button class="icono-boton" type="button" data-cerrar aria-label="Cerrar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
       </div>
-      <div class="hoja__cuerpo">
-        <p class="pedido__ayuda texto-apoyo" id="pedido-ayuda"></p>
-        <div class="pedido__opciones" id="pedido-opciones" role="group" aria-labelledby="pedido-titulo"></div>
-        <div class="pedido__resumen" id="pedido-resumen" hidden></div>
-      </div>
+      <div class="hoja__cuerpo" id="pedido-cuerpo"></div>
       <div class="hoja__pie">
-        <button class="boton boton--linea boton--chico" type="button" id="pedido-atras">Atrás</button>
-        <button class="boton boton--chico" type="button" id="pedido-accion" hidden>Copiar mensaje</button>
+        <button class="boton boton--linea boton--chico" type="button" data-cerrar>Seguir viendo servicios</button>
+        <button class="boton boton--chico" type="button" id="pedido-enviar">Enviar a Jean</button>
       </div>
     </div>
   </dialog>

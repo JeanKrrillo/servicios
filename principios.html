@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Principios · jean.krrillo</title>
+  <meta name="description" content="Cómo pienso este servicio, de dónde sale cada cuota y qué pasa con lo que contestas.">
+  <meta name="theme-color" content="#f3f2ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
+  <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
+  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fundamentos.css">
+  <script src="diagnostico/js/notificacion.js" defer></script>
+  <script src="diagnostico/js/identidad.js" defer></script>
+  <script src="diagnostico/js/medir.js" defer></script>
+  <script src="diagnostico/js/historial.js" defer></script>
+  <script src="diagnostico/js/acceso-visor.js" defer></script>
+  <script src="js/comun.js" defer></script>
+  <link rel="stylesheet" href="css/pestanas.css">
+  <script src="js/pestanas.js" defer></script>
+  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+  <script src="js/musica.js" defer></script>
+</head>
+<body>
+  <header class="barra">
+    <div class="contenedor barra__fila">
+      <a class="marca-jk" href="./" aria-label="jean.krrillo, ir al inicio"><span class="marca-jk__sello" aria-hidden="true"></span>jean.krrillo</a>
+      <button class="icono-boton" type="button" data-tema-boton aria-label="Cambiar a tema oscuro">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  
+  <main class="contenedor fundamentos">
+    <header class="fundamentos__cabeza">
+      <h1 class="titulo-chico">Principios</h1>
+      <p class="texto-apoyo">Por si te da curiosidad cómo pienso este servicio. No hace falta estar de acuerdo para pedir ayuda.</p>
+    </header>
+
+    <ul class="lista-principios">
+      <li>La cuota mutua es ayuda sin costo para quien no puede pagar, y lo que la solidaria paga de más ayuda a sostenerla junto con la comunitaria.</li>
+      <li>Tú decides qué contestas, qué cuentas y qué se publica. Pregunto una vez, y si dices que no, no vuelvo a preguntar.</li>
+      <li>Puedes hacerlo tú, y si hay una guía de lo que necesitas te la paso antes de cobrarte.</li>
+      <li>La cuota comunitaria también se paga enseñando algo, con el trueque de conocimiento, y nadie lleva la cuenta de quién le debe a quién.</li>
+      <li>Lo que contestas en el autodiagnóstico se guarda en tu celular con un apodo de pigmento, y lo puedes borrar o llevártelo cuando quieras.</li>
+      <li>Cobro lo que queda resuelto y no las horas, porque lo que pagas es que alguien lea tu caso, lo entienda, lo haga y te lo explique.</li>
+      <li>Acompañar a alguien que teme perder su cuenta también es trabajo, aunque no se cobre igual que arreglar una compu.</li>
+    </ul>
+
+    <section class="lecturas" aria-labelledby="lecturas-t">
+      <h2 id="lecturas-t">Lecturas</h2>
+      <ul class="lista-principios">
+        <li><cite>Anarquía en acción</cite>, de Colin Ward, sobre gente que se organiza sin que nadie mande.</li>
+        <li><cite>El gobierno de los bienes comunes</cite>, de Elinor Ostrom, sobre comunidades que cuidan entre todas lo que usan.</li>
+        <li>El capítulo 5 de <cite>Deuda</cite>, de David Graeber, sobre dar sin llevar la cuenta.</li>
+      </ul>
+    </section>
+
+    <footer class="fundamentos__pie texto-apoyo">
+      <p><a href="./#necesidad">Servicios</a> · <a href="autodiagnostico.html">Autodiagnóstico</a> · <a href="informacion.html">Información útil</a></p>
+    </footer>
+  </main>
+
+  <a class="firma" href="https://www.instagram.com/jean.krrillo/" target="_blank" rel="noopener">@jean.krrillo</a>
+</body>
+</html>
