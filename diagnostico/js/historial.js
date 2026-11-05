@@ -26,7 +26,7 @@ const Historial = (() => {
   const consentido = () => { try { return localStorage.getItem('jk-consent') === 'si'; } catch (e) { return false; } };
   const activo = () => consentido() && !!ENDPOINT && !!(window.crypto && crypto.subtle);
   // Guardar un contacto ya es pedir que te contacten: eso se manda aunque no se haya aceptado medir la visita,
-  // y en ese caso sin los datos técnicos, que la persona sí rechazó (reglamento 2.6 y 10)
+  // y en ese caso sin los datos técnicos, que la persona sí rechazó
   const pidioContacto = () => { try { return localStorage.getItem('jk-contacto') === 'si'; } catch (e) { return false; } };
   const puedeMandar = () => (consentido() || pidioContacto()) && !!ENDPOINT && !!(window.crypto && crypto.subtle);
   let espera = 0, pendiente = null, llave = null;

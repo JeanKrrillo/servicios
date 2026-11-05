@@ -25,7 +25,7 @@
     construir();
   }
 
-  // Ya está restaurado, así que se sigue sin preguntar y se lleva a la fase donde se quedó (reglamento 1.5 y 14.3).
+  // Ya está restaurado, así que se sigue sin preguntar y se lleva a la fase donde se quedó.
   // Empezar de nuevo se ofrece una vez en una franja que no tapa la página (16.1), con los tres toques de la 13.2.
   function construir() {
     if (document.getElementById('jk-retomar')) return;

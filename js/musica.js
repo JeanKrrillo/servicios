@@ -1,4 +1,4 @@
-/* musica.js · la música de fondo de todas las páginas (rehecha el 2026-10-23, sección 1.4 de la reestructuración).
+/* musica.js · la música de fondo de todas las páginas.
    Suena con Web Audio y no con <audio>: así el celular no la trata como una canción, no sale en sus notificaciones
    y nadie la puede adelantar o regresar. Suena al 75 % y entra despacio al llegar a la página (en cuanto el navegador
    lo deja, casi siempre con el primer toque). Al salir de la app o cambiar de pestaña se apaga con una transición corta

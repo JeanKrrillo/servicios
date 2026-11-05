@@ -267,7 +267,7 @@ const RiskEngine = (() => {
         (_state.assets.fracture.selectedApps || []).forEach(a => pushStatus(a, 'depende'));
 
         // Mapear color de Hive a key de RISK_CONFIG
-        // Sin contraseña probada no hay dato (reglamento 1.4), no es la mejor nota
+        // Sin contraseña probada no hay dato, no es la mejor nota
         let passwordTime = _state.hive.color ? 'milenios' : null;
         const color = _state.hive.color.toLowerCase();
         if (color === '#ef4444') passwordTime = 'instantaneo';

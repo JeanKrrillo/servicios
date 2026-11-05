@@ -25,7 +25,7 @@ function updateTimer() {
     if (!el) return;
 
     // Plazo vigente: el primero cuyo día aún no ha pasado (incluye hoy).
-    // Es un dato, no una alarma (reglamento 4.1): sin rojo, sin parpadeo.
+    // Es un dato, no una alarma: sin rojo, sin parpadeo.
     const idx = PLAZOS.findIndex(p => diasHasta(p.fecha) >= 0);
     if (idx === -1) {
         if (lbl) lbl.textContent = 'Calendario';

@@ -11,7 +11,7 @@
 @font-face { font-family: 'Geist Mono'; font-weight: 500; font-display: swap; src: url('../marca/geist-mono-500.woff2') format('woff2'); }
 
 :root {
-  /* ═══ PALETA (inmutable, tabla de medidas) ═══ */
+  /* ═══ PALETA ═══ */
   --tinta: #121217;
   --papel: #f3f2ee;
   --ocre:  #b07a1e;
@@ -61,7 +61,7 @@
   --r-pill: 9999px;
   --r-full: 50%;
 
-  /* ═══ TIEMPOS (tabla de medidas) Y CURVAS ═══ */
+  /* ═══ TIEMPOS Y CURVAS ═══ */
   --t-panel: .32s;   /* panel que abre o cierra */
   --t-toque: .25s;   /* respuesta al tocar */
   --t-pieza: .6s;    /* una pieza que entra o sale */

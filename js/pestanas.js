@@ -12,7 +12,7 @@
   const LISTA = '<path d="M5 7h14M5 12h14M5 17h9"/>', CERRAR = '<path d="M6 6l12 12M18 6L6 18"/>';
   const SECCIONES = [['inicio', 'Inicio'], ['necesidad', 'Servicios'], ['laboratorio', 'Laboratorio'], ['casos', 'Casos resueltos'],
     ['preguntas', 'Preguntas']];
-  /* El registro de líneas es de temporada: el 15 de enero de 2027 sale del índice solo (sección 9 de la reestructuración) */
+  /* El registro de líneas es de temporada: el 15 de enero de 2027 sale del índice solo */
   const PAGINAS = [['autodiagnostico.html', 'Autodiagnóstico'], ['preguntas.html', 'Registro de líneas', '2027-01-15'], ['informacion.html', 'Información útil'], ['principios.html', 'Principios'], ['recomendaciones.html', 'Recomendaciones']]
     .filter(([, , hasta]) => !hasta || new Date().toISOString().slice(0, 10) < hasta);
 

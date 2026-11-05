@@ -69,7 +69,7 @@ function ponerNota(card, qIndex, optionKey) {
     if (!quieto) avanzarSolo(nota, qIndex, texto);
 }
 
-// Avance sin botón (reglamento 16.7): una línea gris tenue se acorta mientras se lee la nota y al terminar
+// Avance sin botón: una línea gris tenue se acorta mientras se lee la nota y al terminar
 // la página baja a la siguiente sin contestar. Sin números ni color, para que no presione: apuntar a la
 // tarjeta la pausa, y si la persona desliza, toca o usa el teclado, la línea se va y ya no avanza sola.
 let avancePendiente = null;
@@ -138,7 +138,7 @@ function borrarRespuesta(qIndex) {
         card.classList.remove('answered');
         card.querySelectorAll('[data-respuesta]').forEach(b => { b.classList.remove('selected', 'dimmed'); b.setAttribute('aria-pressed', 'false'); });
         card.querySelector('.post-ans-feedback')?.remove();
-        // Borrar se deshace con un toque durante unos segundos (reglamento 16.2); la 11 es barra y se vuelve a mover
+        // Borrar se deshace con un toque durante unos segundos; la 11 es barra y se vuelve a mover
         if (prev && qIndex !== 11) {
             const nota = document.createElement('div');
             nota.className = 'post-ans-feedback';
@@ -153,7 +153,7 @@ function borrarRespuesta(qIndex) {
     if (typeof Estado !== 'undefined') Estado.guardar();
 }
 
-// Índice de las 15: dice cuáles van contestadas y lleva a cualquiera (reglamento 1.3)
+// Índice de las 15: dice cuáles van contestadas y lleva a cualquiera
 function pintarIndice() {
     const nav = document.getElementById('indice-preguntas');
     if (!nav) return;
@@ -195,7 +195,7 @@ document.addEventListener('click', e => {
     if (ir) { e.preventDefault(); irA(document.getElementById('q' + ir.dataset.ir)); }
 });
 
-// --- DIBUJOS: lo que mueve cada respuesta (reglamento 6.1) ---
+// --- DIBUJOS: lo que mueve cada respuesta ---
 // Solo transform y opacity; lo rígido no pasa de 5 % y lleva un solo rebote.
 
 const enVivo = () => !(typeof Estado !== 'undefined' && Estado.restaurando);

@@ -2,6 +2,8 @@
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
+  <!-- Frena que la página mande datos a otros sitios. Scripts en línea siguen permitidos porque autodiagnostico.html usa onclick -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.dof.gob.mx https://dof.gob.mx; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Principios · jean.krrillo</title>
   <meta name="description" content="Cómo pienso este servicio, de dónde sale cada cuota y qué pasa con lo que contestas.">
@@ -33,7 +35,7 @@
     </div>
   </header>
 
-  <!-- Principios (8.2 de la reestructuración del 2026-10-23). Página corta, sin desplegables, aparte de los servicios:
+  <!-- Principios. Página corta, sin desplegables, aparte de los servicios:
        no sale en la portada ni en las tarjetas, solo en el índice y los enlaces del pie -->
   <main class="contenedor fundamentos">
     <header class="fundamentos__cabeza">

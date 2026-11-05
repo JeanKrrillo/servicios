@@ -34,7 +34,7 @@
     if (decision === 'si') document.dispatchEvent(new CustomEvent('jk:consentido'));
   }
 
-  // Franja abajo que deja usar la página mientras se decide (reglamento 16.1): sin decidir no se mide nada
+  // Franja abajo que deja usar la página mientras se decide: sin decidir no se mide nada
   function construir() {
     if (document.getElementById('jk-consent-aviso')) return;
     const caja = document.createElement('section');

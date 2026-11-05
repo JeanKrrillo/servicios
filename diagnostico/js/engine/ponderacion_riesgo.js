@@ -263,7 +263,7 @@ function calculateFinalRisk(userData) {
   return Math.round(totalRisk);
 }
 
-// Notas de después de contestar (reglamento 6.3): explican qué significa la respuesta
+// Notas de después de contestar: explican qué significa la respuesta
 // y qué se puede hacer, en tono de conocido, sin felicitar ni regañar.
 const POST_RESPONSES = {
   q1: {

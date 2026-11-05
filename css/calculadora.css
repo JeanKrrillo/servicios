@@ -190,7 +190,7 @@
 .recibo__vacio, .recibo__mutua { font-size: var(--fs-chico); color: var(--tinta-75); }
 .recibo__lineas .numero { color: inherit; }
 .recibo__tachado { opacity: .5; font-weight: 500; margin-right: .35em; }
-.recibo__cuenta { font: 500 var(--fs-micro)/1.5 var(--f-numero); color: var(--tinta-75); }   /* la fórmula va en Geist Mono (tabla de medidas) */
+.recibo__cuenta { font: 500 var(--fs-micro)/1.5 var(--f-numero); color: var(--tinta-75); }   /* la fórmula va en Geist Mono */
 /* un solo botón para pedir: con la barra del total a la vista, el Pedir ayuda de las pestañas se esconde */
 @media (max-width: 899px) { body.con-total .pestanas__pedir { display: none; } }
 

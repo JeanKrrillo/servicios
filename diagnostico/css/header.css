@@ -102,7 +102,7 @@ body {
 }
 .jk-header__avance span { font: 500 .68rem/1 'JetBrains Mono', monospace; color: color-mix(in srgb, #ecebe5 75%, transparent); white-space: nowrap; }
 
-/* ── Plazo del dígito: dato, sin rojo ni parpadeo (reglamento 4.1) ── */
+/* ── Plazo del dígito: dato, sin rojo ni parpadeo ── */
 .jk-header__plazo {
     flex: none;
     display: flex; flex-direction: column; align-items: flex-end; justify-content: center;

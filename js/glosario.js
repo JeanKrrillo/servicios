@@ -1,4 +1,4 @@
-/* glosario.js · palabras que no todos conocen (sección 10 de la reestructuración del 2026-10-23, tal cual).
+/* glosario.js · palabras que no todos conocen.
    La primera vez que aparecen en cada sección se vuelven tocables y abren una glosa corta.
    Cada término va en una frase que empieza con "X es", y explica sin asustar. */
 const GLOSARIO = [

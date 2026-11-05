@@ -2,6 +2,8 @@
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
+  <!-- Frena que la página mande datos a otros sitios. Scripts en línea siguen permitidos porque autodiagnostico.html usa onclick -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.dof.gob.mx https://dof.gob.mx; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>jean.krrillo · Ayuda con cuentas, compu, fotos y páginas web</title>
   <meta name="description" content="Protege tus cuentas, limpia tu compu, digitaliza fotos o haz tu página web. Precio y tiempo por escrito antes de empezar. Hay ayuda sin costo para quien la necesita.">
@@ -150,7 +152,7 @@
         <form class="lab-entrar" id="lab-entrar">
           <label for="llave-campo">¿Ya te mandé tu llave? Escríbela aquí para entrar.</label>
           <div class="calc__codigo-fila">
-            <input id="llave-campo" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="BETA-XXXXXXXX">
+            <input id="llave-campo" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="BETA-XXXXXXXXXXXX">
             <button class="boton boton--chico" type="submit">Entrar</button>
           </div>
           <p class="texto-apoyo" id="llave-estado" role="status"></p>

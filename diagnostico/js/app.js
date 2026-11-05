@@ -184,7 +184,7 @@ window.handleLogoImgError = function(imgElement, name) {
     container.innerHTML = `<span class="logo-iniciales">${initials}</span>`;
 };
 
-// Logos originales de cada marca (reglamento 5.1): el dibujo propio de la v2 si existe,
+// Logos originales de cada marca: el dibujo propio de la v2 si existe,
 // si no el logo de simple-icons guardado en diagnostico/logos/apps, en blanco sobre el color
 // de la marca, como en la v2; si no hay logo, sus iniciales.
 const LOGOS_LOCALES = ["adobe", "aeromexico", "airbnb", "amazon", "anthropic", "apple", "binance", "bitwarden", "canva", "coppel", "discord", "dropbox", "epicgames", "evernote", "facebook", "figma", "google", "hsbc", "instagram", "linkedin", "mercadopago", "microsoft", "microsoftoutlook", "netflix", "nintendo", "notion", "nubank", "openai", "paypal", "pinterest", "reddit", "revolut", "roblox", "samsung", "shazam", "signal", "snapchat", "spotify", "steam", "telegram", "tiktok", "trello", "twitch", "uber", "walmart", "whatsapp", "x", "xbox", "youtube", "zoom"];
@@ -489,7 +489,7 @@ function updateCalculatedRisk() {
     });
 }
 
-// Las cuatro fases están a la vista (reglamento 1.2). Ir a una fase es bajar hasta ella.
+// Las cuatro fases están a la vista. Ir a una fase es bajar hasta ella.
 function goToStep(s) {
     currentStep = s;
     if (typeof Medir !== 'undefined') Medir.hito('fase_' + s);
@@ -499,7 +499,7 @@ function goToStep(s) {
     scrollTo({ top: target.getBoundingClientRect().top + scrollY - headerH - 8, behavior: 'smooth' });
 }
 
-// Cuánto lleva cada fase, en los pasos y en la barra del encabezado (reglamento 1.3)
+// Cuánto lleva cada fase, en los pasos y en la barra del encabezado
 function pintarPasos() {
     const c = RiskEngine.getState().cobertura || { preguntas: 0, apps: 0, contrasena: false };
     const appsHechas = (typeof swipedHistory !== 'undefined' ? swipedHistory.length : 0)
@@ -561,7 +561,7 @@ function generateFinalReport() {
     if (typeof Informe !== 'undefined') Informe.pintar();
 }
 
-// Borrar todo y empezar de nuevo (reglamento 1.5 y 2.5). Lo elige la persona.
+// Borrar todo y empezar de nuevo. Lo elige la persona.
 function resetAudit() {
     Estado.borrarTodo();
     location.reload();
@@ -1077,7 +1077,7 @@ function llevarmeRespuestas() {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-// Borrar todo pide un segundo toque, porque no se puede deshacer (reglamento 1.6)
+// Borrar todo pide un segundo toque, porque no se puede deshacer
 function borrarTodoPaso(btn) {
     if (btn.dataset.seguro) return resetAudit();
     btn.dataset.seguro = '1';

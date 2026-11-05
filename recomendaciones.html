@@ -2,6 +2,8 @@
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
+  <!-- Frena que la página mande datos a otros sitios. Scripts en línea siguen permitidos porque autodiagnostico.html usa onclick -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.dof.gob.mx https://dof.gob.mx; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Recomendaciones · jean.krrillo</title>
   <meta name="description" content="Libros, artículos, videos, películas y música que recomiendo, poco a poco.">
@@ -33,8 +35,6 @@
     </div>
   </header>
 
-  <!-- Recomendaciones. Página aparte, como Principios: no sale en la portada ni en las tarjetas, solo en el índice
-       y los enlaces del pie. Se va llenando poco a poco; cada cosa va con una línea de por qué. -->
   <main class="contenedor fundamentos">
     <header class="fundamentos__cabeza">
       <h1 class="titulo-chico">Recomendaciones</h1>
@@ -52,30 +52,22 @@
 
     <section class="lecturas" aria-labelledby="rec-articulos">
       <h2 id="rec-articulos">Artículos</h2>
-      <ul class="lista-principios">
-        <li>Por llenar.</li>
-      </ul>
+      <ul class="lista-principios"></ul>
     </section>
 
     <section class="lecturas" aria-labelledby="rec-video">
       <h2 id="rec-video">Videos y documentales</h2>
-      <ul class="lista-principios">
-        <li>Por llenar.</li>
-      </ul>
+      <ul class="lista-principios"></ul>
     </section>
 
     <section class="lecturas" aria-labelledby="rec-cine">
       <h2 id="rec-cine">Películas</h2>
-      <ul class="lista-principios">
-        <li>Por llenar.</li>
-      </ul>
+      <ul class="lista-principios"></ul>
     </section>
 
     <section class="lecturas" aria-labelledby="rec-musica">
       <h2 id="rec-musica">Música</h2>
-      <ul class="lista-principios">
-        <li>Por llenar.</li>
-      </ul>
+      <ul class="lista-principios"></ul>
     </section>
 
     <footer class="fundamentos__pie texto-apoyo">

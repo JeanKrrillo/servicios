@@ -237,8 +237,7 @@ const Laboratorio = (() => {
       caja.innerHTML = `<ul class="lab-medallas">${todos.map(l => {
           const g = m.logros.includes(l.id), oculta = l.oculto && !g;
           return `<li class="${g ? 'ganada' : ''}"><span class="lab-sello lab-sello--chico${g ? ' ganada' : ''}" aria-hidden="true">${oculta ? '?' : signo(l)}</span><span><b>${oculta ? 'Escondida' : esc(l.nombre)}</b><small>${oculta ? 'Se gana usando la página de cierta forma.' : esc(l.como)}</small></span></li>`;
-        }).join('')}</ul>
-        <p class="texto-apoyo">Pronto vas a ver aquí la lista de quienes más ayudan, con nombres de pigmento y no con nombres reales. Si no quieres salir ahí, lo quitas con un toque.</p>`;
+        }).join('')}</ul>`;
     } },
 
     { id: 'ragebait', nombre: 'Ragebait cualquier día', que: 'El martes de ragebait cuando quieras, en todas las páginas', nivel: 1, apagada: true }

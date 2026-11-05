@@ -86,7 +86,7 @@
 .vortex-item:focus-visible { outline: 2px solid var(--ocre); outline-offset: 3px; }
 .vortex-item:active { cursor: grabbing; }
 
-/* Nombre bajo el logo: aparece al apuntar o con el foco (reglamento 5.2, nunca encimado en reposo) */
+/* Nombre bajo el logo: aparece al apuntar o con el foco */
 .vortex-item-label {
     position: absolute;
     top: calc(100% + 4px);

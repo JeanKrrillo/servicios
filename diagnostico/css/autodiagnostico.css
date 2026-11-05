@@ -10,7 +10,7 @@
 /* Alto del encabezado, lo mide header.js */
 :root { --alto-header: calc(92px + env(safe-area-inset-top)); }
 
-/* Las cuatro fases están siempre (reglamento 1.2) */
+/* Las cuatro fases están siempre */
 .step-container,
 .step-container.active { display: block; opacity: 1; animation: none; }
 .step-container + .step-container { margin-top: var(--space-2xl, 4rem); }
@@ -27,7 +27,7 @@
 
 
 
-/* ── Aviso de privacidad y borrar todo (reglamento 2.4 y 2.5) ── */
+/* ── Aviso de privacidad y borrar todo ── */
 .aviso-privado {
     max-width: 680px;
     margin: 0 auto 1rem;
@@ -150,7 +150,7 @@
     .indice-lista a { min-height: 34px; border-radius: 5px; font-size: .62rem; letter-spacing: -.02em; }
 }
 
-/* ── Logos de apps: originales, en blanco sobre el color de su marca (reglamento 5.1) ── */
+/* ── Logos de apps: originales, en blanco sobre el color de su marca ── */
 .logo-app { filter: brightness(0) invert(1); }
 .logo-iniciales { color: #fff; font: 800 .8rem/1 'Plus Jakarta Sans', sans-serif; letter-spacing: .04em; }
 .marcas-linea { margin: .6rem 0 0; font-size: .72rem; color: color-mix(in srgb, var(--tinta) 60%, transparent); text-align: center; }

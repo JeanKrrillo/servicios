@@ -413,7 +413,7 @@ document.addEventListener('click', e => {
     if (el) scrollTo({ top: el.getBoundingClientRect().top + scrollY - headerH - 16, behavior: 'smooth' });
 });
 
-// Volver a clasificar las 21 desde cero (reglamento 1.5: empezar de nuevo lo elige la persona)
+// Volver a clasificar las 21 desde cero
 function volverAClasificar() {
     if (swipeLock) return;
     initStack();

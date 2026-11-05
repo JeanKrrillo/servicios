@@ -180,7 +180,7 @@
 #step-4 .informe__resultado { row-gap: .35rem; }
 #step-4 #informe-importante-texto { font-size: .9rem; line-height: 1.4; margin: 0; }
 
-/* Contacto a la vista pero compacto: invita una vez, sin ocupar media pantalla (reglamento 2.6) */
+/* Contacto a la vista pero compacto: invita una vez, sin ocupar media pantalla */
 #step-4 .contacto .contacto__ig-fila { margin-bottom: .5rem; gap: .6rem; }
 #step-4 .contacto .contacto__ig { min-height: 44px; padding: .5rem .9rem; font-size: .88rem; }
 #step-4 .contacto label { font-size: .8rem; }

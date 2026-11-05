@@ -62,7 +62,7 @@
     .q-opciones { gap: .4rem; }
 }
 
-/* ── Opciones: iguales antes de contestar (reglamento 6.2) ── */
+/* ── Opciones: iguales antes de contestar ── */
 .q-opciones { display: grid; gap: .5rem; }
 .q-opciones > * { min-width: 0; }
 @media (min-width: 560px) { .q-opciones { grid-template-columns: 1fr 1fr; } .choice-btn--nose { grid-column: 1 / -1; } }

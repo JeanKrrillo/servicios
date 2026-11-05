@@ -133,7 +133,7 @@ const Calculadora = (() => {
     /* con la mutua el precio se ve tachado y opaco, y al lado lo que pagas, 0 pesos */
     const cuanto = x.cotizar ? 'te cotizo por mensaje' : mutua ? `<s class="recibo__tachado">${pesos(x.neto)}</s> 0 pesos` : pesos(x.neto);
     filas.push(fila('Este servicio', cuanto, 'recibo__total'));
-    /* la cuenta entera con símbolos, como en un recibo (excepción de la regla 9 del pedestal): 35 + 55 = 90 × 2 personas = 180… */
+    /* la cuenta entera con símbolos, como en un recibo: 35 + 55 = 90 × 2 personas = 180… */
     const precios = x.lineas.map(l => l.precio), sola = precios.length < 2 && x.personas < 2 && !x.descuento;
     const cuenta = x.cotizar || sola ? '' : [
       precios.length > 1 ? `${precios.map(fmt).join(' + ')} = ${fmt(x.subtotal / x.personas)}` : fmt(x.subtotal / x.personas),

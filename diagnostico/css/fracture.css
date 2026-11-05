@@ -150,7 +150,7 @@
 .fracture-zone { width: min(100%, 720px, calc((100svh - var(--alto-header, 110px) - 32px) * 3 / 4.4)); }
 @media (min-width: 560px) { .fracture-zone { width: min(100%, 720px, calc((100svh - var(--alto-header, 110px) - 32px) * 4 / 3.2)); } }
 
-/* Angosto: cada app es su logo en círculo y el nombre sale al tocarla (reglamento 5.2), para que quepan los anillos */
+/* Angosto: cada app es su logo en círculo y el nombre sale al tocarla, para que quepan los anillos */
 .fracture-zone--compacta .fracture-node { padding: 0; width: 44px; height: 44px; min-height: 44px; justify-content: center; border-radius: 50%; }
 .fracture-zone--compacta .fracture-node-logo { width: 30px; height: 30px; border-radius: 50%; }
 .fracture-zone--compacta .fracture-node > span:last-child { position: absolute; top: calc(100% + 3px); left: 50%; transform: translateX(-50%); padding: 1px 5px; border-radius: 4px; background: var(--tinta); color: var(--papel); font-size: .65rem; opacity: 0; pointer-events: none; transition: opacity var(--t-toque, .25s) ease; }

@@ -69,7 +69,7 @@ function relayoutFracture() {
     if (!w || !h) return;
     const svg = fractureContainer.querySelector('.fracture-grietas');
     svg?.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    // En angosto cada app es solo su logo, en círculo, y el nombre sale al tocarla (reglamento 5.2),
+    // En angosto cada app es solo su logo, en círculo, y el nombre sale al tocarla,
     // así caben los mismos tres anillos alrededor del SMS que en pantalla ancha
     const angosto = w < 560;
     fractureContainer.classList.toggle('fracture-zone--compacta', angosto);

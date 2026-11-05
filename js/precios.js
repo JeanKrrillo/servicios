@@ -1,4 +1,4 @@
-/* precios.js · las cuentas de los precios (2026-10-23, sección 5 de la reestructuración).
+/* precios.js · las cuentas de los precios.
    Reciben datos y devuelven números: no tocan la pantalla ni la red, así se prueban solas
    (taller_v3/pruebas/precios.test.js) y las usan igual la calculadora, el panel privado y el visor.
    Precio de una parte = base del servicio × peso de la parte × tamaño × nivel, redondeado a 5 en cuota justa,

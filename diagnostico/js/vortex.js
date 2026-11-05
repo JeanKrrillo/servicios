@@ -169,7 +169,7 @@ function initVortex() {
         el.addEventListener('pointerenter', lento);
         el.addEventListener('pointerleave', normal);
         el.addEventListener('pointerdown', lento);
-        // Con teclado también frena, para poder elegirla sin perseguirla (reglamento 16.4)
+        // Con teclado también frena, para poder elegirla sin perseguirla
         el.addEventListener('focus', lento);
         el.addEventListener('blur', normal);
         el.addEventListener('click', e => tragarApp(it, e));

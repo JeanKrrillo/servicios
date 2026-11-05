@@ -1,7 +1,7 @@
 /* servicios.js · carrusel de la portada, ¿Qué necesitas?, la barra de los 11, casos resueltos, referencias y saludo.
    Los servicios con su precio, la calculadora y el pedido viven en calculadora.js */
 
-const POR_PIEZA_MS = 4500;          // escena de servicio, 4 a 5 s (tabla de medidas)
+const POR_PIEZA_MS = 4500;          // escena de servicio, 4 a 5 s
 const ACTO_DE = i => (i < 3 ? 0 : i < 8 ? 1 : 2);
 
 /* ═══ CARRUSEL ═══

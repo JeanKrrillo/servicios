@@ -2,6 +2,8 @@
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
+  <!-- Frena que la página mande datos a otros sitios. Scripts en línea siguen permitidos porque autodiagnostico.html usa onclick -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.dof.gob.mx https://dof.gob.mx; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Información útil · jean.krrillo</title>
   <meta name="description" content="Qué incluye cada pedido, cómo se paga y qué pasa con tus datos.">
@@ -33,10 +35,7 @@
     </div>
   </header>
 
-  <!-- Información útil (8.1 de la reestructuración del 2026-10-23). Letra chica en un desplegable cerrado.
-       Antes de pedir solo repite lo ya decidido en la portada: si allá cambia el pago, los extras o el alcance, se cambia aquí.
-       Lo que todavía no se cumple vive en la guía de trabajo y no aquí (Jean, 2026-10-24).
-       Garantía, devoluciones, límite de responsabilidad y aviso de privacidad formal no se escriben hasta que Jean los defina -->
+  <!-- Información útil: letra chica en un desplegable cerrado. Repite lo ya decidido en la portada; si allá cambia el pago, los extras o el alcance, se cambia aquí. -->
   <main class="contenedor fundamentos letra-chica">
     <header class="fundamentos__cabeza">
       <h1 class="titulo-chico">Información útil</h1>
@@ -66,7 +65,7 @@
     <details class="concesion">
       <summary><b>Antes de pedir</b><span>qué incluye, cómo se paga y tus datos</span></summary>
       <p>Lo que hago es lo que aparece en tu pedido, parte por parte, y lo que no aparece ahí no va incluido. Si en el camino hace falta algo más, te aviso y tú decides antes de que se cobre.</p>
-      <p>El precio que te paso por escrito es el máximo, y si algo cambia te aviso antes de cobrar. En web, apps, casa inteligente y en trabajos de más de 1,000 pesos se paga la mitad antes, con recibo. Cómo se paga todavía no está definido.</p>
+      <p>El precio que te paso por escrito es el máximo, y si algo cambia te aviso antes de cobrar. En web, apps, casa inteligente y en trabajos de más de 1,000 pesos se paga la mitad antes, con recibo.</p>
       <p>Lo que se va a hacer queda por escrito, tienes una ronda de cambios y lo que pidas de más se cobra aparte.</p>
       <p>El trabajo se hace dentro de tus cuentas, con el acceso que me prestes, y no leo tus mensajes. Al terminar cierro las sesiones, tú cambias las contraseñas que prestaste y tus archivos se borran, y te lo confirmo por escrito. Tu caso solo se publica si tú quieres, y sin tus datos.</p>
       <p>Todavía no recupero cuentas robadas. En web y apps no van incluidos el dominio, el servidor, subirla a las tiendas de apps ni revisar normas de seguridad, y en casa inteligente las piezas las compras tú o se pagan al costo antes de empezar.</p>
