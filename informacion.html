@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
   <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
-  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
+  <script>try{var t=localStorage.getItem('jk-tema');if(t==='claro'||t==='oscuro')document.documentElement.dataset.tema=t}catch(e){}</script>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/fundamentos.css">
   <script src="diagnostico/js/notificacion.js" defer></script>
@@ -20,7 +20,7 @@
   <script src="js/comun.js" defer></script>
   <link rel="stylesheet" href="css/pestanas.css">
   <script src="js/pestanas.js" defer></script>
-  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+  <script>/* El fondo de arena no hace falta para leer: se pide cuando la página ya cargó y el navegador quedó libre */addEventListener('load',()=>(window.requestIdleCallback||setTimeout)(()=>['js/fondo-arena.js'].forEach(s=>document.head.append(Object.assign(document.createElement('script'),{src:s})))))</script>
   <script src="js/musica.js" defer></script>
 </head>
 <body>
@@ -33,12 +33,35 @@
     </div>
   </header>
 
-  
+  <!-- Información útil (8.1 de la reestructuración del 2026-10-23). Letra chica en un desplegable cerrado.
+       Antes de pedir solo repite lo ya decidido en la portada: si allá cambia el pago, los extras o el alcance, se cambia aquí.
+       Lo que todavía no se cumple vive en la guía de trabajo y no aquí (Jean, 2026-10-24).
+       Garantía, devoluciones, límite de responsabilidad y aviso de privacidad formal no se escriben hasta que Jean los defina -->
   <main class="contenedor fundamentos letra-chica">
     <header class="fundamentos__cabeza">
       <h1 class="titulo-chico">Información útil</h1>
       <p class="texto-apoyo">Para quien quiera saber qué incluye cada pedido, cómo se paga y qué pasa con sus datos.</p>
     </header>
+
+    <section class="desde" aria-labelledby="desde-t">
+      <h2 id="desde-t">Desde cuándo hago cada servicio</h2>
+      <p class="texto-apoyo">Unos llevan años y otros son nuevos, y así sabes qué tanto los tengo caminados.</p>
+      <ol class="desde__lista">
+        <li><span class="desde__anio">2017</span><span>Edición de video</span></li>
+        <li><span class="desde__anio">2019</span><span>Fotos a digital</span></li>
+        <li><span class="desde__anio">2020</span><span>Limpieza de compu</span></li>
+        <li><span class="desde__anio">2021</span><span>Equipos más rápidos</span></li>
+        <li><span class="desde__anio">2024</span><span>Casa inteligente</span></li>
+        <li><span class="desde__anio">2024</span><span>Corrección de código</span></li>
+        <li><span class="desde__anio">2025</span><span>Correo sin spam</span></li>
+        <li><span class="desde__anio">2025</span><span>Control parental</span></li>
+        <li><span class="desde__anio">2026</span><span>Cuentas seguras</span></li>
+        <li><span class="desde__anio">2026</span><span>Páginas web</span></li>
+        <li><span class="desde__anio">2026</span><span>Apps móviles</span></li>
+        <li><span class="desde__anio">2027</span><span>Seguridad, en aprendizaje</span></li>
+      </ol>
+      <p class="texto-apoyo">La parte de seguridad, como encriptar archivos, limpiar metadatos o revisar una página o una app, está en aprendizaje y la calculo para 2027 o 2028.</p>
+    </section>
 
     <details class="concesion">
       <summary><b>Antes de pedir</b><span>qué incluye, cómo se paga y tus datos</span></summary>

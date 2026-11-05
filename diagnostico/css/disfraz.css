@@ -1,7 +1,19 @@
+/* ════════════════════════════════════════════════════════════
+   disfraz.css · la v2 vestida de jean.krrillo
+   ------------------------------------------------------------
+   El autodiagnóstico es el de la v2: mismos bloques, motor y
+   animaciones. Esta hoja va al final y solo cambia la ropa:
+   tres colores (tinta, papel, ocre), letras propias y cursor
+   del sistema. Los colores sueltos de la v2 ya se pasaron a
+   estas variables con el script de disfraz (ver LEEME).
+   ════════════════════════════════════════════════════════════ */
 
-@font-face { font-family: 'Bricolage Grotesque'; font-weight: 100 900; font-display: swap; src: url('../../marca/fraunces-700.woff2') format('woff2'); }   
+/* Letras: los nombres de la v2 apuntan a las letras de la marca */
+@font-face { font-family: 'Bricolage Grotesque'; font-weight: 100 900; font-display: swap; src: url('../../marca/fraunces-700.woff2') format('woff2'); }   /* el nombre de la v2 se queda; la letra es Fraunces, como el resto del sitio */
 @font-face { font-family: 'Plus Jakarta Sans';   font-weight: 100 900; font-display: swap; src: url('../../marca/geist.woff2') format('woff2'); }
 @font-face { font-family: 'JetBrains Mono';      font-weight: 100 900; font-display: swap; src: url('../../marca/geist-mono-500.woff2') format('woff2'); }
+
+/* Paleta: tres colores; lo demás se deriva de la tinta */
 :root {
   --tinta: #121217;
   --papel: #f3f2ee;
@@ -35,8 +47,15 @@
   --risk-border: color-mix(in srgb, var(--ocre) 40%, transparent);
 }
 body { background-color: var(--papel); color: var(--tinta); }
+
+/* Cursor del sistema: el animado se descartó (lento y poco limpio) */
 html, body, * { cursor: revert; }
-.filter.invert { filter: var(--filtro-tinta-inverso) !important; }  
+
+/* Logos de apps: dibujo en papel sobre la ficha de tinta, en ambos temas */
+.filter.invert { filter: var(--filtro-tinta-inverso) !important; }  /* vence a la utilidad estática de Tailwind */
+
+/* Piezas que en la v2 son siempre oscuras (encabezado, HUD del vórtice y de la fractura):
+   en modo oscuro conservan la tinta de día para no volverse claras */
 :root[data-theme="dark"] #header,
 :root[data-theme="dark"] .vortex-zone {
   --tinta: #121217;
@@ -45,6 +64,8 @@ html, body, * { cursor: revert; }
   --filtro-tinta-inverso: invert(1);
   box-shadow: 0 0 0 1px color-mix(in srgb, #ecebe5 12%, transparent);
 }
+
+/* Utilidades de color de Tailwind que la v2 usa sin token: al semáforo tinta-ocre */
 [class*="text-red-"], [class*="text-rose-"], [class*="text-orange-"], [class*="text-amber-"], [class*="text-yellow-"] { color: var(--ocre) !important; }
 [class*="text-green-"], [class*="text-emerald-"], [class*="text-blue-"], [class*="text-indigo-"], [class*="text-sky-"] { color: var(--tinta) !important; }
 [class*="text-slate-"], [class*="text-gray-"], [class*="text-zinc-"], [class*="text-neutral-"] { color: color-mix(in srgb, var(--tinta) 60%, transparent) !important; }
@@ -52,20 +73,34 @@ html, body, * { cursor: revert; }
 [class*="bg-green-"], [class*="bg-emerald-"], [class*="bg-blue-"], [class*="bg-indigo-"], [class*="bg-slate-"], [class*="bg-gray-"] { background-color: color-mix(in srgb, var(--tinta) 8%, transparent) !important; }
 [class*="border-red-"], [class*="border-rose-"], [class*="border-orange-"], [class*="border-amber-"] { border-color: var(--ocre) !important; }
 [class*="border-green-"], [class*="border-emerald-"], [class*="border-blue-"], [class*="border-slate-"], [class*="border-gray-"] { border-color: color-mix(in srgb, var(--tinta) 15%, transparent) !important; }
+
+/* Sin scroll lateral por piezas decorativas que asoman (1024px) */
 html, body { overflow-x: clip; }
+
+/* Alto de pantalla estable en celular (antes lo medía responsive-utils.js en cada resize) */
 :root { --vh: 1svh; }
+
+/* Anillo del resultado: el mismo dibujo que el medidor, sin Chart.js */
 .anillo-final {
   position: absolute; inset: 0; border-radius: 50%;
   background: conic-gradient(var(--c, var(--ocre)) calc(var(--p, 0) * 1%), color-mix(in srgb, var(--tinta) 8%, transparent) 0);
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
           mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
 }
+
+/* ── Ningún texto se corta (2026-10-13): lo que no cabe baja de línea en vez de acabar en "…" ── */
 .stepper-label, .stepper-cuenta,
 .informe__apps b,
 .fracture-node, .fracture-node > span:last-child { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
 .stepper-item { overflow: visible; }
+/* Los tiempos de la matriz son cortos (3 s, 2 h); si un celular angosto no los cabe, parten en dos líneas */
 .hive-cell, #step-3 .hive-cell { white-space: normal; overflow: visible; overflow-wrap: anywhere; line-height: 1.05; }
+/* El título va en una línea; en celular angosto la letra baja un poco en vez de cortarse */
+/* el título se queda en su espacio: nunca choca con el plazo (2026-10-14) */
 .jk-header__titulo h1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: clamp(.72rem, 3.1vw, .95rem); }
+
+/* Barra angosta: menos aire entre piezas y el círculo de riesgo un poco más chico, para que el título quepa entero.
+   Los botones se quedan de 44 px para el dedo (2026-10-14) */
 @media (max-width: 400px) {
   .jk-header__fila { gap: 8px; }
 }
@@ -75,7 +110,8 @@ html, body { overflow-x: clip; }
   .jk-header__titulo h1 { font-size: .7rem; }
 }
 @media (max-width: 339px) {
-  .jk-header .logo-container { display: none; }   
+  .jk-header .logo-container { display: none; }   /* el riesgo también se lee en la fase de Resultado y en el informe */
 }
+/* El calendario de la pregunta 1 crece con su mes: con alto fijo el mes se salía encima de las respuestas (2026-10-14) */
 .q-card#q1 .q-dibujo { height: auto; min-height: var(--alto-dibujo); }
 .q-card#q1 .q-dibujo > * { max-height: none; }

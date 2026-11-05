@@ -1,6 +1,7 @@
-
+/* phosphor-jk.css · lo arma recortar.py. 34 iconos de Phosphor en tres pesos, nada más. No editar a mano. */
 @font-face { font-family: "Phosphor"; src: url("./Phosphor.woff2") format("woff2"); font-weight: normal; font-style: normal; font-display: swap; }
 .ph {
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "Phosphor" !important;
   speak: never;
   font-style: normal;
@@ -8,6 +9,8 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
+  /* Enable Ligatures ================ */
   letter-spacing: 0;
   -webkit-font-feature-settings: "liga";
   -moz-font-feature-settings: "liga=1";
@@ -16,6 +19,8 @@
   font-feature-settings: "liga";
   -webkit-font-variant-ligatures: discretionary-ligatures;
   font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -55,6 +60,7 @@
 .ph.ph-x:before { content: "\e4f6"; }
 @font-face { font-family: "Phosphor-Bold"; src: url("./Phosphor-Bold.woff2") format("woff2"); font-weight: normal; font-style: normal; font-display: swap; }
 .ph-bold {
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "Phosphor-Bold" !important;
   speak: never;
   font-style: normal;
@@ -62,6 +68,8 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
+  /* Enable Ligatures ================ */
   letter-spacing: 0;
   -webkit-font-feature-settings: "liga";
   -moz-font-feature-settings: "liga=1";
@@ -70,6 +78,8 @@
   font-feature-settings: "liga";
   -webkit-font-variant-ligatures: discretionary-ligatures;
   font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -109,6 +119,7 @@
 .ph-bold.ph-x:before { content: "\e4f6"; }
 @font-face { font-family: "Phosphor-Fill"; src: url("./Phosphor-Fill.woff2") format("woff2"); font-weight: normal; font-style: normal; font-display: swap; }
 .ph-fill {
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "Phosphor-Fill" !important;
   speak: never;
   font-style: normal;
@@ -116,6 +127,8 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
+  /* Enable Ligatures ================ */
   letter-spacing: 0;
   -webkit-font-feature-settings: "liga";
   -moz-font-feature-settings: "liga=1";
@@ -124,6 +137,8 @@
   font-feature-settings: "liga";
   -webkit-font-variant-ligatures: discretionary-ligatures;
   font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

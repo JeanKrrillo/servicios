@@ -1,6 +1,14 @@
+/* ============================================================
+   Fase 2 · actividades (fichas A-00 y A-01)
+   Cada actividad es un bloque: cabeza (qué es, para qué, cómo y su
+   cuenta) y una zona de juego cuadrada. En celular van una debajo de
+   otra; desde 900 px la cabeza va a la izquierda (un tercio) y el
+   juego a la derecha (dos tercios), como el diseño de la v2.
+   ============================================================ */
 
 .fase-cabeza { max-width: 680px; margin: 0 auto 1.5rem; text-align: center; }
 .fase-cabeza .t-titulo { margin: .2rem 0 .5rem; }
+
 .actividad {
     max-width: 1060px;
     margin: 0 auto 2.5rem;
@@ -10,6 +18,7 @@
 @media (min-width: 900px) {
     .actividad { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; gap: 2rem; }
     .actividad .marcas-linea { grid-column: 2; }
+    /* En ancho, los controles viven bajo el título, en la columna izquierda, junto al juego */
     .actividad__cabeza { grid-column: 1; grid-row: 1; }
     .actividad__zona { grid-column: 2; grid-row: 1 / span 2; }
     .actividad__controles { grid-column: 1; grid-row: 2; align-self: start; margin-top: 0; }
@@ -18,13 +27,16 @@
 .actividad__titulo { margin: 0; font: 800 clamp(1.45rem, 1.2rem + 1.25vw, 2.2rem)/1.1 'Bricolage Grotesque', sans-serif; color: var(--tinta); }
 .actividad__para { margin: 0; font-size: .98rem; line-height: 1.5; color: color-mix(in srgb, var(--tinta) 80%, transparent); max-width: 52ch; }
 .actividad__zona { min-width: 0; display: flex; justify-content: center; }
+
 .actividad__cuenta { display: flex; align-items: center; gap: .6rem; font: 600 .75rem/1 'JetBrains Mono', monospace; }
 .actividad__barra { flex: 1; height: 5px; border-radius: 3px; overflow: hidden; background: color-mix(in srgb, var(--tinta) 12%, transparent); }
 #progress-bar { width: 100%; height: 100%; background: var(--tinta); transform: scaleX(0); transform-origin: 0 50%; transition: transform .5s var(--ease-out, ease); }
+
 .actividad__hud { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
 .actividad__hud > div { padding: .65rem .8rem; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--tinta) 14%, transparent); }
 .actividad__hud span { display: block; font-size: .74rem; color: color-mix(in srgb, var(--tinta) 75%, transparent); }
 .actividad__hud b { font: 800 1.5rem/1.1 'JetBrains Mono', monospace; color: var(--tinta); }
+
 .actividad__otra, .btn-undo {
     justify-self: start;
     display: inline-flex; align-items: center; gap: .4rem;
@@ -39,6 +51,8 @@
 .actividad__otra:focus-visible, .btn-undo:focus-visible { outline: 2px solid var(--ocre); outline-offset: 3px; }
 .btn-undo { opacity: .4; pointer-events: none; }
 .btn-undo.active { opacity: 1; pointer-events: auto; }
+
+/* Direcciones: también son botones para clasificar sin arrastrar */
 .actividad__direcciones { display: grid; gap: .4rem; }
 .swipe-instr-btn {
     display: flex; align-items: center; gap: .7rem;
@@ -53,6 +67,8 @@
 @media (hover: hover) { .swipe-instr-btn:hover { border-color: var(--tinta); } }
 .swipe-instr-btn:active { transform: scale(.98); }
 .swipe-instr-btn:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
+
+/* ── El mazo ── */
 .swipe-zone {
     position: relative;
     width: min(100%, 360px);
@@ -82,7 +98,10 @@
     border-radius: 22px; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
 }
+/* Línea de escaneo: mecánica, recorre la carta (transform) */
 .scan-line { position: absolute; left: 0; top: 0; width: 100%; height: 2px; background: var(--ocre); opacity: 0; pointer-events: none; z-index: 2; }
+
+/* Sellos: se estampan mientras arrastras */
 .swipe-label {
     position: absolute; top: 1.1rem; z-index: 5;
     padding: .35rem .7rem; border-radius: 8px; border: 2px solid currentColor;
@@ -93,14 +112,21 @@
 .label-vulnerable { left: 1rem; color: var(--ocre); transform: rotate(-8deg); }
 .label-seguro { right: 1rem; color: var(--tinta); transform: rotate(8deg); }
 .label-no-uso { top: auto; bottom: 1.1rem; left: 50%; transform: translateX(-50%); color: color-mix(in srgb, var(--tinta) 70%, transparent); }
+
+/* Mano que muestra el gesto: aparece si nadie toca en 2 s y se mueve hacia la derecha */
 .swipe-hint { position: absolute; right: 1.2rem; bottom: 1.2rem; z-index: 110; font-size: 1.9rem; color: var(--tinta); opacity: 0; pointer-events: none; }
 @keyframes mano-gesto { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(14px); } }
 .swipe-hint.muestra { animation: mano-gesto 1.6s ease-in-out 2; }
+
+/* Resumen al terminar */
 #swipe-summary { text-align: center; padding: 1.2rem 1rem; }
+
+/* Grano de papel (M-01) */
 .noise-overlay {
     position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .035;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

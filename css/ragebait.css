@@ -1,0 +1,41 @@
+/* ragebait.css · lo de los martes (js/ragebait.js). Solo se pide ese día, así no pesa los demás.
+   Los tres colores de siempre: el chiste está en lo que pasa, no en otra paleta. */
+.rb-franja {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 var(--space-xs);
+  padding: 0 max(var(--space-sm), env(safe-area-inset-right)) 0 max(var(--space-sm), env(safe-area-inset-left));
+  border-top: 1px solid var(--tinta-08); font-size: var(--fs-chico); color: var(--tinta-75); text-align: center;
+}
+.rb-franja__salir {
+  min-height: 44px; padding: 0 var(--space-2xs); border: 0; background: none; color: var(--tinta);
+  font: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+.rb-franja__salir:hover, .rb-franja__salir:active { background: var(--tinta-08); border-radius: 8px; }
+.rb-franja__salir:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; border-radius: 8px; }
+.rb-carga { font-size: var(--fs-micro); }
+
+.rb-palabra { display: inline-block; white-space: nowrap; }
+.rb-letra { display: inline-block; }
+
+.rb-espejo :is(h2, h3) { scale: -1 1; transition: scale var(--t-pieza, .32s) cubic-bezier(.3,1.2,.5,1); }
+.rb-espejo :is(h2, h3):hover { scale: 1 1; }
+
+.rb-gira :is(.marca-jk__sello, .tinta-img) { animation: rb-gira 3s linear infinite; }
+@keyframes rb-gira { to { rotate: 360deg; } }
+
+.rb-video {
+  position: fixed; z-index: 70; right: max(12px, env(safe-area-inset-right)); bottom: calc(var(--alto-pestanas, 0px) + 1rem);
+  width: min(42vw, 260px); background: var(--papel); border: 1px solid var(--tinta-15); border-radius: 12px; overflow: hidden;
+}
+.rb-video video { display: block; width: 100%; height: auto; }
+.rb-video__cerrar {
+  display: block; width: 100%; min-height: 44px; border: 0; border-top: 1px solid var(--tinta-08);
+  background: var(--papel); color: var(--tinta); font: inherit; font-size: var(--fs-chico); cursor: pointer;
+}
+.rb-video__cerrar:hover, .rb-video__cerrar:active { background: var(--tinta-08); }
+.rb-video__cerrar:focus-visible { outline: 2px solid var(--ocre); outline-offset: -2px; }
+
+/* ragebait.js no arranca con movimiento reducido; esto es por si el celular cambia el ajuste con la página abierta */
+@media (prefers-reduced-motion: reduce) {
+  .rb-espejo :is(h2, h3) { scale: 1 1; transition: none; }
+  .rb-gira :is(.marca-jk__sello, .tinta-img) { animation: none; }
+}

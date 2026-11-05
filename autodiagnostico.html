@@ -13,7 +13,7 @@
     <title>Inteligencia Digital 2026 — Cuestionario de Diagnóstico Digital</title>
     <link rel="stylesheet" href="diagnostico/css/tailwind.css">
     
-    
+    <!-- solo los 34 iconos que se usan (vendor/phosphor/recortar.py): 18 KB en vez de ~680 KB -->
     <link rel="stylesheet" href="diagnostico/vendor/phosphor/jk/phosphor-jk.css">
     <script src="diagnostico/js/notificacion.js"></script>
     <script src="diagnostico/js/tono.js"></script>
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="diagnostico/css/autodiagnostico.css">
     <link rel="stylesheet" href="css/pestanas.css">
     <script src="js/pestanas.js" defer></script>
-  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+  <script>/* El fondo de arena y los granos no hacen falta para leer: se piden cuando la página ya cargó y el navegador quedó libre */addEventListener('load',()=>(window.requestIdleCallback||setTimeout)(()=>['js/fondo-arena.js'].forEach(s=>document.head.append(Object.assign(document.createElement('script'),{src:s})))))</script>
     <script src="js/musica.js" defer></script>
 </head>
 
@@ -96,7 +96,7 @@
         </nav>
     </header>
 
-    
+    <!-- M-04 · Hoja del calendario por dígito -->
     <dialog id="calendar-modal" class="hoja-diag" aria-labelledby="cal-titulo">
         <div class="hoja-diag__cuerpo">
             <div class="hoja-diag__cabeza">
@@ -109,7 +109,7 @@
         </div>
     </dialog>
 
-    
+    <!-- Acuerdo del DOF dentro de la página, sin salir de ella -->
     <dialog id="acuerdo-modal" class="hoja-diag hoja-diag--alta hoja-diag--ancha" aria-labelledby="acuerdo-titulo">
         <div class="hoja-diag__cuerpo">
             <div class="hoja-diag__cabeza">
@@ -121,7 +121,7 @@
         </div>
     </dialog>
 
-    
+    <!-- M-05 · Hoja de preguntas frecuentes: carga preguntas.html, una sola fuente -->
     <dialog id="qa-modal" class="hoja-diag hoja-diag--alta" aria-labelledby="qa-titulo">
         <div class="hoja-diag__cuerpo">
             <div class="hoja-diag__cabeza">
@@ -424,11 +424,11 @@
                 <button type="button" class="choice-btn choice-btn--grande" data-q="15" data-respuesta="positivo" data-anim="none" aria-pressed="false"><i class="ph ph-handshake" aria-hidden="true"></i><b>Con ayuda</b><span>Que alguien lo haga conmigo</span></button>
             </div>
         </article>
-                    </div> 
-                </div> 
-            </section> 
+                    </div> <!-- /#quiz-container -->
+                </div> <!-- /wrapper div inside step-1 -->
+            </section> <!-- /#step-1 -->
 
-            
+            <!-- FASE 02: INVENTARIO DE ACTIVOS (Swipe Master Pro) -->
             <section id="step-2" class="step-container active">
                 <div class="fase-cabeza">
                     <span class="t-subtitulo">Fase 2 de 4</span>
@@ -436,7 +436,7 @@
                     <p class="t-parrafo">Tres formas de decir qué apps dependen de tu número. Cada una trae apps distintas, y puedes hacer las tres, una o ninguna.</p>
                 </div>
 
-                
+                <!-- A-01 · Clasifica (deslizar) -->
                 <article class="actividad" id="swipe-section" aria-labelledby="swipe-t">
                     <header class="actividad__cabeza">
                         <h3 class="actividad__titulo" id="swipe-t">Clasifica</h3>
@@ -463,7 +463,7 @@
                     <p class="marcas-linea">Marcas de sus dueños, sin afiliación.</p>
                 </article>
 
-                
+                <!-- A-02 · Órbita -->
                 <article class="actividad" id="vortex-section" aria-labelledby="vortex-t">
                     <header class="actividad__cabeza">
                         <h3 class="actividad__titulo" id="vortex-t">Órbita</h3>
@@ -489,7 +489,7 @@
                     <p class="marcas-linea">Marcas de sus dueños, sin afiliación.</p>
                 </article>
 
-                
+                <!-- A-03 · Fractura -->
                 <article class="actividad" id="fracture-section" aria-labelledby="fracture-t">
                     <header class="actividad__cabeza">
                         <h3 class="actividad__titulo" id="fracture-t">Fractura</h3>
@@ -505,7 +505,7 @@
                 </article>
             </section>
 
-            
+            <!-- FASE 03: SIMULADOR DE FUERZA BRUTA -->
             <section id="step-3" class="step-container active">
                 <div class="fase-cabeza">
                     <span class="t-subtitulo">Fase 3 de 4</span>
@@ -545,7 +545,7 @@
                 </div>
             </section>
 
-            
+            <!-- FASE 4 · Informe de resultados (fichas R-01 a R-08) -->
             <section id="step-4" class="step-container active">
                 <div class="fase-cabeza">
                     <span class="t-subtitulo">Fase 4 de 4</span>
@@ -665,11 +665,11 @@
 
         </div>
 
-        
+        <!-- Aviso: una línea, sin cartel -->
         <p class="aviso-diag">Este diagnóstico revisa tu seguridad digital. No está asociado al registro de líneas, no promueve vincular tu CURP y no se hace cargo de una línea suspendida.</p>
 
-        
-        
+        <!-- CTA Servicios -->
+        <!-- M-08 y M-09 · Pie: a dónde ir y la firma del pedestal -->
         <footer class="pie-diag">
             <nav class="pie-diag__links" aria-label="Más">
                 <a href="index.html">Ver servicios</a>
@@ -681,16 +681,16 @@
         </footer>
     </main>
 
-    
-    
+    <!-- Todo con defer: se descarga en paralelo mientras la página se dibuja y corre en este mismo orden antes de DOMContentLoaded (2026-10-14) -->
+    <!-- Librerías locales: GSAP para movimiento y arrastre, confeti al terminar una actividad -->
     <script src="diagnostico/vendor/gsap.min.js" defer></script>
     <script src="diagnostico/vendor/Draggable.min.js" defer></script>
     <script src="diagnostico/vendor/ScrollToPlugin.min.js" defer></script>
     <script src="diagnostico/vendor/confetti.browser.min.js" defer></script>
-    
+    <!-- Motor de riesgo: va antes que los módulos de la página -->
     <script src="diagnostico/js/engine/ponderacion_riesgo.js" defer></script>
     <script src="diagnostico/js/engine/risk-core.js" defer></script>
-    
+    <!-- Módulos UI (en orden después del motor) -->
     <script src="diagnostico/js/identidad.js" defer></script>
     <script src="diagnostico/js/medir.js" defer></script>
     <script src="diagnostico/js/estado.js" defer></script>

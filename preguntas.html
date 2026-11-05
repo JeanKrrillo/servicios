@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
   <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
-  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
+  <script>try{var t=localStorage.getItem('jk-tema');if(t==='claro'||t==='oscuro')document.documentElement.dataset.tema=t}catch(e){}</script>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/preguntas.css">
   <script src="diagnostico/js/notificacion.js" defer></script>
@@ -21,12 +21,13 @@
   <script src="js/comun.js" defer></script>
   <link rel="stylesheet" href="css/pestanas.css">
   <script src="js/pestanas.js" defer></script>
-  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+  <script>/* El fondo de arena no hace falta para leer: se pide cuando la página ya cargó y el navegador quedó libre */addEventListener('load',()=>(window.requestIdleCallback||setTimeout)(()=>['js/fondo-arena.js'].forEach(s=>document.head.append(Object.assign(document.createElement('script'),{src:s})))))</script>
   <script src="js/musica.js" defer></script>
   <script src="js/preguntas.js" defer></script>
 </head>
 <body>
-  
+  <!-- De temporada (sección 9 de la reestructuración del 2026-10-23). Sale de Cuentas seguras, no es un servicio aparte.
+       El 15 de enero de 2027 sale del índice solo y esta página queda marcada como archivada (preguntas.js) -->
   <a class="sr-only" href="#tus-cuentas">Ir a Tus cuentas</a>
   <header class="barra">
     <div class="contenedor barra__fila">

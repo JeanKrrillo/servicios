@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="animaciones/iconos/2fa_paint.svg" as="image" fetchpriority="high">
-  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
+  <script>try{var t=localStorage.getItem('jk-tema');if(t==='claro'||t==='oscuro')document.documentElement.dataset.tema=t}catch(e){}</script>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/servicios.css">
   <link rel="stylesheet" href="css/calculadora.css">
@@ -24,14 +24,19 @@
   <script src="js/comun.js" defer></script>
   <link rel="stylesheet" href="css/pestanas.css">
   <script src="js/pestanas.js" defer></script>
-  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js","js/granos.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
+  <script>/* El fondo de arena y los granos no hacen falta para leer: se piden cuando la página ya cargó y el navegador quedó libre */addEventListener('load',()=>(window.requestIdleCallback||setTimeout)(()=>['js/fondo-arena.js','js/granos.js'].forEach(s=>document.head.append(Object.assign(document.createElement('script'),{src:s})))))</script>
   <script src="js/musica.js" defer></script>
   <script src="js/datos-servicios.js" defer></script>
   <script src="js/datos-precios.js" defer></script>
   <script src="js/datos-codigos.js" defer></script>
+  <script src="js/datos-llaves.js" defer></script>
+  <script src="js/datos-laboratorio.js" defer></script>
+  <script src="js/laboratorio.js" defer></script>
   <script src="js/precios.js" defer></script>
   <script src="js/servicios.js" defer></script>
   <script src="js/calculadora.js" defer></script>
+  <script src="js/datos-ciber.js" defer></script>
+  <script src="js/ciber.js" defer></script>
 </head>
 <body>
   <a class="sr-only" href="#necesidad">Ir a ¿Qué necesitas?</a>
@@ -46,7 +51,7 @@
   </header>
 
   <main>
-    
+    <!-- INICIO: lo esencial cabe en 360 × 640 sin scroll -->
     <section class="portada" id="inicio" aria-labelledby="portada-nombre">
       <div class="contenedor portada__marco">
         <ul class="actos" id="actos" aria-label="Cómo se trabaja">
@@ -56,7 +61,7 @@
         </ul>
         <div class="carrusel" id="carrusel" aria-roledescription="carrusel" aria-label="Los 11 servicios">
           <div class="carrusel__pista" id="carrusel-pista">
-            
+            <!-- primera pieza en el html para que se pinte sin esperar al js; servicios.js arma las 11 -->
             <span class="pieza es-actual"><img class="pieza__img tinta-img" src="animaciones/iconos/2fa_paint.svg" alt="" width="2048" height="2048" fetchpriority="high"></span>
           </div>
         </div>
@@ -71,7 +76,7 @@
       </div>
     </section>
 
-    
+    <!-- SERVICIOS: un solo camino. Qué necesitas, tu cuota, sus servicios con su precio y el total -->
     <section class="seccion" id="necesidad" aria-labelledby="necesidad-titulo" data-paso="1">
       <div class="contenedor">
         <p class="saludo" id="saludo" hidden><span class="saludo__gota" aria-hidden="true"></span><span id="saludo-texto"></span></p>
@@ -98,14 +103,14 @@
             <div class="etapa" data-n="3">
             <p class="paso__titulo"><span class="paso" data-n="3">3</span> Tu servicio. <span class="paso__ayuda">Ábrelo y escribe cuántos.</span></p>
             <div id="calc-servicios"></div>
-            <details class="plegable calc__codigo">
-              <summary>¿Tienes un código?</summary>
+            <div class="calc__codigo">
+              <label class="calc__codigo-titulo" for="codigo-campo">¿Tienes un código de descuento?</label>
               <div class="calc__codigo-fila">
-                <input id="codigo-campo" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" aria-label="Código">
+                <input id="codigo-campo" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="Escríbelo aquí">
                 <button class="boton boton--linea boton--chico" type="button" id="codigo-aplicar">Aplicar</button>
               </div>
               <p class="texto-apoyo" id="codigo-estado" role="status"></p>
-            </details>
+            </div>
             </div>
           </div>
 
@@ -116,14 +121,15 @@
             </button>
             <ul class="total__lineas" id="total-lineas"></ul>
             <ul class="total__saber" id="total-saber"></ul>
-            <p class="total__fecha" id="total-fecha"></p>
             <button class="boton boton--chico" type="button" id="total-pedir" disabled>Pedir esto</button>
+            <button class="boton boton--linea boton--chico total__reiniciar" type="button" id="total-reiniciar" hidden>Empezar de nuevo</button>
           </aside>
         </div>
+        <section class="ciber" id="ciber" aria-labelledby="ciber-titulo"></section>
       </div>
     </section>
 
-    
+    <!-- LABORATORIO DE SERVICIOS NUEVOS -->
     <section class="seccion" id="laboratorio" aria-labelledby="laboratorio-titulo">
       <div class="contenedor laboratorio aparece">
         <h2 id="laboratorio-titulo">Laboratorio de servicios nuevos</h2>
@@ -135,15 +141,24 @@
             <li>Cuentas seguras, para dejar los códigos por mensaje y activar 2FA</li>
             <li>Correo sin spam</li>
             <li>Equipos más rápidos</li>
-            <li>Código sin errores, solo scripts cortos</li>
+            <li>Corrección de código, solo scripts cortos</li>
             <li>Casa inteligente, solo focos, enchufes, NFC y RFID</li>
           </ul>
           <p>Quienes llevan más tiempo en el laboratorio reciben además Control parental, Limpieza de compu, Fotos a digital, Edición de video, Páginas web, Apps móviles y Casa inteligente con muchos aparatos.</p>
         </details>
         <button class="boton boton--linea boton--chico" type="button" id="boton-laboratorio">Quiero participar</button>
+        <form class="lab-entrar" id="lab-entrar">
+          <label for="llave-campo">¿Ya te mandé tu llave? Escríbela aquí para entrar.</label>
+          <div class="calc__codigo-fila">
+            <input id="llave-campo" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="BETA-XXXXXXXX">
+            <button class="boton boton--chico" type="submit">Entrar</button>
+          </div>
+          <p class="texto-apoyo" id="llave-estado" role="status"></p>
+        </form>
+        <div class="lab" id="lab" hidden></div>
       </div>
     </section>
-    
+    <!-- CASOS RESUELTOS -->
     <section class="seccion" id="casos" aria-labelledby="casos-titulo">
       <div class="contenedor">
         <header class="seccion__cabeza aparece">
@@ -156,7 +171,7 @@
       </div>
     </section>
 
-    
+    <!-- PREGUNTAS: la primera frase de cada respuesta es la respuesta -->
     <section class="seccion seccion--ultima" id="preguntas" aria-labelledby="preguntas-titulo">
       <div class="contenedor">
         <header class="seccion__cabeza aparece"><h2 id="preguntas-titulo">Preguntas</h2></header>
@@ -223,7 +238,7 @@
 
   <a class="firma" href="https://www.instagram.com/jean.krrillo/" target="_blank" rel="noopener">@jean.krrillo</a>
 
-  
+  <!-- TU PEDIDO: la lista completa, lo que se elige antes de enviar y el envío -->
   <dialog class="hoja" id="pedido" aria-labelledby="pedido-titulo">
     <div class="hoja__marco">
       <div class="hoja__cabeza">

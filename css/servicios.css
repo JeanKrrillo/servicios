@@ -1,4 +1,6 @@
+/* servicios.css · página principal: portada con carrusel, 11 defensas, cuotas y pedido */
 
+/* ═══ PORTADA: cabe completa en 360 × 640 ═══ */
 .portada { border-bottom: 1px solid var(--tinta-08); overflow-x: clip; }
 .portada__marco {
   display: grid;
@@ -7,13 +9,16 @@
   align-items: center;
   justify-items: center;
   gap: clamp(.5rem, 1.6svh, 1.25rem);
-  min-height: calc(100svh - var(--alto-barra) - var(--alto-pestanas, 0px) - 4px);   
+  min-height: calc(100svh - var(--alto-barra) - var(--alto-pestanas, 0px) - 4px);   /* menos el filete de abajo: la portada cabe exacta */
   padding-block: clamp(.75rem, 2.4svh, 2rem) clamp(2.25rem, 4svh, 3rem);
   text-align: center;
 }
 .portada__marco > * { min-width: 0; }
 .portada .actos { padding-top: .25rem; }
+/* La línea de pincel cruza toda la pantalla, como en el video */
 .portada .pincel { width: 100vw; margin-top: calc(-1 * clamp(.5rem, 1.6svh, 1.25rem)); }
+
+/* ═══ CARRUSEL: la pieza actual al centro, las vecinas chicas y tenues ═══ */
 .carrusel {
   position: relative;
   width: 100%;
@@ -26,11 +31,11 @@
 }
 .carrusel__pista { position: absolute; inset: 0; }
 .pieza {
-  --x: 0;           
+  --x: 0;           /* posición relativa: -1 izquierda, 0 centro, 1 derecha */
   position: absolute;
   bottom: 2%;
   left: 50%;
-  width: var(--lado, 14rem);   
+  width: var(--lado, 14rem);   /* lo calcula servicios.js con el tamaño real del carrusel */
   aspect-ratio: 1;
   margin: 0;
   padding: 0;
@@ -49,7 +54,8 @@
 .pieza__img { object-fit: contain; transition: opacity var(--t-toque) ease; }
 .pieza__anim { filter: var(--filtro-tinta); }
 .pieza.tiene-anim .pieza__img { opacity: 0; }
-.pieza__anim svg { width: 100% !important; height: 100% !important; } 
+.pieza__anim svg { width: 100% !important; height: 100% !important; } /* !important: lottie escribe width/height inline */
+
 .carrusel__texto { display: grid; gap: .3rem; }
 .carrusel__nombre { font-size: var(--fs-titulo); }
 .carrusel__detalle {
@@ -59,6 +65,8 @@
 }
 .carrusel__texto > * { transition: opacity var(--t-toque) ease; }
 .carrusel__texto.cambia > * { opacity: 0; }
+
+/* ═══ NOTA: frase que circula, veredicto y fuente ═══ */
 .nota {
   width: 100%;
   max-width: 30rem;
@@ -72,6 +80,7 @@
 .nota__frase { font-size: var(--fs-h3); }
 .nota__linea { font-size: var(--fs-chico); }
 .nota__fuente { font-size: var(--fs-micro); color: var(--tinta-75); }
+
 .portada__acciones {
   display: flex;
   flex-wrap: wrap;
@@ -79,6 +88,8 @@
   justify-content: center;
   gap: .5rem 1.25rem;
 }
+
+/* Pantallas bajitas: el carrusel cede espacio, la nota se compacta */
 @media (max-height: 700px) {
   .portada .nota__linea { display: none; }
   .portada .nota { padding: .6rem .85rem; }
@@ -86,11 +97,15 @@
 @media (max-height: 560px) {
   .portada__marco { min-height: auto; grid-template-rows: auto 11rem auto auto auto auto; }
 }
+
+/* ═══ SECCIONES ═══ */
 .seccion { padding-block: var(--space-2xl); border-bottom: 1px solid var(--tinta-08); }
 .seccion--ultima { border-bottom: 0; padding-bottom: calc(var(--space-2xl) + 2rem); }
 .seccion__cabeza { display: grid; gap: var(--space-xs); margin-bottom: var(--space-lg); }
 .seccion__cabeza h2 { font-size: var(--fs-h2); }
 .seccion h3 { font-size: var(--fs-h3); margin-bottom: var(--space-xs); }
+
+/* ═══ SELECTOR DE CUOTA ═══ */
 .cuotas-selector {
   margin: 0 0 var(--space-md);
   padding: 0;
@@ -129,6 +144,8 @@
 .cuota-chip input:focus-visible + span { outline: 2px solid var(--ocre); outline-offset: -4px; }
 @media (hover: hover) { .cuota-chip:hover span { background: var(--tinta-08); } }
 @media (hover: hover) { .cuota-chip input:checked:hover + span { background: var(--tinta); } }
+
+/* ═══ LISTA DE DEFENSAS ═══ */
 .defensas { list-style: none; display: grid; gap: 0; border-top: 1.5px solid var(--tinta); }
 .defensa { border-bottom: 1.5px solid var(--tinta-15); }
 .defensa > details > summary {
@@ -162,6 +179,7 @@
   vertical-align: middle;
 }
 .defensa details[open] .defensa__cruz { transform: rotate(225deg) translate3d(-2px, -2px, 0); }
+
 .defensa__cuerpo {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
@@ -182,6 +200,8 @@
 .dato--todavia p { padding-left: .75rem; border-left: 3px solid var(--ocre); }
 .defensa__acciones { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; }
 .defensas__limite { margin-top: var(--space-md); color: var(--tinta-75); }
+
+/* ═══ TABLA DE CUOTAS ═══ */
 .cuotas {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
@@ -201,6 +221,7 @@
 .cuota__precio { font: 500 var(--fs-h2)/1 var(--f-numero); }
 .cuota__precio small { font: 400 var(--fs-chico)/1 var(--f-texto); color: var(--tinta-75); }
 .cuota__para { font-size: var(--fs-chico); color: var(--tinta-75); }
+
 .formula, .reglas, .corte { margin-bottom: var(--space-xl); }
 .factores { list-style: none; display: grid; gap: .5rem; margin-top: var(--space-sm); }
 .factores li { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: var(--space-sm); align-items: baseline; }
@@ -208,6 +229,8 @@
 .reglas ul, .lista-simple { padding-left: 1.1rem; display: grid; gap: .5rem; max-width: var(--ancho-texto); }
 .reglas li::marker, .lista-simple li::marker { color: var(--ocre); }
 .lista-simple { margin-bottom: var(--space-md); }
+
+/* ═══ PASOS ═══ */
 .pasos { list-style: none; counter-reset: paso; display: grid; gap: var(--space-md); max-width: 46rem; }
 .pasos li {
   counter-increment: paso;
@@ -220,6 +243,7 @@
   font: 800 var(--fs-h2)/1 var(--f-titulo);
   color: var(--ocre);
 }
+
 .casos__cuenta { margin-bottom: var(--space-md); font: 800 var(--fs-h3)/1.2 var(--f-titulo); }
 .casos__cuenta .numero { font-size: var(--fs-h2); font-weight: 500; margin-right: .35rem; }
 .casos {
@@ -258,7 +282,7 @@
 }
 @media (hover: hover) { .pigmento-info:hover { border-color: var(--tinta); transform: translate3d(0, -1px, 0); } }
 .pigmento-info:active { transform: scale(.92); }
-.pigmento-info::after { content: ''; position: absolute; inset: -.65rem; }   
+.pigmento-info::after { content: ''; position: absolute; inset: -.65rem; }   /* área de toque de 44 px sin agrandar el círculo */
 .caso { contain: layout style; }
 .caso__pigmento { font-size: var(--fs-micro); color: var(--tinta-60); }
 .caso__usuario { font: 800 var(--fs-h3)/1.1 var(--f-titulo); overflow-wrap: anywhere; }
@@ -275,8 +299,12 @@
 .voluntarios h3 { font-size: var(--fs-h3); margin-bottom: var(--space-2xs); }
 .voluntarios .lista-simple { margin-bottom: 0; }
 .vacio { padding: var(--space-md); border: 1.5px dashed var(--tinta-15); border-radius: var(--r-md); color: var(--tinta-75); margin-bottom: var(--space-lg); }
+
+/* ═══ PIE ═══ */
 .pie { padding-block: var(--space-lg) calc(var(--space-xl) + 1rem); }
 .pie__fila { display: grid; gap: var(--space-sm); font-size: var(--fs-chico); color: var(--tinta-75); }
+
+/* ═══ PEDIDO ═══ */
 .pedido__titulo { font-size: var(--fs-h3); }
 .pedido__ayuda:empty { display: none; }
 .pedido__ayuda { margin-bottom: var(--space-sm); }
@@ -301,12 +329,14 @@
   resize: vertical;
 }
 .resumen__abrir { justify-self: start; }
+
 @media (min-width: 900px) {
   .portada__marco { grid-template-rows: auto minmax(14rem, 1fr) auto auto auto auto; }
   .defensa > details > summary { grid-template-columns: 4.5rem minmax(0, 1fr) auto; }
   .defensa__icono { width: 4.5rem; }
   .defensa__cuerpo { padding-left: calc(4.5rem + var(--space-sm)); }
 }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -315,8 +345,12 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Animación de un icono al abrir su defensa */
 .anim-tinta { position: absolute; inset: 0; width: 100%; height: 100%; filter: var(--filtro-tinta); }
-.anim-tinta svg { width: 100% !important; height: 100% !important; } 
+.anim-tinta svg { width: 100% !important; height: 100% !important; } /* !important: lottie escribe width/height inline */
+
+/* ═══ PORTADA ORDENADA (2026-10-14): necesidades en tarjetas, cómo funciona en columnas, lo de menos peso a un costado ═══ */
 .grupos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: .6rem; margin-bottom: var(--space-lg); }
 .grupo {
   display: grid; gap: .25rem; align-content: start; min-width: 0; min-height: 44px;
@@ -334,6 +368,8 @@
 .grupo[aria-pressed="true"] .grupo__titulo { text-decoration: underline var(--ocre) 3px; text-underline-offset: .25em; }
 .grupo[data-pedir] { border-style: dashed; }
 .defensa[hidden] { display: none; }
+
+/* Lo que se pliega: una línea subrayada que se abre */
 .plegable { margin-top: var(--space-sm); }
 .plegable > summary { cursor: pointer; font: 800 var(--fs-chico)/1.3 var(--f-titulo); padding-block: .6rem; list-style: none; display: flex; align-items: center; gap: .5rem; }
 .plegable > summary::-webkit-details-marker { display: none; }
@@ -342,6 +378,8 @@
 .plegable > summary:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
 .plegable > :not(summary) { margin-top: .5rem; }
 .defensa__mas { margin: 0; }
+
+/* Cómo funciona: tres columnas en compu, una debajo de otra en celular */
 .como { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: var(--space-lg) var(--space-xl); align-items: start; }
 .como__col { display: grid; gap: var(--space-xs); min-width: 0; }
 .como__col h3 { margin: 0; }
@@ -358,6 +396,8 @@
 .como .reglas, .como .factores { font-size: var(--fs-chico); }
 .como details ul { padding-left: 1.1rem; display: grid; gap: .4rem; font-size: var(--fs-chico); }
 .como details ul.factores { padding-left: 0; }
+
+/* Mordentes y lo que circula, lado a lado */
 .dos-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--space-xl); align-items: start; }
 .dos-col > div { display: grid; gap: var(--space-xs); justify-items: start; min-width: 0; }
 .dos-col h2 { font-size: var(--fs-h2); }
@@ -365,11 +405,17 @@
 .dos-col .voluntarios h3 { font-size: var(--fs-texto); }
 #notas .nota { max-width: none; padding: var(--space-md); }
 .nota__veredicto { font-weight: 800; color: var(--ocre-texto); }
+
+/* Precio y reglas lado a lado, debajo de las tres columnas */
 .como__mas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 0 var(--space-xl); margin-top: var(--space-lg); border-top: 1px solid var(--tinta-15); }
 .como__mas .plegable { margin-top: 0; border-bottom: 1px solid var(--tinta-15); }
 .como__mas .plegable[open] { padding-bottom: var(--space-sm); }
 .factores li { grid-template-columns: 2.75rem minmax(0, 1fr); }
 .como .factores .numero { font-size: var(--fs-texto); }
+
+/* ═══ CELULAR: amplio y sin ruido, sin perder nada de vista ═══
+   Las necesidades en dos columnas con solo su nombre, las cuotas en cuatro cuadros (para quién es cada una se
+   lee al elegirla en el pedido) y los pasos en una tira que se desliza de lado, así la página no se vuelve un muro */
 @media (max-width: 599px) {
   .grupos { grid-template-columns: 1fr 1fr; gap: .5rem; }
   .grupo { padding: .8rem .9rem; }
@@ -379,11 +425,13 @@
   .defensa > details > summary { grid-template-columns: 2.75rem minmax(0, 1fr) auto; gap: .65rem; }
   .defensa__icono { width: 2.75rem; }
   .defensa__cuerpo { padding-left: 0; }
+
   .como { gap: var(--space-xl); }
   .como .cuotas { grid-template-columns: 1fr 1fr; gap: .5rem; border-top: 0; }
   .como .cuota { grid-template-columns: 1fr; padding: .7rem .8rem; border: 1.5px solid var(--tinta-15); border-radius: var(--r-md); }
   .como .cuota__precio { text-align: left; }
   .como .cuota__para { display: none; }
+
   .como .pasos {
     grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--gutter, 1rem)); padding: .25rem var(--gutter, 1rem) .75rem;
@@ -392,6 +440,8 @@
   .como .pasos li { scroll-snap-align: start; grid-template-columns: 1fr; align-content: start; gap: .4rem; padding: var(--space-sm); border: 1.5px solid var(--tinta-15); border-radius: var(--r-md); background: var(--papel); }
   .dos-col { gap: var(--space-2xl); }
 }
+
+/* Casos: quién y qué defensa, el nivel como etiqueta, lo entregado al frente y lo encontrado plegado */
 .caso { gap: var(--space-xs); }
 .caso__nivel { justify-self: start; padding: .1em .55em; border: 1.5px solid var(--tinta-15); border-radius: var(--r-pill); font: 800 var(--fs-micro)/1.4 var(--f-titulo); letter-spacing: .06em; text-transform: uppercase; color: var(--ocre-texto); }
 .caso__entrega { font-size: var(--fs-chico); }
@@ -404,12 +454,16 @@
   }
   .caso { scroll-snap-align: start; background: var(--papel); }
 }
+
+/* ═══ PROXIMIDAD (2026-10-14): toda la portada usa solo --junto, --grupo, --bloque y --seccion ═══ */
 .seccion { padding-block: var(--seccion); }
 .seccion--ultima { padding-bottom: calc(var(--seccion) + 1rem); }
 .seccion__cabeza { gap: var(--junto); margin-bottom: var(--bloque); }
 .seccion__cabeza h2, .dos-col h2 { line-height: 1.05; }
 .seccion h3 { margin-bottom: 0; }
 .texto-apoyo, .medida { line-height: 1.5; }
+
+/* Necesidades: símbolo y nombre en una fila, tarjetas bajitas */
 .grupos { gap: var(--grupo); margin-bottom: var(--bloque); }
 .grupo { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .6rem; padding: .85rem 1rem; }
 .grupo__simbolo { width: 1.4rem; height: 1.4rem; color: var(--ocre); }
@@ -418,6 +472,8 @@
 .grupo[aria-pressed="true"] .grupo__titulo { text-decoration: none; }
 .grupo[aria-pressed="true"] { background: var(--tinta); color: var(--papel); box-shadow: none; }
 .grupo[aria-pressed="true"] .grupo__simbolo { color: var(--papel); }
+
+/* Defensas: dos renglones por fila; precio y tiempo juntos, la flecha en su columna */
 .defensa > details > summary { grid-template-columns: 3rem minmax(0, 1fr) auto 1rem; gap: var(--grupo); padding-block: var(--grupo); }
 .defensa__icono { width: 3rem; }
 .defensa__titulos { gap: var(--junto); }
@@ -426,12 +482,16 @@
 .defensa__cuerpo { gap: var(--grupo); padding: 0 0 var(--bloque) calc(3rem + var(--grupo)); }
 .defensas + .texto-apoyo { margin-top: var(--grupo); }
 .defensas__limite { margin-top: var(--junto); }
+
+/* Cómo funciona: cada columna con su título pegado a su contenido y separado de lo demás */
 .como { gap: var(--bloque); }
 .como__col { gap: var(--grupo); }
 .como .cuota { padding: var(--grupo) 0; row-gap: var(--junto); }
 .como .pasos { gap: var(--grupo); }
 .como__aparte { gap: var(--grupo); }
 .como__mas { margin-top: var(--bloque); }
+
+/* Casos: el conteo vive en la cabeza; tarjeta con nombre, una línea de datos y lo entregado */
 .casos__cuenta { margin: 0; font: inherit; }
 .casos__cuenta .numero { font-size: var(--fs-h3); margin-right: .2rem; }
 .casos { gap: var(--grupo); grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); }
@@ -443,6 +503,8 @@
 .caso__meta { font-size: var(--fs-micro); }
 .caso__nivel { padding: 0; border: 0; font: 800 var(--fs-micro)/1 var(--f-titulo); letter-spacing: 0; text-transform: none; color: var(--ocre-texto); }
 .caso__mas > summary { padding-block: .4rem; }
+
+/* Mordentes y lo que circula: dos tarjetas iguales, sin hueco abajo */
 .dos-col { gap: var(--grupo); }
 .dos-col > div { gap: var(--grupo); padding: var(--bloque) var(--bloque) var(--grupo); border: 1.5px solid var(--tinta-15); border-radius: var(--r-md); align-self: stretch; align-content: start; }
 .dos-col > div > .medida { margin-top: calc(var(--junto) - var(--grupo)); }
@@ -450,6 +512,7 @@
 #notas .nota { padding: 0; border: 0; gap: var(--junto); }
 .dos-col .plegable { margin: 0; }
 .dos-col .boton { margin-bottom: var(--grupo); }
+
 @media (max-width: 599px) {
   .grupos { grid-template-columns: 1fr 1fr; }
   .defensa > details > summary { grid-template-columns: 2.5rem minmax(0, 1fr) auto .8rem; }
@@ -458,6 +521,8 @@
   .defensa__cuerpo { padding-left: 0; }
   .dos-col > div { padding: var(--grupo); }
 }
+
+/* Barra de las 11 defensas: dibujo recortado del svg y pintado con el color del token, tinta o ocre */
 .mapa-defensas { display: flex; justify-content: space-between; gap: .25rem; margin: calc(var(--grupo) - var(--bloque)) 0 var(--bloque); }
 .mini { position: relative; flex: 1 1 0; min-width: 0; max-width: 3rem; aspect-ratio: 1; padding: 0; border: 0; background: none; cursor: pointer; border-radius: var(--r-md); -webkit-tap-highlight-color: transparent; }
 .mini::before {
@@ -467,30 +532,41 @@
 }
 .mini.es-activa::before { background: var(--ocre); opacity: 1; }
 .mini__anim { position: absolute; inset: 8%; opacity: 0; transition: opacity var(--t-toque) ease;
-  filter: brightness(0) saturate(100%) invert(48%) sepia(62%) saturate(640%) hue-rotate(3deg) brightness(92%); }   
-.mini__anim svg { width: 100% !important; height: 100% !important; }   
+  filter: brightness(0) saturate(100%) invert(48%) sepia(62%) saturate(640%) hue-rotate(3deg) brightness(92%); }   /* el negro de Lottie hecho ocre (#b07a1e) */
+.mini__anim svg { width: 100% !important; height: 100% !important; }   /* !important: lottie escribe width/height inline */
 .mini.tiene-anim::before { opacity: 0; }
 .mini.tiene-anim .mini__anim { opacity: 1; }
 @media (hover: hover) { .mini:hover::before { opacity: 1; transform: translate3d(0, -2px, 0); } }
 .mini:active::before { transform: scale(.92); }
 .mini:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-.mini::after { content: ''; position: absolute; inset: -.4rem -.1rem; }   
-.mini--corte { margin-left: clamp(.35rem, 1.5vw, 1.25rem); }   
+.mini::after { content: ''; position: absolute; inset: -.4rem -.1rem; }   /* área de toque más grande que el dibujo */
+.mini--corte { margin-left: clamp(.35rem, 1.5vw, 1.25rem); }   /* aire entre necesidades: los tramos se leen como grupos */
+/* Mismo tamaño a la vista: cada dibujo se agranda y se centra según lo que ocupa en su lienzo (Mapa.OPTICA) */
 .mini::before, .mini__anim { inset: 0; transform: translate3d(var(--dx, 0), var(--dy, 0), 0) scale(var(--esc, 1)); }
 @media (hover: hover) { .mini:hover::before { transform: translate3d(var(--dx, 0), calc(var(--dy, 0) - 2px), 0) scale(var(--esc, 1)); } }
 .mini:active::before { transform: translate3d(var(--dx, 0), var(--dy, 0), 0) scale(calc(var(--esc, 1) * .92)); }
 .mapa-defensas { padding: .3rem .2rem; }
+
+/* ═══ REFERENCIAS INTERNAS: llevan a otra parte de la misma página ═══ */
+/* un botón con estilo de link nunca sale con el gris y el borde del navegador */
+button.ref { padding: 0; border: 0; border-radius: 0; background: none; font: inherit; cursor: pointer; }
 .ref { color: inherit; text-decoration: underline; text-decoration-color: var(--ocre); text-decoration-thickness: 1.5px; text-underline-offset: .18em; }
 @media (hover: hover) { .ref:hover { color: var(--ocre-texto); } }
 .ref:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; border-radius: 2px; }
+/* al llegar, lo buscado se marca un momento con un marco ocre que se apaga (solo opacidad, regla 5) */
 .es-llegada { position: relative; }
 .es-llegada::after { content: ''; position: absolute; inset: -6px; border: 2px solid var(--ocre); border-radius: var(--r-md); opacity: 0; pointer-events: none; animation: llegada 1.6s var(--ease-out); }
 @keyframes llegada { 0%, 35% { opacity: 1; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .es-llegada::after { animation: none; } }
+
+/* Saludo: una línea chica sobre la pregunta, con la gota del pigmento de la visita */
 .saludo { display: flex; align-items: center; gap: .45rem; font-size: var(--fs-chico); color: var(--tinta-75); }
 .saludo b { color: var(--tinta); font-weight: 700; }
 .saludo__gota { flex: 0 0 auto; width: .8rem; height: .8rem; border-radius: var(--r-full); background: var(--ocre); box-shadow: 0 0 0 1.5px var(--tinta-15); }
 .saludo[hidden] { display: none; }
+
+/* ═══ TRES TAMAÑOS EN LO PLEGADO (2026-10-14): título del plegable en texto, todo lo de adentro en chico ═══
+   (precio y reglas viven en .como__mas, fuera de .como, así que llevan su propia regla) */
 .plegable > summary { font-size: var(--fs-texto); }
 .plegable > :not(summary), .plegable li, .plegable p { font-size: var(--fs-chico); line-height: 1.5; }
 .como__mas ul { padding-left: 1.1rem; display: grid; gap: var(--junto); }
@@ -498,41 +574,60 @@
 .como__mas .factores li { grid-template-columns: 2.25rem minmax(0, 1fr); align-items: baseline; }
 .como__mas .factores .numero { font: 700 var(--fs-chico)/1.5 var(--f-numero); color: var(--ocre-texto); }
 .como__mas .plegable > p { color: var(--tinta-75); }
+/* En celular cada cuota dice para quién es: es lo que deja que la persona se reconozca (2026-10-14) */
 @media (max-width: 599px) {
   .como .cuotas { grid-template-columns: 1fr; }
   .como .cuota { grid-template-columns: minmax(0, 1fr) auto; }
   .como .cuota__precio { text-align: right; }
   .como .cuota__para { display: block; }
 }
+
+/* Preguntas antes de pedir: dos columnas de plegables en compu, una en celular */
 .preguntas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 0 var(--bloque); border-top: 1px solid var(--tinta-15); }
 .preguntas .plegable { margin: 0; border-bottom: 1px solid var(--tinta-15); }
 .preguntas .plegable[open] { padding-bottom: var(--grupo); }
 .preguntas .plegable p { color: var(--tinta-75); }
+
+/* ═══ CABE EN PANTALLA (2026-10-14, ux.krrillo.md) ═══
+   Ningún bloque es más alto que la pantalla visible. En horizontal se usa primero el ancho: lo que va en lista
+   pasa a cuadrícula antes de crecer hacia abajo. En vertical lo que no cabe se desliza de lado o se pliega.
+   Lo comprueba sitio_jk_v3/mapa/pruebas/cabe.py en 8 tamaños */
 @media (orientation: landscape) and (min-width: 900px) {
   .como { grid-template-columns: 1.4fr 1.1fr .75fr; }
   .como .cuotas { grid-template-columns: 1fr 1fr; gap: var(--grupo); border-top: 0; }
+  /* en cuadrícula la tarjeta es angosta: nombre, precio y para quién, uno debajo del otro, sin que nada choque */
   .como .cuota { grid-template-columns: minmax(0, 1fr); row-gap: var(--junto); align-content: start; padding: var(--grupo); border: 1.5px solid var(--tinta-15); border-radius: var(--r-md); }
   .como .cuota__precio { text-align: left; }
   .seccion__cabeza .medida { max-width: 52rem; }
+  /* casos: una tira que se desliza de lado, así siete o setenta caben en una pantalla */
   .casos { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(17rem, calc((100% - 2 * var(--grupo)) / 3)); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding-bottom: var(--grupo); }
   .caso { scroll-snap-align: start; }
 }
+
+/* ═══ CÓMO FUNCIONA EN FRANJAS (2026-10-14) ═══
+   Cada franja va a lo ancho: su título a la izquierda y su contenido en fila. Sin cajas: líneas finas separan.
+   En celular el título va arriba, las cuotas en lista y los pasos en una tira que se desliza */
 .franja { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--grupo); padding-block: var(--bloque); border-top: 1px solid var(--tinta-15); }
 .franja__cabeza { display: grid; gap: var(--junto); align-content: start; }
 .franja__cabeza h3 { margin: 0; }
+
 .cuotas-fila { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .cuotas-fila .cuota { display: grid; gap: var(--junto); align-content: start; padding: 0 var(--grupo); border: 0; border-left: 1px solid var(--tinta-15); border-radius: 0; }
 .cuotas-fila .cuota:first-child { border-left: 0; padding-left: 0; }
 .cuotas-fila .cuota__nombre { font-size: var(--fs-texto); margin: 0; }
 .cuotas-fila .cuota__precio { font: 500 var(--fs-h3)/1.1 var(--f-numero); }
 .cuotas-fila .cuota__para { font-size: var(--fs-chico); color: var(--tinta-75); margin-top: var(--junto); }
+
 .linea-tiempo { list-style: none; counter-reset: paso; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--bloque); padding: 0; margin: 0; }
 .linea-tiempo li { counter-increment: paso; display: grid; gap: var(--junto); align-content: start; font-size: var(--fs-chico); position: relative; }
 .linea-tiempo li::before { content: counter(paso); font: 800 var(--fs-h3)/1 var(--f-titulo); color: var(--ocre); }
+/* la línea que une los pasos, a la altura del número */
 .linea-tiempo li:not(:last-child)::after { content: ''; position: absolute; top: .6em; left: 1.6rem; right: calc(-1 * var(--bloque) + .5rem); border-top: 1px solid var(--tinta-15); }
+
 .aparte-linea { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--junto) var(--grupo); padding-top: var(--grupo); border-top: 1px solid var(--tinta-15); font-size: var(--fs-chico); color: var(--tinta-75); }
 .aparte-linea .enlace-flecha { font-size: var(--fs-chico); }
 #como .como__mas { margin-top: var(--bloque); }
+
 @media (min-width: 900px) {
   .franja { grid-template-columns: 12rem minmax(0, 1fr); gap: var(--bloque); }
 }
@@ -552,6 +647,10 @@
   }
   .linea-tiempo li { scroll-snap-align: start; }
 }
+
+/* ═══ CASOS EN LISTA (2026-10-14) ═══
+   Antes: tarjetas grandes en una tira que se cortaba a la orilla, y quedaban casos sin verse.
+   Ahora: renglones sin caja, separados por una línea fina, en tantas columnas como quepan; todos a la vista */
 .casos, .casos.casos {
   grid-auto-flow: row; grid-auto-columns: auto; overflow: visible; scroll-snap-type: none;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
@@ -564,23 +663,34 @@
 .casos .caso__entrega { font-size: var(--fs-chico); color: var(--tinta-75); }
 .casos .caso__mas > summary { font-size: var(--fs-chico); padding-block: .25rem; }
 .casos .caso__mas > summary::before { width: 1.1rem; height: 1.1rem; font-size: .75rem; }
+/* Casos: lo encontrado en tinta suave y lo entregado con su flecha en ocre */
 .casos .caso__hallazgos { font-size: var(--fs-chico); color: var(--tinta-75); }
 .casos .caso__accion { font-size: var(--fs-chico); font-weight: 600; }
 .casos .caso__accion span { color: var(--ocre); }
+
+/* Casos en horizontal: cuatro columnas, así los siete caben en una pantalla bajita */
 @media (orientation: landscape) and (min-width: 1000px) {
   .casos, .casos.casos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+/* el botón i de los casos, en ocre como las demás palabras con info */
 .pigmento-info { border-color: var(--ocre); background: var(--ocre); color: var(--papel); }
 @media (hover: hover) { .pigmento-info:hover { background: var(--tinta); border-color: var(--tinta); } }
 @media (orientation: landscape) and (max-height: 820px) {
   .casos .caso { padding-block: .65rem; }
   #casos .seccion__cabeza { margin-bottom: var(--grupo); }
 }
+/* Para quién es cada cuota, en viñetas: un grupo por renglón */
 .cuota__para { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--junto); }
 .cuota__para li { position: relative; padding-left: .85em; }
 .cuota__para li::before { content: ''; position: absolute; left: 0; top: .62em; width: .32em; height: .32em; border-radius: 50%; background: var(--ocre); }
+/* La i de cada caso, del mismo tamaño que la de las palabras: 12 px, letra derecha y centrada.
+   Siete juntas no deben llenar la pantalla; el área de toque sigue siendo de 44 px con su ::after */
 .pigmento-info { width: 12px; height: 12px; border: 0; font: 800 8.5px/12px var(--f-titulo); font-style: normal; text-align: center; padding: 0; align-self: center; }
 .pigmento-info::after { inset: -16px; }
+
+/* ═══ Elegir y ver el resultado caben juntos (2026-10-14, versión 2) ═══
+   En celular: dos columnas cómodas con símbolo y nombre corto en una línea, Otra cosa a lo ancho.
+   Las filas de defensas, un poco más bajitas. Lo comprueba cabe.py (elección más su lista) */
 .grupo__mini { display: none; }
 @media (max-width: 599px) {
   .grupos, .grupos.grupos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem; margin-bottom: var(--grupo); }
@@ -594,6 +704,8 @@
   .defensa__icono { width: 2.4rem; }
   .defensa__nombre { font-size: var(--fs-texto); }
 }
+
+/* Cuotas en celular: dos columnas con sus viñetas, así las cuatro caben en una pantalla compacta */
 @media (max-width: 599px) {
   .cuotas-fila { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grupo) .9rem; }
   .cuotas-fila .cuota, .cuotas-fila .cuota:first-child { grid-template-columns: 1fr; padding: 0; border: 0; }
@@ -601,6 +713,7 @@
   .cuotas-fila .cuota__para { font-size: var(--fs-chico); gap: .2rem; }
   .cuotas-fila .cuota__para li { line-height: 1.35; }
 }
+/* Pasos en celular: lista vertical con el número a un lado; nada queda cortado en una tira */
 @media (max-width: 599px) {
   .linea-tiempo, .linea-tiempo.linea-tiempo {
     grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr); overflow: visible; scroll-snap-type: none;
@@ -610,5 +723,6 @@
   .linea-tiempo li::before { font-size: var(--fs-texto); }
   .linea-tiempo li:not(:last-child)::after { display: none; }
 }
+/* Casos: cada hallazgo es una etiqueta chica; se acomodan limpias en vez de frases cortadas por puntos */
 .caso__hallazgos--etiquetas { display: flex; flex-wrap: wrap; gap: .3rem; list-style: none; margin: .15rem 0 0; padding: 0; }
 .caso__hallazgos--etiquetas li { padding: .12rem .5rem; border: 1px solid var(--tinta-15); border-radius: var(--r-pill); font-size: var(--fs-micro); line-height: 1.4; color: var(--tinta-75); }
