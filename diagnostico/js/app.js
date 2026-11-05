@@ -335,6 +335,7 @@ function initMaster() {
         RiskEngine.setAuditId(auditID);
         RiskEngine.subscribe(_onEngineUpdate);
         pintarNumeroVisita();
+        if (typeof Apodo !== 'undefined' && Apodo.asignar) Apodo.asignar(auditID).then(() => pintarNumeroVisita());
 
         if (!Estado.repartoGuardado()) initializeAppDistribution();
         else pesarApps();
@@ -354,7 +355,7 @@ function initMaster() {
 }
 
 function pintarNumeroVisita() {
-    // El número real (auditID) sigue por dentro; a la vista va el apodo de pigmento (regla 11).
+    // El número real (auditID) sigue por dentro; a la vista va el nombre de tres palabras (regla 11).
     const ap = (typeof Apodo !== 'undefined') ? Apodo.de(auditID) : null;
     document.querySelectorAll('[data-numero-visita]').forEach(el => { el.textContent = auditID; });
     document.querySelectorAll('[data-nombre-apodo]').forEach(el => { el.textContent = (ap && ap.texto) || auditID; });
@@ -364,9 +365,6 @@ function pintarNumeroVisita() {
         caja.hidden = false;
         const sh = document.getElementById('saludo-hora');
         if (sh) sh.textContent = Apodo.saludo();
-        // La gota de color: el tinte real del pigmento, como detalle (no invade los 3 colores del sitio)
-        const gota = document.getElementById('saludo-apodo-gota');
-        if (gota && ap.color) { gota.style.background = ap.color; gota.hidden = false; }
         const desc = document.getElementById('saludo-apodo-desc');
         const ver = document.getElementById('saludo-apodo-ver');
         if (ver && desc && !ver.dataset.listo) {
@@ -375,8 +373,8 @@ function pintarNumeroVisita() {
                 const abierto = desc.hidden === false;
                 desc.hidden = abierto;
                 ver.setAttribute('aria-expanded', String(!abierto));
-                ver.textContent = abierto ? '¿Qué es ese pigmento?' : 'Ocultar';
-                if (!abierto) desc.textContent = `${ap.pigmento}: ${ap.descripcion}`;
+                ver.textContent = abierto ? '¿Qué significa este nombre?' : 'Ocultar';
+                if (!abierto) desc.textContent = ap.descripcion;
             });
         }
     }

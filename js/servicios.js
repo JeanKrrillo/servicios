@@ -411,18 +411,16 @@ document.addEventListener('click', e => {
 
 /* ═══ SALUDO ═══
    El mismo del autodiagnóstico: la hora y el apodo de la visita (identidad.js da el número, apodo.js el nombre).
-   Al tocar el apodo dice que es tu nombre en esta página y qué es su pigmento (2.3).
-   Pigmentos y apodo pesan 15 KB y no hacen falta para leer, así que se piden cuando la portada ya cargó (regla 12) */
+   Al tocar el apodo dice que es tu nombre en esta página y qué significa (2.3).
+   Las palabras del nombre pesan poco y no hacen falta para leer, así que se piden cuando la portada ya cargó (regla 12) */
 function saludar() {
   const caja = $('#saludo');
   if (!caja || typeof Identidad === 'undefined') return;
-  Promise.all(['diagnostico/js/pigmentos-datos.js', 'diagnostico/js/apodo.js'].map(src => Lottie.cargarScript(src))).then(() => {
-    const ap = Apodo.de(Identidad.id());
+  Promise.all(['diagnostico/js/nombres-datos.js', 'diagnostico/js/apodo.js'].map(src => Lottie.cargarScript(src))).then(() => Apodo.asignar(Identidad.id())).then(ap => {
     const info = `Es tu nombre en esta página.${ap.descripcion ? ` ${ap.descripcion}` : ''}`;
     $('#saludo-texto').innerHTML = ap.texto
-      ? `${Apodo.saludo()}, <button type="button" class="glosa-termino" data-glosa-titulo="${attr(ap.texto)}" data-glosa-texto="${attr(info)}"${ap.color ? ` data-glosa-color="${ap.color}"` : ''}><b>${ap.texto}</b></button>`
+      ? `${Apodo.saludo()}, <button type="button" class="glosa-termino" data-glosa-titulo="${attr(ap.texto)}" data-glosa-texto="${attr(info)}"><b>${ap.texto}</b></button>`
       : Apodo.saludo();
-    if (ap.color) $('.saludo__gota', caja).style.background = ap.color;
     caja.hidden = false;
   }).catch(() => {});   // sin saludo la página sirve igual
 }

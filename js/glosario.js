@@ -16,5 +16,5 @@ const GLOSARIO = [
   { t: 'IoT', d: 'IoT son aparatos de casa que controlas desde el celular, como focos o enchufes.' },
   { t: 'NFC', d: 'NFC es un chip que se lee al acercar el celular.' },
   { t: 'RFID', d: 'RFID es un chip que se lee con un lector cercano, como el de una credencial de acceso.' },
-  { t: 'pigmento', alias: ['pigmentos'], d: 'Pigmento es el nombre natural de México que identifica a cada persona atendida. Es solo suyo y siempre el mismo.' },
+  { t: 'nombre de tres palabras', d: 'Es el nombre que identifica a cada persona atendida, como faro de bahía. Es solo suyo y siempre el mismo.' },
 ];

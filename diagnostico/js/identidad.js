@@ -7,7 +7,7 @@
      autodiagnóstico usan el MISMO número: la actividad de una
      persona se ve como un recorrido, no como visitas sueltas.
    · Sigue siendo local y borrable: "reiniciar" en el
-     autodiagnóstico lo renueva. Es un seudónimo (luego pigmento),
+     autodiagnóstico lo renueva. Es un seudónimo (luego un nombre de tres palabras),
      nunca un dato personal (reglamento 10 y 11).
    · estado.js (autodiagnóstico) usa este mismo número para no
      generar uno aparte; la portada lo lee con Identidad.id.
