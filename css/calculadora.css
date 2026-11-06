@@ -1,9 +1,4 @@
-/* calculadora.css · lo nuevo de la reestructuración del 2026-10-23: necesidades con su línea, un solo camino a la
-   calculadora (cuota, servicios con + Más detalles, total), Tu pedido, las preguntas por tema y el laboratorio.
-   Va después de servicios.css y solo usa los tokens de base.css */
 
-/* ═══ ¿QUÉ NECESITAS? (2026-10-23): símbolo y nombre en un renglón, su línea debajo a todo lo ancho, en todos los tamaños.
-   Manda sobre las reglas viejas de servicios.css, que ponían símbolo | título en dos columnas cuando no había línea ═══ */
 .grupos, .grupos.grupos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr)); gap: .55rem; margin-bottom: var(--grupo); }
 .grupo, .grupo.grupo {
   grid-template-columns: auto minmax(0, 1fr); align-items: center; align-content: start; justify-items: start;
@@ -20,10 +15,7 @@
   .grupo__simbolo { width: 1.1rem; height: 1.1rem; }
   .grupo .grupo__linea { font-size: var(--fs-micro); }
 }
-/* la tira de los 11 símbolos respira bajo los botones (antes un margen negativo la pegaba a ellos) */
 .mapa-defensas, .mapa-defensas.mapa-defensas { margin: var(--junto) 0 0; }
-
-/* ═══ BUSCADOR (2026-10-23, en lugar de Otra cosa): campo, hasta 3 servicios sugeridos y burbujas de ejemplo ═══ */
 .buscar { display: grid; gap: var(--junto); margin-top: var(--grupo); }
 .buscar__campo {
   width: 100%; min-height: 44px; padding: .5rem .9rem; border: 1.5px solid var(--tinta-35); border-radius: var(--r-pill);
@@ -42,7 +34,6 @@
 .buscar__resultado b { display: block; font: 800 var(--fs-chico)/1.25 var(--f-titulo); }
 .buscar__resultado small { display: block; font-size: var(--fs-micro); line-height: 1.3; color: var(--tinta-75); }
 @media (hover: hover) { .buscar__resultado:hover { border-color: var(--tinta); } }
-/* Lo que sale al tocar una burbuja de ¿No tienes idea? lleva borde ocre, para que se vea qué cambió (2026-10-24) */
 .es-sugerida .buscar__resultado { border-color: var(--ocre); animation: sugerida-entra var(--t-toque) var(--ease-out) both; }
 @media (hover: hover) { .es-sugerida .buscar__resultado:hover { border-color: var(--ocre); } }
 @keyframes sugerida-entra { from { opacity: 0; transform: translate3d(0, 4px, 0); } to { opacity: 1; transform: none; } }
@@ -62,11 +53,6 @@
 }
 @media (hover: hover) { .burbuja:hover { border-color: var(--tinta); } }
 .burbuja:active { transform: scale(.95); }
-
-/* ═══ ETAPAS (2026-10-23), como una transferencia en el banco: cada parte lleva su número y una línea de qué hacer.
-   La que toca lleva marco de tinta y su número en ocre (el único ocre de la pantalla, marca qué sigue), las que siguen
-   quedan en gris y las hechas en normal. Solo tinta y papel, sin fondos de otro color (Medidas de identidad.krrillo.md).
-   Las mueve pasoSiguiente de servicios.js; tocar una etapa en gris la vuelve la actual, así nada se bloquea ═══ */
 .etapa {
   display: grid; gap: var(--junto); align-content: start; min-width: 0; padding: var(--grupo); border: 1.5px solid transparent; border-radius: var(--r-lg);
   transition: opacity var(--t-panel) ease, filter var(--t-panel) ease, background-color var(--t-panel) ease, border-color var(--t-panel) ease;
@@ -78,7 +64,6 @@
 .etapa.es-pendiente { filter: grayscale(1); }
 .etapa.es-pendiente:not(.total) { opacity: .45; }
 @media (max-width: 599px) { .etapa { padding: .7rem; margin-inline: -.7rem; } }
-
 .paso {
   display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; margin-right: .2em; border-radius: var(--r-full);
   background: var(--tinta); color: var(--papel); font: 800 max(.8rem, .5em)/1 var(--f-titulo); vertical-align: .12em;
@@ -89,14 +74,9 @@
 .paso__titulo { font: 800 var(--fs-texto)/1.3 var(--f-titulo); }
 .total__titulo .paso { font-size: .75rem; }
 @media (prefers-reduced-motion: reduce) { .paso, .etapa { transition: none; } }
-
-/* ═══ UN SOLO CAMINO (2026-10-23): después de ¿Qué necesitas? vienen la cuota y solo sus servicios, cada uno con su
-   dibujo, su línea y su precio, y se abre ahí mismo. Antes eran tarjetas y luego otra lista de los 11 ═══ */
 .calc { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--bloque); align-items: start; }
 @media (min-width: 900px) { .calc { grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem); } }
 .calc__pasos { display: grid; gap: var(--grupo); min-width: 0; }
-
-/* cada cuota dice para quién suele ser */
 .calc__cuotas { margin: 0; min-width: 0; }
 .calc__cuotas legend { float: left; width: 100%; margin: 0 0 var(--junto); padding: 0; font: 800 var(--fs-texto)/1.3 var(--f-titulo); }
 .cuotas-opciones { clear: both; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: .4rem; }
@@ -114,8 +94,6 @@
 @media (hover: hover) { .cuota-op:hover .cuota-op__caja { border-color: var(--tinta); } }
 .cuota-op:active .cuota-op__caja { transform: scale(.97); }
 @media (max-width: 599px) { .cuotas-opciones { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
-/* + Más detalles: vibra despacio, como llamado a leer; con movimiento reducido se queda quieto */
 .mas-detalles {
   justify-self: start; min-height: 44px; padding: 0 .1rem; border: 0; background: none; color: var(--ocre-texto);
   font: 800 var(--fs-chico)/1.2 var(--f-titulo); text-decoration: underline var(--ocre) 1.5px; text-underline-offset: .3em;
@@ -141,11 +119,8 @@
 @media (hover: hover) { .situacion:hover { border-color: var(--ocre); transform: translate3d(2px, 0, 0); } }
 .situacion:active { transform: scale(.98); }
 .situacion:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-
 .calc-servicio { border-top: 1px solid var(--tinta-15); }
 #calc-servicios { display: flex; flex-direction: column; border-bottom: 1px solid var(--tinta-15); }
-/* al elegir una necesidad sus servicios suben al principio con su dibujo en ocre, como en la barra de los 11;
-   los demás bajan al final en tinta, igual de legibles y tocables */
 .calc-servicio.es-otro { order: 1; }
 #calc-servicios[data-ver]:not([data-ver=""]) .calc-servicio:not(.es-otro) .calc-servicio__icono { background: var(--ocre); }
 .calc-servicio > summary {
@@ -154,7 +129,6 @@
 }
 .calc-servicio > summary::-webkit-details-marker { display: none; }
 .calc-servicio > summary:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-/* el mismo dibujo de la barra de los 11, recortado y en tinta: se ve que es el mismo servicio */
 .calc-servicio__icono { grid-row: span 2; width: 2.25rem; aspect-ratio: 1; background: var(--tinta); -webkit-mask: var(--icono) center / contain no-repeat; mask: var(--icono) center / contain no-repeat; }
 .calc-servicio[open] .calc-servicio__icono, .calc-servicio.esta-en-pedido .calc-servicio__icono { background: var(--ocre); }
 .calc-servicio__nombre { font: 800 var(--fs-texto)/1.25 var(--f-titulo); }
@@ -164,8 +138,6 @@
 .calc-servicio.esta-en-pedido .calc-servicio__nombre::after { content: ' ·  en tu pedido'; font: 700 var(--fs-micro)/1 var(--f-texto); color: var(--ocre-texto); }
 .calc-servicio__cuerpo { display: grid; gap: var(--grupo); padding: 0 0 var(--bloque) 3rem; animation: abre var(--t-panel) var(--ease-out); }
 @media (max-width: 599px) { .calc-servicio__cuerpo { padding-left: 0; } }
-
-/* el diagnóstico dentro de Cuentas seguras: un recuadro arriba de las preguntas, con la duda y el botón */
 .llamado {
   display: grid; gap: .2rem; padding: var(--grupo); border: 1.5px solid var(--tinta); border-radius: var(--r-md);
   color: var(--tinta); text-decoration: none; transition: transform var(--t-toque) var(--ease-rebote);
@@ -175,9 +147,6 @@
 @media (hover: hover) { .llamado:hover { transform: translate3d(0, -2px, 0); } }
 .llamado:active { transform: scale(.98); }
 .llamado:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-
-/* ═══ CONTESTAR Y VER POR QUÉ (2026-10-23): las preguntas del servicio en un bloque y debajo Así se calcula,
-   como un recibo: cada parte con su precio, las personas, el descuento y Este servicio, y el botón Pedir esto ═══ */
 .preguntas-servicio { display: grid; gap: var(--grupo); }
 .recibo { display: grid; gap: var(--junto); padding: var(--grupo); border: 1.5px dashed var(--tinta-35); border-radius: var(--r-md); }
 .recibo__titulo { font: 800 var(--fs-chico)/1.2 var(--f-titulo); }
@@ -190,10 +159,8 @@
 .recibo__vacio, .recibo__mutua { font-size: var(--fs-chico); color: var(--tinta-75); }
 .recibo__lineas .numero { color: inherit; }
 .recibo__tachado { opacity: .5; font-weight: 500; margin-right: .35em; }
-.recibo__cuenta { font: 500 var(--fs-micro)/1.5 var(--f-numero); color: var(--tinta-75); }   /* la fórmula va en Geist Mono */
-/* un solo botón para pedir: con la barra del total a la vista, el Pedir ayuda de las pestañas se esconde */
+.recibo__cuenta { font: 500 var(--fs-micro)/1.5 var(--f-numero); color: var(--tinta-75); }   
 @media (max-width: 899px) { body.con-total .pestanas__pedir { display: none; } }
-
 .parte { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--junto) var(--grupo); align-items: center; margin: 0; padding: 0; border: 0; min-width: 0; }
 .parte > label, .parte > legend { grid-column: 1 / -1; font-weight: 600; padding: 0; }
 .parte--incluye { font-size: var(--fs-chico); color: var(--tinta-75); }
@@ -201,7 +168,6 @@
 .parte__ayuda { color: var(--tinta); }
 .enlace-flecha.parte__ayuda { justify-self: start; }
 .parte--casilla { grid-template-columns: auto minmax(0, 1fr) auto; cursor: pointer; min-height: 44px; }
-/* casilla propia: cuadro redondeado que se llena de ocre con una palomita, en vez de la del navegador */
 .parte--casilla input, .opcion-calc input { appearance: none; -webkit-appearance: none; flex: none; width: 1.4rem; height: 1.4rem; margin: 0; border: 1.5px solid var(--tinta-35); border-radius: 7px; background: transparent center / 72% no-repeat; cursor: pointer; transition: background-color .15s ease, border-color .15s ease; }
 .parte--casilla input:checked, .opcion-calc input:checked { border-color: var(--ocre); background-color: var(--ocre); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E"); }
 .parte--casilla input:focus-visible, .opcion-calc input:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
@@ -212,8 +178,6 @@
 .opcion-calc small { display: block; font-size: var(--fs-micro); color: var(--tinta-60); }
 .parte-grupo { display: grid; gap: var(--junto); padding-top: var(--grupo); border-top: 1px dashed var(--tinta-15); }
 .parte-grupo__titulo { font: 800 var(--fs-chico)/1.2 var(--f-titulo); }
-
-/* campo con botones de más y menos: empieza vacío y no acepta negativos */
 .paso-num { justify-self: start; display: inline-grid; grid-template-columns: 44px minmax(3.5rem, 5.5rem) 44px; align-items: stretch; border: 1.5px solid var(--tinta); border-radius: var(--r-pill); overflow: hidden; }
 .paso-num button { border: 0; background: none; font: 700 1.2rem/1 var(--f-numero); color: var(--tinta); min-height: 44px; transition: background-color var(--t-toque) ease; }
 @media (hover: hover) { .paso-num button:hover { background: var(--tinta-08); } }
@@ -225,8 +189,6 @@
 }
 .paso-num input::-webkit-outer-spin-button, .paso-num input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .paso-num input:focus-visible { outline: 2px solid var(--ocre); outline-offset: -3px; }
-
-
 .calc__codigo { max-width: 26rem; margin: 0; }
 .calc__codigo > summary { font-size: var(--fs-chico); }
 .calc__codigo-fila { display: flex; gap: .5rem; }
@@ -235,8 +197,6 @@
   background: var(--papel); color: var(--tinta);
 }
 .calc__codigo input:focus-visible, .lab-entrar input:focus-visible, .pedido__campo:focus-visible, .hoja textarea:focus-visible { outline: 2px solid var(--ocre); outline-offset: 1px; border-color: var(--tinta); }
-
-/* ═══ EL TOTAL: en compu, una columna fija a la derecha; en celular, una barra abajo, sobre la cápsula ═══ */
 .total { display: grid; gap: var(--grupo); padding: var(--grupo); border: 1.5px solid var(--tinta); border-radius: var(--r-md); background: var(--papel); }
 .total__abrir { display: grid; gap: var(--junto); padding: 0; border: 0; background: none; text-align: left; color: var(--tinta); cursor: pointer; }
 .total__abrir:focus-visible { outline: 2px solid var(--ocre); outline-offset: 3px; }
@@ -267,9 +227,6 @@
   .total .boton { margin: 0; }
   #precios { padding-bottom: 5rem; }
 }
-
-/* ═══ TU PEDIDO ═══ */
-/* el ticket: cada servicio con su dibujo, lo pedido debajo, su precio a la derecha y Cambiar o Quitar */
 .pedido__lineas li.pedido__servicio, .total__lineas li.pedido__servicio { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: .6rem; align-items: start; justify-content: stretch; }
 .pedido__servicio .calc-servicio__icono { width: 1.75rem; grid-row: auto; margin-top: .1rem; }
 .pedido__servicio-cabeza { display: flex; justify-content: space-between; align-items: baseline; gap: var(--grupo); margin: 0; }
@@ -282,7 +239,6 @@
 .recibo__agregar { justify-self: start; margin-top: var(--junto); }
 .recibo__agregado { font-size: var(--fs-chico); font-weight: 600; }
 .recibo__agregado .ref { padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
-
 .pedido__lineas li { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; padding-bottom: .35rem; border-bottom: 1px solid var(--tinta-08); }
 .pedido__lineas li > span { min-width: 0; }
 .quitar { flex: 0 0 auto; min-height: 44px; padding: 0 .3rem; border: 0; background: none; color: var(--tinta-75); font-size: var(--fs-micro); text-decoration: underline; text-underline-offset: .2em; }
@@ -300,8 +256,6 @@
 .pedido__mensaje { white-space: pre-wrap; padding: var(--grupo); border-radius: var(--r-md); background: var(--tinta-08); }
 .pedido__aviso:not(:empty) { display: grid; gap: var(--grupo); margin-top: var(--bloque); padding: var(--grupo); border-left: 3px solid var(--ocre); font-size: var(--fs-chico); }
 .hoja__pie { flex-wrap: wrap; }
-
-/* ═══ HOJA DE TU PEDIDO (2026-10-23): ticket, cómo te respondo y escribirme directo, con aire entre cada parte ═══ */
 #pedido-cuerpo { display: grid; gap: var(--bloque); }
 #pedido-cuerpo > * { margin: 0; }
 .ticket { display: grid; gap: var(--grupo); padding: var(--grupo); border: 1.5px dashed var(--tinta-35); border-radius: var(--r-md); }
@@ -324,8 +278,6 @@
 .pedido__directo p { margin: 0; font-size: var(--fs-chico); color: var(--tinta-75); }
 .pedido__mas > summary { font-size: var(--fs-chico); }
 .pedido__mas .pedido__antes { margin-top: var(--grupo); }
-
-/* ═══ PREGUNTAS POR TEMA (2026-10-23): a la vista solo los cinco temas con cuántas preguntas tiene cada uno; el + abre las suyas ═══ */
 .temas { border-top: 1px solid var(--tinta-15); }
 .tema, .tema.plegable { margin: 0; border-bottom: 1px solid var(--tinta-15); }
 .tema > summary { font: 800 var(--fs-h3)/1.2 var(--f-titulo); padding-block: .85rem; }
@@ -333,9 +285,6 @@
 .tema[open] { padding-bottom: var(--grupo); }
 .tema .preguntas { display: block; border-top: 0; padding-left: 1.9rem; }
 .tema .preguntas .plegable:last-child { border-bottom: 0; }
-
-/* ═══ CASOS POR SERVICIO (2026-10-23): el dibujo del servicio y debajo los sellos de quienes se atendieron.
-   Tocar un sello abre su ficha con lo que se hizo y lo que se encontró; así casi no hay texto a la vista ═══ */
 .casos-grupos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--bloque); }
 .casos-grupo__cabeza { display: flex; align-items: center; gap: .5rem; margin: 0 0 var(--grupo); font: 800 var(--fs-texto)/1.2 var(--f-titulo); }
 .casos-grupo__cabeza .calc-servicio__icono { width: 1.75rem; grid-row: auto; }
@@ -344,23 +293,19 @@
   display: grid; justify-items: center; gap: .2rem; width: 4.25rem; min-height: 44px; padding: .25rem .1rem; border: 0; border-radius: var(--r-md);
   background: none; color: inherit; cursor: pointer; transition: transform var(--t-toque) var(--ease-rebote);
 }
-.caso-sello .sello { width: 2.75rem; height: 2.75rem; }
+.caso-sello .sello { width: 3.25rem; height: 3.25rem; }   
+.caso-sello[aria-expanded="true"] { --sello-tinta: var(--ocre); --sello-acento: var(--tinta); }   
 .caso-sello__nombre { font: 600 var(--fs-micro)/1.2 var(--f-texto); text-align: center; overflow-wrap: anywhere; }
 @media (hover: hover) { .caso-sello:hover { transform: translate3d(0, -2px, 0); } }
 .caso-sello:active { transform: scale(.94); }
 .caso-sello:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-
-/* ═══ PORTADA MÁS BAJA EN CELULAR: el dibujo cede alto para que ¿Qué necesitas? asome sin bajar ═══ */
 @media (max-width: 599px) and (orientation: portrait) {
   .portada__marco { min-height: auto; grid-template-rows: auto 12rem auto auto auto auto; padding-block: .5rem 1.25rem; }
 }
-
-/* ═══ LABORATORIO ═══ */
 .laboratorio { display: grid; gap: var(--grupo); justify-items: start; }
 .laboratorio h2 { font-size: var(--fs-h2); }
 .laboratorio__recibes { display: grid; gap: var(--junto); }
 .laboratorio .lista-simple { margin: 0; font-size: var(--fs-chico); gap: .2rem; }
-/* Lo del laboratorio para quien tiene la llave (js/laboratorio.js): cada función plegada, sus pruebas y notas en bloques */
 .lab { display: grid; gap: var(--grupo); width: 100%; max-width: var(--ancho-texto); min-width: 0; }
 .lab .plegable { margin: 0; border-bottom: 1px solid var(--tinta-15); }
 .lab-caja { display: grid; gap: var(--grupo); padding-bottom: var(--grupo); min-width: 0; }
@@ -385,21 +330,16 @@
   .laboratorio .plegable { margin-top: 0; }
   .preguntas .plegable > summary { padding-block: .45rem; }
 }
-
-/* ═══ PRIVACIDAD: un botón visible en todas las pantallas ═══ */
 .pie__privacidad, .privacidad-boton {
   min-height: 44px; padding: 0 .2rem; border: 0; background: none; color: inherit; font: inherit;
   text-decoration: underline; text-underline-offset: .18em; text-decoration-thickness: 1px; cursor: pointer;
 }
 @media (hover: hover) { .pie__privacidad:hover, .privacidad-boton:hover { text-decoration-color: var(--ocre); } }
 .pie__privacidad:active, .privacidad-boton:active { transform: scale(.97); }
-
 @media (prefers-reduced-motion: reduce) {
   .mas-detalles, .servicio__mas, .calc-servicio__cuerpo, .es-sugerida .buscar__resultado { animation: none; }
   .total { transition: none; }
 }
-
-/* Laboratorio: perfil de pruebas y medallas (js/laboratorio.js). Mismos tres colores, sin paleta nueva */
 .lab-opciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--junto); margin: var(--grupo) 0; }
 .lab-paso__q { margin: var(--junto) 0 0; font: 800 var(--fs-grande, 1.25rem)/1.25 var(--f-titulo); }
 [data-funcion="perfil"] .lab-campo { margin: var(--grupo) 0 var(--junto); }
@@ -408,16 +348,9 @@
 .lab-medallas li.ganada { opacity: 1; }
 .lab-medallas li.ganada b { color: var(--ocre-texto); }
 .lab-medallas small { color: var(--tinta-75); }
-
-/* Desde cuándo se hace cada servicio, dato del servicio y no biografía (datos-servicios.js) */
 .servicio__desde { margin: .2rem 0 0; font-size: var(--fs-chico); color: var(--tinta-75); }
-
-
-/* Desde cuándo se hace cada servicio, en la tarjeta (datos-servicios.js) */
-/* nombre y año juntos en compu; en celular el año baja a la fila del precio, uno a cada lado */
 .calc-servicio__titulo { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .65rem; min-width: 0; }
 @media (max-width: 599px) {
-  /* en celular el año va arriba del nombre, como los antetítulos del sitio; nombre y precio comparten renglón */
   .calc-servicio > summary { grid-template-columns: 2.25rem minmax(0, 1fr) auto; row-gap: .15rem; column-gap: .75rem; }
   .calc-servicio__icono { grid-row: 1 / span 3; align-self: center; }
   .calc-servicio__titulo { display: contents; }
@@ -429,10 +362,6 @@
 }
 .calc-servicio > summary { row-gap: .35rem; }
 .calc-servicio__anio { display: inline-block; margin: 0; padding: .15rem .55rem; border: 1px solid var(--tinta-15); border-radius: 999px; font: 500 var(--fs-micro)/1.2 var(--f-numero); color: var(--tinta-75); white-space: nowrap; }
-
-/* ═══ LABORATORIO CON JUEGO (js/laboratorio.js, 2026-11-02) ═══
-   Tres colores y el ocre para marcar lo ganado y lo que sigue. Sin sombras ni degradados.
-   Movimiento: la barra se llena porque sumaste puntos, y un sello nuevo aparece desde cero con un rebote (tabla de medidas) */
 .lab { gap: var(--space-sm); }
 .lab-juego { display: grid; gap: var(--space-xs); padding: var(--space-sm); border: 1.5px solid var(--tinta); border-radius: 16px; }
 .lab-juego__fila { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-xs); }
@@ -449,7 +378,6 @@
 @keyframes lab-sello { from { transform: scale(0); } 70% { transform: scale(1.08); } to { transform: scale(1); } }
 .lab-sello--chico { width: 2.1rem; height: 2.1rem; font-size: var(--fs-chico); }
 .lab-juego__nota { margin: 0; font: 500 var(--fs-micro)/1.3 var(--f-numero); color: var(--tinta-75); }
-
 .lab-funcion > summary, .lab-ajustes > summary { font-weight: 600; }
 .lab-puntos { display: flex; gap: .35rem; margin: 0 0 var(--junto); padding: 0; list-style: none; }
 .lab-puntos li { flex: 1; height: 6px; border-radius: 999px; background: var(--tinta-15); }
@@ -470,10 +398,6 @@
   .lab-barra span { transition: none; }
   .lab-sello.nueva { animation: none; }
 }
-
-/* ═══ CIBERSEGURIDAD, EN BETA (js/ciber.js) ═══
-   Más chica que los servicios. Almagre, la tierra roja queretana, solo aquí (tabla de medidas, 2026-11-02).
-   Cada acción es una etiqueta que se anota con un toque; anotada se llena de almagre. Sin degradados ni sombras */
 .ciber { margin: var(--space-sm) 0 0; min-width: 0; }
 .ciber:empty { display: none; }
 .ciber__todo { border: 1px solid var(--almagre); border-radius: 12px; }
@@ -501,14 +425,10 @@
 .ciber__accion:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
 .ciber__pie { margin: 0; padding: .35rem .75rem .5rem; border-top: 1px solid var(--almagre-12); font-size: var(--fs-micro); color: var(--tinta-75); }
 .buscar__ciber a { display: inline-flex; min-height: 44px; align-items: center; color: var(--almagre); font-weight: 600; font-size: var(--fs-chico); }
-
-/* dentro de cada servicio, abajo del precio: chico, para no cortar el camino del pedido */
 .ciber-mini { justify-self: start; max-width: 100%; padding: .35rem .65rem; border: 1px dashed color-mix(in srgb, var(--almagre) 55%, transparent); border-radius: 12px; }
 .ciber-mini[open] { justify-self: stretch; padding-bottom: .6rem; }
 .ciber-mini__que { font-size: var(--fs-micro); color: var(--tinta-75); }
 .ciber-mini__ayuda { margin: .35rem 0; font-size: var(--fs-micro); color: var(--tinta-75); }
-
-/* ═══ PREGUNTAS DE CADA SERVICIO: guía y números, para que se entienda que hay que contestar para pedir ═══ */
 .preguntas__guia { margin: 0; font-weight: 600; font-size: var(--fs-chico); }
 .preguntas-servicio { counter-reset: pregunta; }
 .preguntas-servicio > .parte:not(.parte--incluye) { counter-increment: pregunta; }
@@ -518,14 +438,9 @@
   border-radius: 50%; background: var(--ocre-15); color: var(--ocre-texto); font: 600 var(--fs-micro)/1 var(--f-numero); vertical-align: .1em;
 }
 .recibo__agregar:disabled { opacity: .45; cursor: not-allowed; }
-
-/* Empezar de nuevo, en Tu pedido: discreto, debajo de Pedir esto */
 .total__reiniciar { justify-self: start; }
-/* salir del laboratorio, a la vista al final (antes quedaba dentro de un desplegable) */
 .lab-salida { display: grid; gap: .3rem; justify-items: start; padding-top: var(--grupo); border-top: 1px solid var(--tinta-15); }
 .lab-salida .texto-apoyo { margin: 0; font-size: var(--fs-micro); }
-
-/* ═══ 2026-11-04: código a la vista, entrar al laboratorio y laboratorio explicado ═══ */
 .calc__codigo { display: grid; gap: .4rem; margin-top: var(--grupo); }
 .calc__codigo-titulo, .lab-entrar label { font-weight: 600; font-size: var(--fs-chico); }
 .lab-entrar { display: grid; gap: .4rem; width: 100%; max-width: var(--ancho-texto); padding-top: var(--grupo); border-top: 1px solid var(--tinta-15); }

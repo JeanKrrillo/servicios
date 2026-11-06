@@ -2,7 +2,7 @@
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
-  <!-- Frena que la página mande datos a otros sitios. Scripts en línea siguen permitidos porque autodiagnostico.html usa onclick -->
+  
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.dof.gob.mx https://dof.gob.mx; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>jean.krrillo · Ayuda con cuentas, compu, fotos y páginas web</title>
@@ -13,7 +13,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="animaciones/iconos/2fa_paint.svg" as="image" fetchpriority="high">
-  <script>try{var t=localStorage.getItem('jk-tema');if(t==='claro'||t==='oscuro')document.documentElement.dataset.tema=t}catch(e){}</script>
+  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/servicios.css">
   <link rel="stylesheet" href="css/calculadora.css">
@@ -26,7 +26,7 @@
   <script src="js/comun.js" defer></script>
   <link rel="stylesheet" href="css/pestanas.css">
   <script src="js/pestanas.js" defer></script>
-  <script>/* El fondo de arena y los granos no hacen falta para leer: se piden cuando la página ya cargó y el navegador quedó libre */addEventListener('load',()=>(window.requestIdleCallback||setTimeout)(()=>['js/fondo-arena.js','js/granos.js'].forEach(s=>document.head.append(Object.assign(document.createElement('script'),{src:s})))))</script>
+  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js","js/granos.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
   <script src="js/musica.js" defer></script>
   <script src="js/datos-servicios.js" defer></script>
   <script src="js/datos-precios.js" defer></script>
@@ -53,7 +53,7 @@
   </header>
 
   <main>
-    <!-- INICIO: lo esencial cabe en 360 × 640 sin scroll -->
+    
     <section class="portada" id="inicio" aria-labelledby="portada-nombre">
       <div class="contenedor portada__marco">
         <ul class="actos" id="actos" aria-label="Cómo se trabaja">
@@ -63,7 +63,7 @@
         </ul>
         <div class="carrusel" id="carrusel" aria-roledescription="carrusel" aria-label="Los 11 servicios">
           <div class="carrusel__pista" id="carrusel-pista">
-            <!-- primera pieza en el html para que se pinte sin esperar al js; servicios.js arma las 11 -->
+            
             <span class="pieza es-actual"><img class="pieza__img tinta-img" src="animaciones/iconos/2fa_paint.svg" alt="" width="2048" height="2048" fetchpriority="high"></span>
           </div>
         </div>
@@ -78,7 +78,7 @@
       </div>
     </section>
 
-    <!-- SERVICIOS: un solo camino. Qué necesitas, tu cuota, sus servicios con su precio y el total -->
+    
     <section class="seccion" id="necesidad" aria-labelledby="necesidad-titulo" data-paso="1">
       <div class="contenedor">
         <p class="saludo" id="saludo" hidden><span id="saludo-texto"></span></p>
@@ -131,7 +131,7 @@
       </div>
     </section>
 
-    <!-- LABORATORIO DE SERVICIOS NUEVOS -->
+    
     <section class="seccion" id="laboratorio" aria-labelledby="laboratorio-titulo">
       <div class="contenedor laboratorio aparece">
         <h2 id="laboratorio-titulo">Laboratorio de servicios nuevos</h2>
@@ -160,7 +160,7 @@
         <div class="lab" id="lab" hidden></div>
       </div>
     </section>
-    <!-- CASOS RESUELTOS -->
+    
     <section class="seccion" id="casos" aria-labelledby="casos-titulo">
       <div class="contenedor">
         <header class="seccion__cabeza aparece">
@@ -173,7 +173,7 @@
       </div>
     </section>
 
-    <!-- PREGUNTAS: la primera frase de cada respuesta es la respuesta -->
+    
     <section class="seccion seccion--ultima" id="preguntas" aria-labelledby="preguntas-titulo">
       <div class="contenedor">
         <header class="seccion__cabeza aparece"><h2 id="preguntas-titulo">Preguntas</h2></header>
@@ -240,7 +240,7 @@
 
   <a class="firma" href="https://www.instagram.com/jean.krrillo/" target="_blank" rel="noopener">@jean.krrillo</a>
 
-  <!-- TU PEDIDO: la lista completa, lo que se elige antes de enviar y el envío -->
+  
   <dialog class="hoja" id="pedido" aria-labelledby="pedido-titulo">
     <div class="hoja__marco">
       <div class="hoja__cabeza">

@@ -1,35 +1,25 @@
 :root,
 body.theme-light,
 [data-theme="light"] {
-  /* ============================================================
-     1. MODO CLARO (Paleta táctica original balanceada - DEFAULT)
-     ============================================================ */
-  /* Fondos y superficies */
-  --bg-fondo: var(--papel);           /* Crema base */
-  --bg-tarjeta: var(--papel);         /* Blanco marfil */
-  --borde-tarjeta: var(--papel);      /* Borde arena neutro */
-
-  /* Textos (oscuros sobre claro) */
-  --texto-principal: var(--tinta);    /* Verde militar casi negro (Contraste 13:1) */
-  --texto-secundario: var(--tinta);   /* Verde oliva oscuro legible (Contraste 6.5:1) */
-  --texto-muteado: var(--tinta);      /* Verde oliva medio para metadatos */
-
-  /* Acento e identidad */
-  --color-acento: var(--ocre);       /* Dorado oscuro / ámbar quemado (Legible sobre crema) */
-  --dorado-acento: var(--ocre);      /* Alias consistente */
-  --color-alerta: var(--ocre);       /* Rojo institucional oscuro */
-  --rojo-escarlata: var(--ocre);     /* Alias consistente */
-
-  /* Compatibilidad con variables originales del proyecto */
-  --verde-forense: var(--tinta);      /* Verde táctico oscuro */
-  --verde-mutated: var(--tinta);      /* Verde oliva intermedio */
-  --dorado-premium: var(--ocre);     /* Dorado acento general */
-  --dorado-oscuro: var(--ocre);      /* Dorado oscuro */
-  --crema-fondo: var(--papel);        /* Background de página */
-  --crema-tarjeta: var(--papel);      /* Background de cards */
-  --rojo-alerta: var(--ocre);        /* Alertas */
-  --texto-2: var(--tinta);            /* Secundario legible */
-  --texto-3: var(--tinta);            /* Muteado */
+  --bg-fondo: var(--papel);           
+  --bg-tarjeta: var(--papel);         
+  --borde-tarjeta: var(--papel);      
+  --texto-principal: var(--tinta);    
+  --texto-secundario: var(--tinta);   
+  --texto-muteado: var(--tinta);      
+  --color-acento: var(--ocre);       
+  --dorado-acento: var(--ocre);      
+  --color-alerta: var(--ocre);       
+  --rojo-escarlata: var(--ocre);     
+  --verde-forense: var(--tinta);      
+  --verde-mutated: var(--tinta);      
+  --dorado-premium: var(--ocre);     
+  --dorado-oscuro: var(--ocre);      
+  --crema-fondo: var(--papel);        
+  --crema-tarjeta: var(--papel);      
+  --rojo-alerta: var(--ocre);        
+  --texto-2: var(--tinta);            
+  --texto-3: var(--tinta);            
   --cristal: color-mix(in srgb, var(--papel) 88%, transparent);
   --borde-cristal: color-mix(in srgb, var(--tinta) 12%, transparent);
   --negro-vortex: var(--tinta);
@@ -37,13 +27,9 @@ body.theme-light,
   --naranja-fractura: var(--ocre);
   --naranja-fractura-glow: color-mix(in srgb, var(--ocre) 40%, transparent);
   --naranja-fractura-border: color-mix(in srgb, var(--ocre) 30%, transparent);
-
-  /* Variables dinámicas de riesgo */
   --risk-accent: var(--ocre);
   --risk-glow: color-mix(in srgb, var(--ocre) 15%, transparent);
   --risk-border: color-mix(in srgb, var(--ocre) 40%, transparent);
-
-  /* Espaciado del header fijo */
   --body-pt-desktop: 130px;
   --body-pt-tablet: 125px;
   --body-pt-mobile: 92px;
@@ -51,26 +37,6 @@ body.theme-light,
   --body-pt-xs: 80px;
   --stepper-dot-size: 3rem;
 }
-
-/* ============================================================
-   2. MODO OSCURO (Esquema sombrío de 4 roles)
-   ============================================================ */
-
-/* 4 Correcciones Ópticas de Renderizado en Fondo Oscuro */
-
-/* Superficies con Microgradiente Vertical y Hairline Border */
-
-/* Botones de Selección en Cuestionario */
-
-/* Cristal Oscuro Ahumado en Header Authority */
-
-/* Botón de Acción Principal (Único sitio donde el dorado toma protagonismo funcional) */
-
-/* Stepper en Modo Oscuro */
-
-/* ============================================================
-   BOTÓN REUTILIZABLE ALTERNADOR DE TEMA (SVG Vectorial)
-   ============================================================ */
 .btn-theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -85,43 +51,21 @@ body.theme-light,
   transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
   flex-shrink: 0;
 }
-
 .btn-theme-toggle:hover {
   border-color: var(--color-acento);
   color: var(--color-acento);
   background-color: color-mix(in srgb, var(--ocre) 8%, transparent);
 }
-
 .btn-theme-toggle svg {
   pointer-events: none;
 }
-
-/* Lógica de visualización de los iconos según el tema */
 .btn-theme-toggle .icon-sun {
   display: none !important;
 }
-
 .btn-theme-toggle .icon-moon {
   display: block !important;
 }
-/* ============================================================
-   ESCALAS DEL SISTEMA (§1.1 CLAUDE.md)
-   ------------------------------------------------------------
-   El styleguide documentaba estas escalas, pero no existían en el
-   CSS: se declaran aquí para que la guía deje de ser una promesa.
-
-   BLOQUE PURAMENTE ADITIVO. Define variables que ningún componente
-   consume todavía, así que no altera el render de index, servicios
-   ni styleguide. La adopción es OPORTUNISTA: al tocar un archivo se
-   migran sus valores sueltos a estos tokens. Prohibido el big-bang.
-
-   Fórmula de conversión px fijo → fluido (§1.2):
-     clamp(MINrem,
-           [min − 320/1120×(max−min)]rem + [(max−min)/1120×100]vw,
-           MAXrem)
-   ============================================================ */
 :root {
-  /* ─── Espaciado fluido · 320px → 1440px ─────────────────── */
   --space-3xs: clamp(0.25rem,  0.20rem + 0.25vw, 0.375rem);
   --space-2xs: clamp(0.375rem, 0.30rem + 0.36vw, 0.5rem);
   --space-xs:  clamp(0.5rem,   0.41rem + 0.45vw, 0.75rem);
@@ -130,8 +74,6 @@ body.theme-light,
   --space-lg:  clamp(1.5rem,   1.23rem + 1.34vw, 2.5rem);
   --space-xl:  clamp(2rem,     1.55rem + 2.23vw, 3.5rem);
   --space-2xl: clamp(2.5rem,   1.79rem + 3.57vw, 5rem);
-
-  /* ─── Escala tipográfica fluida · deriva de los roles .t-* ── */
   --fs-titulo:    clamp(1.8rem,   1.39rem + 2.05vw, 3rem);
   --fs-h2:        clamp(1.45rem,  1.20rem + 1.25vw, 2.2rem);
   --fs-h3:        clamp(1.2rem,   1.05rem + 0.75vw, 1.65rem);
@@ -140,140 +82,60 @@ body.theme-light,
   --fs-enfasis:   clamp(0.8rem,   0.77rem + 0.18vw, 0.9rem);
   --fs-acompan:   clamp(0.72rem,  0.69rem + 0.16vw, 0.825rem);
   --fs-micro:     clamp(0.62rem,  0.59rem + 0.16vw, 0.72rem);
-
-  /* ─── Radios · escala discreta ───────────────────────────── */
-  --r-xs:   4px;     /* celdas hive, crack-line */
+  --r-xs:   4px;     
   --r-sm:   8px;
-  --r-md:   10px;    /* botones instructivos, listas */
-  --r-lg:   18px;    /* modal calendario */
-  --r-xl:   24px;    /* glass-panel, zonas de actividad */
+  --r-md:   10px;    
+  --r-lg:   18px;    
+  --r-xl:   24px;    
   --r-2xl:  32px;
-  --r-pill: 9999px;  /* FAB, pills, CTA. Unifica 99px/9999px */
-  --r-full: 50%;     /* gauge, dots, avatares */
-
-  /* ─── Curvas de aceleración canónicas ────────────────────── */
-  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);           /* entradas, paneles */
-  --ease-inout:    cubic-bezier(0.4, 0, 0.2, 1);            /* progreso, gauge */
-  --ease-arcade:   cubic-bezier(0.34, 1.56, 0.64, 1);       /* rebote lúdico */
-  --ease-pulsador: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* FAB, pulsador */
-
+  --r-pill: 9999px;  
+  --r-full: 50%;     
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);           
+  --ease-inout:    cubic-bezier(0.4, 0, 0.2, 1);            
+  --ease-arcade:   cubic-bezier(0.34, 1.56, 0.64, 1);       
+  --ease-pulsador: cubic-bezier(0.175, 0.885, 0.32, 1.275); 
   --dur-instant: .15s;
   --dur-fast:    .2s;
   --dur-base:    .3s;
   --dur-slow:    .4s;
   --dur-panel:   .6s;
-
-  /* ─── Contenedores y legibilidad ─────────────────────────── */
-  --max-width-container: 1400px;  /* ancho del header */
-  --max-width-content:   1060px;  /* bloques de contenido */
+  --max-width-container: 1400px;  
+  --max-width-content:   1060px;  
   --max-width-modal:      820px;
-  --measure:       68ch;  /* párrafo largo (desktop) */
-  --measure-tight: 52ch;  /* párrafo en panel estrecho */
-
-  /* ─── Geometría del stepper ──────────────────────────────── */
+  --measure:       68ch;  
+  --measure-tight: 52ch;  
   --stepper-altura: 86px;
 }
-
-/* ============================================================
-   SISTEMA DE SUPERFICIES REACTIVAS AL TEMA
-   ------------------------------------------------------------
-   Sustituye las clases fijas de Tailwind (bg-white, bg-gray-*,
-   text-gray-*) que eran ciegas al tema: en modo oscuro dejaban
-   "fantasmas" del modo claro — superficies blancas recibiendo
-   texto claro, con contrastes medidos de hasta 1.23:1.
-
-   CRITERIO DE VISTA CANSADA (modo oscuro):
-     · Nunca var(--papel) sobre var(--tinta): el blanco puro sobre negro puro
-       genera halo y fatiga en lectura larga.
-     · Jerarquía por ELEVACIÓN: la superficie elevada es más
-       CLARA que el fondo, como en el mundo físico.
-     · Contraste alto reservado al dato; algo menor en texto
-       largo, que se lee de corrido.
-
-   En modo CLARO cada clase reproduce exactamente el valor que
-   la clase de Tailwind daba antes: cero cambio visual.
-   ============================================================ */
-
-/* ─── Superficies por elevación ──────────────────────────── */
-.surface-1 {                      /* era bg-white: tarjetas, logos de app */
+.surface-1 {                      
   background-color: var(--papel);
 }
-
-.surface-2 {                      /* era bg-gray-100: superficie hundida */
+.surface-2 {                      
   background-color: var(--papel);
 }
-
-.surface-3 {                      /* era bg-gray-200/300: bordes, separadores */
+.surface-3 {                      
   background-color: var(--papel);
 }
-
-/* ─── Texto secundario reactivo ──────────────────────────── */
-/* Reemplaza text-gray-*, prohibidos por la norma #2 (grises
-   ajenos a la paleta). El valor claro deriva del verde. */
-.text-soft {                      /* era text-gray-400/500 */
+.text-soft {                      
   color: var(--texto-2);
-  font-weight: 500;                         /* §2.5 exige >=500 */
+  font-weight: 500;                         
 }
-
-.text-softer {                    /* era text-gray-300, el más tenue */
+.text-softer {                    
   color: var(--texto-3);
-  font-weight: 700;                         /* §2.5 exige >=700 */
+  font-weight: 700;                         
 }
-
-.text-strong {                    /* era text-gray-800 / text-[var(--tinta)] */
+.text-strong {                    
   color: var(--verde-forense);
 }
-
-/* ============================================================
-   SUPERFICIE ANCLADA — NO reacciona al tema, a propósito
-   ------------------------------------------------------------
-   PRINCIPIO: una superficie sigue a SU CONTENEDOR, no al tema
-   global. Un elemento dentro de una tarjeta que permanece clara
-   en ambos temas debe permanecer claro también, o produce una
-   inversión de jerarquía.
-
-   Fallo real que motivó esta clase: los días del calendario y
-   las teclas del keypad se hicieron reactivos, pero viven dentro
-   de tarjetas que siguen siendo claras. En modo oscuro quedaban
-   30 bloques oscuros sobre una tarjeta blanca, absorbiendo toda
-   la atención, y el día seleccionado —que comparte casi el mismo
-   negro (1.11:1)— dejaba de distinguirse del resto.
-
-   Se usa en: teclas del keypad y contenedores de logos de marca,
-   que sostienen imágenes diseñadas para fondo claro.
-   ============================================================ */
 .surface-fixed {
   background-color: var(--papel);
 }
-
-/* En tema oscuro la placa se eleva sobre el carbón en vez de
-   quedarse blanca: un bloque de luz dentro de una interfaz
-   oscura rompe la inmersión y fatiga la vista. Mantiene la
-   jerarquía (más clara que el fondo) sin deslumbrar. */
-
-/* ─── Bordes y superficies reactivas complementarias ──────── */
-/* .border-soft sustituye border-gray-300/400/50, que eran grises
-   ajenos a la paleta (prohibición #2) y quedaban como líneas
-   claras sobre el carbón en modo oscuro. */
 .border-soft {
   border-color: color-mix(in srgb, var(--tinta) 22%, transparent);
 }
-
-/* Tarjeta de progreso del swipe: era bg-white/60 + borde blanco. */
 .progress-card-surface {
   background-color: color-mix(in srgb, var(--papel) 60%, transparent);
   border-color: var(--papel);
 }
-
-/* ─── Texto principal reactivo ────────────────────────────── */
-/* Sustituye text-[var(--verde-forense)] y text-[var(--verde-oscuro)]
-   del markup (29 usos). Esos tokens NO se remapean en tema oscuro
-   —son colores de estructura, usados también como fondo— así que
-   como color de TEXTO daban 1.58:1 y 1.20:1 sobre el carbón:
-   títulos, CTAs y metadatos quedaban casi invisibles.
-
-   .text-ink resuelve el caso de texto sin tocar los tokens, que
-   siguen sirviendo a los 20 usos donde son fondo. */
 .text-ink {
   color: var(--verde-forense);
 }

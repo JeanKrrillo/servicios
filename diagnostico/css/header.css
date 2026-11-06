@@ -1,17 +1,8 @@
-/* ============================================================
-   Encabezado · ficha M-03
-   Una regla delgada: medidor de riesgo, título con avance, el plazo
-   del dígito y un menú con el acuerdo, las preguntas, el calendario
-   y el tema. En escritorio el menú se abre en línea.
-   El medidor es el corazón de la página y se queda como en la v2;
-   su escáner gira solo un momento cuando cambia el riesgo.
-   ============================================================ */
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    padding-top: var(--alto-header, 64px) !important;   /* vence a los --body-pt-* fijos de mobile y desktop */
+    padding-top: var(--alto-header, 64px) !important;   
 }
-
 #reading-bar {
     position: fixed;
     top: 0; left: 0;
@@ -22,7 +13,6 @@ body {
     transform-origin: 0 50%;
     pointer-events: none;
 }
-
 .jk-header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -39,8 +29,6 @@ body {
     align-items: center;
     gap: .75rem;
 }
-
-/* ── Medidor ── */
 .logo-container {
     position: relative;
     width: 46px; height: 46px;
@@ -65,7 +53,6 @@ body {
     opacity: 0;
     pointer-events: none;
 }
-/* El escáner pasa una vuelta cuando el riesgo cambia: esa es su causa */
 .logo-container.escaneando .donut-scanner { animation: medidor-escanea .9s linear 1; }
 @keyframes medidor-escanea {
     from { transform: rotate(0deg); opacity: 1; }
@@ -78,8 +65,6 @@ body {
     font: 700 .78rem/1 'JetBrains Mono', monospace;
     color: #ecebe5;
 }
-
-/* ── Título y avance ── */
 .jk-header__titulo { flex: 1; min-width: 0; }
 .jk-header__titulo h1 {
     margin: 0 0 .3rem;
@@ -101,8 +86,6 @@ body {
     transition: transform .6s var(--ease-out, ease);
 }
 .jk-header__avance span { font: 500 .68rem/1 'JetBrains Mono', monospace; color: color-mix(in srgb, #ecebe5 75%, transparent); white-space: nowrap; }
-
-/* ── Plazo del dígito: dato, sin rojo ni parpadeo ── */
 .jk-header__plazo {
     flex: none;
     display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
@@ -120,8 +103,6 @@ body {
 .jk-header__plazo #timer { font: 700 .82rem/1.2 'JetBrains Mono', monospace; color: #ecebe5; white-space: nowrap; }
 .jk-header__plazo.hoy #timer { color: #b07a1e; }
 .cd-fecha { display: none; }
-
-/* ── Menú ── */
 .jk-header__menu {
     flex: none;
     width: 44px; height: 44px;
@@ -149,7 +130,6 @@ body {
     text-align: left; text-decoration: none; cursor: pointer;
 }
 .jk-header__accion i { font-size: 1.15rem; color: #b07a1e; }
-
 .jk-header__plazo:focus-visible,
 .jk-header__menu:focus-visible,
 .jk-header__accion:focus-visible { outline: 2px solid #b07a1e; outline-offset: 2px; }
@@ -158,8 +138,6 @@ body {
     .jk-header__accion:hover { background: color-mix(in srgb, #ecebe5 8%, transparent); }
 }
 .jk-header__plazo:active, .jk-header__menu:active, .jk-header__accion:active { transform: scale(.97); }
-
-/* Escritorio: más aire, y el menú sigue desplegable para que solo haya fases y menú (tope de 2 opciones, ux.krrillo.md meta 8) */
 @media (min-width: 900px) {
     .jk-header__fila { gap: 1.25rem; }
     .logo-container { width: 54px; height: 54px; }
@@ -167,12 +145,9 @@ body {
     .jk-header__fila { flex-wrap: nowrap; }
     .cd-fecha { display: inline; }
 }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
-
-/* ── Menú: desplegable que flota bajo el botón, no empuja la página ── */
 .jk-header__fila { position: relative; }
 @media all {
     .jk-header__panel {
@@ -185,8 +160,6 @@ body {
     .jk-header__panel:not([hidden]) { animation: menu-baja var(--t-panel, .32s) var(--ease-out, ease); }
 }
 @keyframes menu-baja { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-
-/* ── Fases: pestañas dentro del encabezado, con lo que lleva cada una ── */
 .stepper-nav {
     max-width: var(--max-width-container, 1400px);
     margin: 0 auto;
@@ -208,8 +181,7 @@ body {
 .stepper-item:focus-visible { outline: 2px solid #b07a1e; outline-offset: -2px; }
 @media (hover: hover) { .stepper-item:hover { color: #ecebe5; } }
 @media (min-width: 900px) { .stepper-label { font-size: .82rem; } .stepper-cuenta { font-size: .7rem; } }
-/* Las pestañas no heredan espaciados de otras hojas, y en celular angosto el texto se achica */
-.stepper-label, .stepper-cuenta { letter-spacing: 0 !important; text-transform: none !important; }  /* vence a .stepper-* heredado de la v2 en tailwind/styles */
+.stepper-label, .stepper-cuenta { letter-spacing: 0 !important; text-transform: none !important; }  
 .stepper-item { overflow: hidden; }
 .stepper-label, .stepper-cuenta { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 400px) {
@@ -217,6 +189,4 @@ body {
     .stepper-cuenta { font-size: .6rem; }
     .stepper-item.completed .stepper-label::after { content: ''; }
 }
-
-/* Bordes del celular: el encabezado fijo baja lo que mida la muesca y se aparta de los costados con el celular de lado */
 .jk-header { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }

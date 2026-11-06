@@ -2,7 +2,7 @@
 <html lang="es-MX">
 <head>
   <meta charset="UTF-8">
-  <!-- Frena que la página mande datos a otros sitios. Scripts en línea siguen permitidos porque autodiagnostico.html usa onclick -->
+  
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.dof.gob.mx https://dof.gob.mx; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Principios · jean.krrillo</title>
@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml" href="marca/jk-favicon.svg">
   <link rel="preload" href="marca/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
-  <script>try{var t=localStorage.getItem('jk-tema');if(t==='claro'||t==='oscuro')document.documentElement.dataset.tema=t}catch(e){}</script>
+  <script>try{var t=localStorage.getItem("jk-tema");"claro"!==t&&"oscuro"!==t||(document.documentElement.dataset.tema=t)}catch(t){}</script>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/fundamentos.css">
   <script src="diagnostico/js/notificacion.js" defer></script>
@@ -22,7 +22,7 @@
   <script src="js/comun.js" defer></script>
   <link rel="stylesheet" href="css/pestanas.css">
   <script src="js/pestanas.js" defer></script>
-  <script>/* El fondo de arena no hace falta para leer: se pide cuando la página ya cargó y el navegador quedó libre */addEventListener('load',()=>(window.requestIdleCallback||setTimeout)(()=>['js/fondo-arena.js'].forEach(s=>document.head.append(Object.assign(document.createElement('script'),{src:s})))))</script>
+  <script>addEventListener("load",(()=>(window.requestIdleCallback||setTimeout)((()=>["js/fondo-arena.js"].forEach((e=>document.head.append(Object.assign(document.createElement("script"),{src:e}))))))));</script>
   <script src="js/musica.js" defer></script>
 </head>
 <body>
@@ -35,8 +35,7 @@
     </div>
   </header>
 
-  <!-- Principios. Página corta, sin desplegables, aparte de los servicios:
-       no sale en la portada ni en las tarjetas, solo en el índice y los enlaces del pie -->
+  
   <main class="contenedor fundamentos">
     <header class="fundamentos__cabeza">
       <h1 class="titulo-chico">Principios</h1>

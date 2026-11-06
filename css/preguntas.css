@@ -1,4 +1,4 @@
-/* preguntas.css · preguntas sobre el registro de líneas, una que se abre a la vez */
+
 .preguntas { display: grid; gap: var(--space-xl); padding-block: var(--space-lg) calc(var(--space-2xl) + 1rem); max-width: 50rem; }
 .preguntas__cabeza { display: grid; gap: var(--space-sm); }
 .preguntas__cabeza h1 { font-size: var(--fs-titulo); }
@@ -13,7 +13,6 @@
 }
 @media (hover: hover) { .indice a:hover { border-color: var(--tinta); transform: translate3d(0, -2px, 0); } }
 .indice a:active { transform: scale(.96); }
-
 .qa-seccion { display: grid; gap: 0; scroll-margin-top: calc(var(--alto-barra) + 1rem); }
 .qa-seccion > h2 { font-size: var(--fs-h2); padding-bottom: var(--space-sm); border-bottom: 1.5px solid var(--tinta); }
 .qa-seccion > p, .lista-qa, .fuentes { margin-top: var(--space-sm); }
@@ -54,7 +53,6 @@
 .fuentes dt { font: 800 var(--fs-chico)/1.3 var(--f-titulo); }
 .fuentes dd { margin: 0; overflow-wrap: anywhere; }
 .preguntas__pie { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: center; }
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -63,18 +61,13 @@
     scroll-behavior: auto !important;
   }
 }
-/* Mide lo mismo que el párrafo de arriba (62ch con la misma letra), así los bordes quedan alineados */
 .buscador { display: block; max-width: var(--ancho-texto); }
 .buscador .campo { width: 100%; min-width: 0; }
-
-/* Tabla de concesiones de fundamentos.html: scroll propio en celular, nunca de la página */
 .tabla-scroll { max-width: 100%; overflow-x: auto; margin-block: var(--space-s, 1rem); }
 .tabla-scroll:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
 .tabla-concesiones { min-width: 640px; border-collapse: collapse; font-size: var(--fs-chico, .9rem); }
 .tabla-concesiones th, .tabla-concesiones td { padding: .6em .7em; text-align: left; vertical-align: top; border-bottom: 1px solid var(--tinta-15); }
 .tabla-concesiones th { font-weight: 600; }
-
-/* ═══ AVISO DE TEMPORADA (2026-10-23): en qué termina tu número y su fecha primero ═══ */
 .digitos { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; margin: var(--space-xs) 0; }
 .digitos__pregunta { flex: 1 0 100%; font-weight: 600; }
 .digito {

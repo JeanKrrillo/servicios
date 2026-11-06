@@ -1,17 +1,7 @@
-/* ============================================================
-   MARCA jean.krrillo — sistema de aplicación del logo
-   Regla estructural: todo watermark va en capa absoluta o en
-   ::before/::after. Nunca ocupa espacio en el flujo, nunca
-   desplaza un elemento existente.
-   ============================================================ */
 
 :root {
-    /* El SVG se inyecta como mask: así el color lo pone la paleta,
-       no el archivo. Un solo asset sirve para todas las variantes. */
     --jk-mark: url("../logos/jk-mark.svg");
 }
-
-/* Marca sólida reutilizable — hereda color del contenedor */
 .jk-mark {
     display: block;
     background-color: currentColor;
@@ -19,23 +9,6 @@
     -webkit-mask: var(--jk-mark) center / contain no-repeat;
     flex-shrink: 0;
 }
-
-/* ---------- 1. HEADER: marca dentro del gauge ----------
-   Capa absoluta dentro de .logo-container, POR DEBAJO del %.
-   No toca el flex ni el markup del header: nada se desplaza.
-   El dato de riesgo manda; la marca solo habita el fondo. */
-
-
-/* Por debajo de 480px el gauge cae a 52px y luego a 46px: el % ocupa
-   casi todo el hueco. Ahí la marca dejaría de leerse como marca y solo
-   ensuciaría el dato, así que se retira. */
-
-
-/* ---------- 2. MARCA DE AGUA DEL REPORTE ----------
-   Ocupa el sitio del antiguo escudo genérico: misma capa absoluta
-   dentro del panel (relative + overflow-hidden), así que el grid del
-   reporte no se mueve. Estilos aquí y no en clases Tailwind porque
-   el build estático no compila utilidades arbitrarias. */
 .jk-report-wm {
     position: absolute;
     right: -4rem;
@@ -43,22 +16,14 @@
     width: 300px;
     height: 300px;
     background: url('../logos/jk-mark-green.svg') center / contain no-repeat;
-    /* 6%: presencia de marca sin restar contraste a la narrativa */
     opacity: .06;
     pointer-events: none;
     z-index: 0;
 }
-
-/* El hermano siguiente es el contenido real del reporte: se eleva para
-   quedar SOBRE la marca. No se usa z-index negativo porque el panel
-   tiene backdrop-filter (crea contexto de apilamiento) y la marca
-   desaparecería tras el fondo del propio panel. */
 .jk-report-wm+* {
     position: relative;
     z-index: 1;
 }
-
-/* En móvil el panel es estrecho: se reduce para no invadir el texto */
 @media (max-width: 640px) {
     .jk-report-wm {
         width: 200px;
@@ -68,9 +33,6 @@
         opacity: .05;
     }
 }
-
-/* ---------- 3. FIRMA DE MARCA ----------
-   Bloque de cierre: marca + wordmark. Tipografía del sistema. */
 .jk-signature {
     display: flex;
     align-items: center;
@@ -78,19 +40,16 @@
     gap: .75rem;
     color: var(--verde-forense);
 }
-
 .jk-signature .jk-mark {
     width: 34px;
     height: 34px;
 }
-
 .jk-signature-text {
     display: flex;
     flex-direction: column;
     line-height: 1.15;
     text-align: left;
 }
-
 .jk-signature-name {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800;
@@ -98,61 +57,42 @@
     letter-spacing: .5px;
     color: var(--verde-forense);
 }
-
 .jk-signature-role {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700; /* §2.5: --texto-3 exige peso >=700 */
+    font-weight: 700; 
     font-size: 9.5px;
     letter-spacing: 1.6px;
     text-transform: uppercase;
     color: var(--texto-3);
 }
-
-/* ---------- 4. MÓVIL ----------
-   La marca de la firma baja de 34 a 28px: sigue reconocible y deja
-   respirar al wordmark en anchos estrechos. */
 @media (max-width: 430px) {
     .jk-signature .jk-mark {
         width: 28px;
         height: 28px;
     }
 }
-
-/* Impresión: la marca debe sobrevivir al PDF */
 @media print {
     .jk-signature {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
 }
-
-/* ---------- 5. FOOTER DE MARCA ----------
-   Cierre del sitio. Añadido al final del main: no reposiciona
-   ningún bloque previo. */
 .jk-footer {
     margin-top: 2.5rem;
     padding: 2rem 1rem 2.5rem;
     border-top: 1px solid var(--borde-cristal);
     text-align: center;
 }
-
-/* El FAB flota abajo a la derecha; se reserva aire para no solaparlo */
 @media (max-width: 640px) {
     .jk-footer {
         padding-bottom: 5.5rem;
     }
 }
-
-/* ---------- 6. CTA A SERVICIOS ----------
-   Estilos propios: css/tailwind.css es un build estático que no
-   incluye utilidades arbitrarias tipo bg-[var(--token)], así que
-   el botón se define aquí para no depender de clases inexistentes. */
 .jk-cta-wrap {
     display: flex;
     justify-content: center;
     margin: 2rem 0;
 }
-
 .jk-cta {
     display: inline-flex;
     align-items: center;
@@ -169,30 +109,24 @@
     box-shadow: 0 10px 15px -3px color-mix(in srgb, var(--tinta) 18%, transparent);
     transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
 }
-
 .jk-cta:hover {
     background: var(--tinta);
     box-shadow: 0 14px 22px -6px color-mix(in srgb, var(--tinta) 28%, transparent);
     transform: translateY(-2px);
 }
-
 .jk-cta:active {
     transform: scale(.96);
 }
-
 .jk-cta:focus-visible {
     outline: 2px solid var(--dorado-premium);
     outline-offset: 3px;
 }
-
 .jk-cta-arrow {
     transition: transform .18s ease;
 }
-
 .jk-cta:hover .jk-cta-arrow {
     transform: translateX(3px);
 }
-
 @media (prefers-reduced-motion: reduce) {
     .jk-cta,
     .jk-cta-arrow {
@@ -202,8 +136,6 @@
         transform: none;
     }
 }
-
-/* ---------- 8. CAJAS DE ICONOS Y LOGOS VECTORIALES (Proporciones y contornos limpios) ---------- */
 .caja-logo-principal {
     display: flex;
     align-items: center;
@@ -213,37 +145,33 @@
     max-height: 280px;
     overflow: hidden;
 }
-
 .caja-logo-principal svg,
 .caja-logo-principal img {
     width: auto;
-    max-width: 140px;      /* Tamaño controlado */
+    max-width: 140px;      
     height: auto;
     max-height: 140px;
-    object-fit: contain;   /* Mantiene proporciones exactas */
+    object-fit: contain;   
     shape-rendering: geometricPrecision;
 }
-
 .caja-icono-modulo {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 18px 12px 12px; /* Más aire arriba y abajo */
-    min-height: 110px;        /* Evita que se aplaste */
+    padding: 18px 12px 12px; 
+    min-height: 110px;        
 }
-
 .caja-icono-modulo svg,
 .caja-icono-modulo img {
-    width: 44px;              /* Medida óptima de lectura */
+    width: 44px;              
     height: 44px;
     max-width: 44px;
     max-height: 44px;
     object-fit: contain;
-    margin-bottom: 8px;       /* Separa el dibujo del texto CLARO / OSCURO */
+    margin-bottom: 8px;       
     shape-rendering: geometricPrecision;
 }
-
 .caja-icono-modulo .label-modo {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem;
@@ -252,36 +180,30 @@
     text-transform: uppercase;
     opacity: 0.75;
 }
-
 .caja-icono-oscuro {
-    background-color: var(--tinta); /* Verde militar casi negro, parejo */
-    border: 1px solid color-mix(in srgb, var(--ocre) 20%, transparent); /* Borde fino delimitador */
+    background-color: var(--tinta); 
+    border: 1px solid color-mix(in srgb, var(--ocre) 20%, transparent); 
 }
-
 .caja-icono-claro {
     background-color: var(--papel);
     border: 1px solid color-mix(in srgb, var(--tinta) 18%, transparent);
 }
-
 .caja-icono-oscuro svg {
     color: var(--ocre);
 }
-
 .caja-icono-claro svg {
     color: var(--tinta);
 }
-
 .caja-icono-oscuro svg path,
 .caja-icono-oscuro svg line,
 .caja-icono-oscuro svg polygon,
 .caja-icono-oscuro svg circle,
 .caja-icono-oscuro svg rect {
-    fill: var(--ocre); /* Dorado seco y frío */
-    stroke: var(--tinta); /* Mismo color exacto del fondo */
+    fill: var(--ocre); 
+    stroke: var(--tinta); 
     stroke-width: 1.5px;
-    paint-order: stroke fill; /* Pinta contorno por detrás para separación nítida */
+    paint-order: stroke fill; 
 }
-
 .caja-icono-claro svg path,
 .caja-icono-claro svg line,
 .caja-icono-claro svg polygon,
@@ -292,25 +214,11 @@
     stroke-width: 1.5px;
     paint-order: stroke fill;
 }
-
-
-
-
-/* ============================================================
-   EFECTOS CANÓNICOS DE MARCA (§2.1 CLAUDE.md)
-   Recetas únicas para destello y aura. Viven en pseudoelementos:
-   el DOM queda limpio y el efecto no participa del layout.
-   Promovidas desde styleguide.html para que index/servicios las
-   consuman desde una sola fuente de verdad.
-   ============================================================ */
-
-/* Barrido de luz — solo transform, nunca background-position ni left */
 .jk-shine {
     position: relative;
     overflow: hidden;
     isolation: isolate;
 }
-
 .jk-shine::after {
     content: '';
     position: absolute;
@@ -324,17 +232,13 @@
     transform: translate3d(-120%, 0, 0);
     transition: transform .7s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
 }
-
 .jk-shine:hover::after,
 .jk-shine:focus-visible::after {
     transform: translate3d(120%, 0, 0);
 }
-
-/* Aura pulsante — se modula la OPACIDAD de un gradiente, jamás box-shadow */
 .jk-aura {
     position: relative;
 }
-
 .jk-aura::before {
     content: '';
     position: absolute;
@@ -346,41 +250,19 @@
     opacity: .35;
     animation: aura-breathe 2.4s var(--ease-inout, cubic-bezier(0.4, 0, 0.2, 1)) infinite;
 }
-
 @keyframes aura-breathe {
     0%, 100% { opacity: .35; transform: scale(1); }
     50% { opacity: .85; transform: scale(1.06); }
 }
-
-/* §2.4 — El aura es una animación `infinite`: debe detenerse cuando el
-   usuario pide movimiento reducido. El barrido, al depender de :hover,
-   se colapsa a un cambio instantáneo. */
 @media (prefers-reduced-motion: reduce) {
     .jk-aura::before {
         animation: none;
         opacity: .5;
     }
-
     .jk-shine::after {
         transition-duration: .01ms;
     }
 }
-
-/* ============================================================
-   FOCO DE TECLADO UNIFICADO (§2.3)
-   ------------------------------------------------------------
-   15 de 19 elementos interactivos no declaraban :focus-visible:
-   navegar con Tab no mostraba dónde estaba el foco.
-
-   :focus-visible SOLO se activa con navegación por teclado. El
-   navegador no lo dibuja con ratón ni con toque, así que esta
-   regla NO altera nada de lo que se ve al usar el sitio con el
-   dedo o el ratón. Cero impacto en proporciones y estética.
-
-   Solo declara `outline`, que se pinta FUERA de la caja y no
-   participa del layout: no desplaza ni un píxel.
-   ============================================================ */
-
 .btn-undo:focus-visible,
 .swipe-instr-btn:focus-visible,
 .qa-modal-close:focus-visible,
@@ -391,6 +273,3 @@
     outline: 2px solid var(--dorado-premium);
     outline-offset: 3px;
 }
-
-/* En fondo oscuro el dorado premium mantiene el contraste; se
-   refuerza el offset para que el anillo no se funda con el borde. */

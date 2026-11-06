@@ -1,23 +1,14 @@
-/* ============================================================
-   Simulador de contraseña · fase 3 (fichas S-01 a S-03)
-   La tabla cabe en 360 px sin deslizar de lado. Los seis niveles
-   van de ocre (se adivina al instante) a tinta (más que siglos).
-   ============================================================ */
 
 :root {
     --n0: var(--ocre);
-    /* Los niveles intermedios se mezclan con papel de día para que el texto oscuro se lea en ambos temas */
     --n1: color-mix(in srgb, var(--ocre) 78%, #f3f2ee);
     --n2: color-mix(in srgb, var(--ocre) 55%, #f3f2ee);
     --n3: color-mix(in srgb, var(--ocre) 32%, #f3f2ee);
     --n4: color-mix(in srgb, var(--tinta) 45%, var(--papel));
     --n5: var(--tinta);
 }
-
 .simulador { max-width: 1060px; margin: 0 auto; display: grid; gap: 1.25rem; }
 @media (min-width: 900px) { .simulador { grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); align-items: start; gap: 2rem; } }
-
-/* ── Cronómetro ── */
 .cronometro {
     display: grid; gap: .55rem;
     padding: 1rem;
@@ -47,8 +38,6 @@
 .cronometro__nivel { margin: 0; font-size: .9rem; color: color-mix(in srgb, #ecebe5 80%, transparent); }
 .cronometro[data-nivel="0"] .cronometro__tiempo, .cronometro[data-nivel="1"] .cronometro__tiempo { color: #b07a1e; }
 .cronometro__nota { margin: .3rem 0 0; font-size: .76rem; line-height: 1.4; color: color-mix(in srgb, #ecebe5 65%, transparent); }
-
-/* ── Tabla ── */
 .tabla-tiempos { min-width: 0; }
 .tabla-tiempos__ejes { display: flex; justify-content: space-between; margin-bottom: .35rem; font: 600 .7rem/1 'JetBrains Mono', monospace; color: color-mix(in srgb, var(--tinta) 70%, transparent); }
 .hive-table {
@@ -89,23 +78,16 @@
 .hive-cell.selected { outline: 2.5px solid var(--tinta); outline-offset: 1px; transform: scale(1.08); position: relative; z-index: 2; }
 @media (hover: hover) { .hive-cell:hover { transform: scale(1.05); } }
 .hive-cell:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-
 .tabla-tiempos__leyenda { list-style: none; padding: 0; margin: .8rem 0 0; display: flex; flex-wrap: wrap; gap: .3rem .9rem; font-size: .75rem; }
 .tabla-tiempos__leyenda li { display: flex; align-items: center; gap: .35rem; }
 .tabla-tiempos__leyenda i { width: 12px; height: 12px; border-radius: 3px; }
 .tabla-tiempos__claves { margin: .5rem 0 0; font-size: .72rem; line-height: 1.4; color: color-mix(in srgb, var(--tinta) 65%, transparent); }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
-
-/* Largos impares plegados: la tabla mide la mitad sin achicar letra ni abreviar más (ux.krrillo.md) */
 .hive-table:not(.todos) .impar:not(.fila-activa) { display: none; }
 .hive-todos { min-height: 44px; margin-top: .2rem; padding: 0; border: 0; background: none; color: var(--tinta); font: 600 .82rem/1.2 var(--f-texto, sans-serif); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .hive-todos:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-
-/* Escala de tres pasos (ux.krrillo.md, proporción): dato para el número que importa, texto para lo que se lee
-   y se toca, chico para etiquetas, encabezados y celdas. Nada fuera de estos tres en esta fase. */
 #step-3 { --esc-dato: 1.5rem; --esc-texto: .95rem; --esc-chico: .75rem; }
 #step-3 .cronometro__etiqueta, #step-3 .tabla-tiempos__ejes, #step-3 .hive-header, #step-3 .hive-row-label,
 #step-3 .tabla-tiempos__leyenda, #step-3 .tabla-tiempos__claves, #step-3 .tabla-tiempos__privado { font-size: var(--esc-chico); line-height: 1.35; }
@@ -118,15 +100,13 @@
 #step-3 { --esc-chico: .7rem; }
 #step-3 .hive-table { grid-template-columns: 2.5rem repeat(6, minmax(0, 1fr)); }
 #step-3 .hive-header, #step-3 .hive-cell { white-space: nowrap; letter-spacing: -.03em; }
-/* Bloques más bajos para que la tabla quepa en pantalla; la letra se queda igual (24 px, mínimo cómodo para tocar) */
 #step-3 .hive-cell { min-height: 24px; border-radius: 5px; }
 #step-3 .hive-table { gap: 2px; }
 #step-3 .hive-header { padding: .1rem 0 .25rem; }
 #step-3 .cronometro { padding: .75rem .85rem; gap: .35rem; }
 #step-3 #hive-pass-tester, #step-3 .cronometro__generar { min-height: 40px; }
-/* Cómo leer la tabla vive en el recuadro oscuro, en el espacio bajo la instrucción */
 #step-3 .cronometro .tabla-tiempos__leer { color: #ecebe5; }
 #step-3 .cronometro .tabla-tiempos__leer > summary { min-height: 36px; font-size: var(--esc-chico); color: color-mix(in srgb, #ecebe5 80%, transparent); }
 #step-3 .cronometro .tabla-tiempos__leyenda { margin-top: .3rem; }
 #step-3 .cronometro .tabla-tiempos__claves { color: color-mix(in srgb, #ecebe5 70%, transparent); }
-#step-3 .cronometro .tabla-tiempos__leyenda i { box-shadow: 0 0 0 1px color-mix(in srgb, #ecebe5 55%, transparent); } /* el negro de Más que eso se ve sobre fondo oscuro */
+#step-3 .cronometro .tabla-tiempos__leyenda i { box-shadow: 0 0 0 1px color-mix(in srgb, #ecebe5 55%, transparent); } 

@@ -1,6 +1,4 @@
 @import "tokens.css";
-
-/* Color mapping reactivo: sombras y bordes siguen al riesgo */
 .glass-panel {
     background: var(--cristal);
     backdrop-filter: blur(24px);
@@ -14,104 +12,78 @@
         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
         border-color 0.3s ease;
 }
-
 .glass-panel:hover {
     border-color: var(--risk-accent) !important;
     box-shadow: 0 4px 6px -1px color-mix(in srgb, var(--tinta) 2%, transparent),
         0 32px 56px -12px color-mix(in srgb, var(--tinta) 7%, transparent),
         0 30px 60px -10px var(--risk-glow);
 }
-
-/* Efecto Glitch en encabezados cuando riesgo > 80% */
 .risk-glitch h1,
 .risk-glitch h2,
 .risk-glitch h3 {
     animation: glitch-text 2s infinite;
 }
-
 @keyframes glitch-text {
     0% {
         text-shadow: none;
     }
-
     2% {
         text-shadow: 2px 0 var(--ocre), -2px 0 var(--tinta);
     }
-
     4% {
         text-shadow: none;
     }
-
     96% {
         text-shadow: none;
     }
-
     98% {
         text-shadow: -2px 0 var(--ocre), 2px 0 var(--tinta);
     }
-
     100% {
         text-shadow: none;
     }
 }
-
 html {
     scroll-behavior: smooth;
 }
-
-/* Stable scrollbar gutter only on PC/desktop to prevent layout shifts */
 @media (min-width: 769px) {
     html {
         scrollbar-gutter: stable;
     }
-
-    /* Custom scrollbar to keep it thin, elegant, and non-intrusive on PC */
     ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
     }
-
     ::-webkit-scrollbar-track {
         background: color-mix(in srgb, var(--tinta) 2%, transparent);
     }
-
     ::-webkit-scrollbar-thumb {
         background: color-mix(in srgb, var(--ocre) 30%, transparent);
-        /* dorado premium semi-transparent */
         border-radius: 99px;
         border: 2px solid transparent;
         background-clip: padding-box;
     }
-
     ::-webkit-scrollbar-thumb:hover {
         background: color-mix(in srgb, var(--ocre) 60%, transparent);
         border: 2px solid transparent;
         background-clip: padding-box;
     }
 }
-
-/* Hide scrollbar completely on mobile devices */
 @media (max-width: 768px) {
     html {
         scrollbar-gutter: auto !important;
     }
-
     html,
     body {
         scrollbar-width: none !important;
-        /* Firefox */
         -ms-overflow-style: none !important;
-        /* IE/Edge */
     }
-
-    /* Hide Webkit scrollbar globally (including viewport) on mobile */
     ::-webkit-scrollbar {
         display: none !important;
         width: 0 !important;
         height: 0 !important;
     }
 }
-
 body {
     background-color: var(--crema-fondo);
     color: var(--verde-forense);
@@ -125,8 +97,6 @@ body {
     -webkit-hyphens: none;
     hyphens: none;
 }
-
-/* Encabezados Ultra-Destacados */
 h1,
 h2,
 h3 {
@@ -137,44 +107,26 @@ h3 {
     overflow-wrap: break-word;
     word-break: break-word;
 }
-
 .mono {
     font-family: 'JetBrains Mono', monospace;
 }
-
-/* Estética Gubernamental / Forense - Ya unificada arriba */
-
 .header-seal {
     border-bottom: 4px solid var(--dorado-premium);
     box-shadow: 0 4px 20px color-mix(in srgb, var(--tinta) 15%, transparent);
 }
-
-/* Stepper Interactivo */
-
-
-/* Hive Matrix (Heatmap) */
-
-
-/* Las celdas amarillas (moderado) necesitan texto oscuro para buen contraste */
-
-
 .active-row-label {
     background: var(--verde-forense) !important;
     color: var(--dorado-premium) !important;
     box-shadow: inset 0 0 6px color-mix(in srgb, var(--ocre) 20%, transparent);
 }
-
-/* Acordeones Apps */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .accordion-open .accordion-content {
     max-height: 2000px;
 }
-
 input[type="checkbox"]:checked+.app-card {
     background: var(--verde-forense);
     color: var(--dorado-premium);
@@ -182,51 +134,36 @@ input[type="checkbox"]:checked+.app-card {
     box-shadow: 0 4px 10px color-mix(in srgb, var(--tinta) 20%, transparent);
     transform: translateY(-2px);
 }
-
 .app-card {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
         background-color 0.3s ease,
         border-color 0.3s ease;
 }
-
 .app-card:active {
     transform: scale(0.98);
 }
-
-/* Animaciones Stepper Content */
 .step-container {
     display: none;
     opacity: 0;
 }
-
 .step-container.active {
     display: block;
     animation: fadeInSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
 @keyframes fadeInSlide {
     from {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
-/* Mini Dashboard Lateral — eliminado, reemplazado por Header Gauge */
-/* .live-dash-wrapper conservado como stub vacío por compatibilidad */
 .live-dash-wrapper {
     display: none;
 }
-
-/* FAB Donación */
-
-
-/* ROL 1 — TÍTULO */
 .t-titulo {
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 900;
@@ -237,8 +174,6 @@ input[type="checkbox"]:checked+.app-card {
     overflow-wrap: break-word;
     word-break: break-word;
 }
-
-/* ROL 2 — SUBTÍTULO */
 .t-subtitulo {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 600;
@@ -249,8 +184,6 @@ input[type="checkbox"]:checked+.app-card {
     color: var(--dorado-oscuro);
     overflow-wrap: break-word;
 }
-
-/* ROL 3 — PÁRRAFO */
 .t-parrafo {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 500;
@@ -261,8 +194,6 @@ input[type="checkbox"]:checked+.app-card {
     overflow-wrap: break-word;
     word-break: break-word;
 }
-
-/* ROL 4 — ÉNFASIS */
 .t-enfasis {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 800;
@@ -273,8 +204,6 @@ input[type="checkbox"]:checked+.app-card {
     color: var(--verde-forense);
     overflow-wrap: break-word;
 }
-
-/* ROL 5 — ACOMPAÑAMIENTO */
 .t-acompanamiento {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
@@ -285,32 +214,21 @@ input[type="checkbox"]:checked+.app-card {
     color: var(--texto-3);
     overflow-wrap: break-word;
 }
-
-/* Modificadores de color */
-/* El countdown va sobre fondo oscuro: su texto debe ser blanco
-   (el .text-white empata en especificidad con .t-acompanamiento y pierde
-   por orden de cascada, así que lo forzamos con un selector más específico). */
 .countdown-emergency .t-acompanamiento {
     color: var(--papel);
 }
-
 .t-gold {
     color: var(--dorado-oscuro) !important;
 }
-
 .t-alerta {
     color: var(--rojo-alerta) !important;
 }
-
 .t-muted {
     color: var(--texto-2) !important;
 }
-
 .t-inverse {
     color: var(--dorado-premium) !important;
 }
-
-/* ---- Loader Mobile ---- */
 .mobile-loader {
     position: fixed;
     inset: 0;
@@ -322,12 +240,10 @@ input[type="checkbox"]:checked+.app-card {
     z-index: 10000;
     transition: opacity 0.3s ease;
 }
-
 .mobile-loader.hidden {
     opacity: 0;
     pointer-events: none;
 }
-
 .loader-spinner {
     width: 50px;
     height: 50px;
@@ -336,126 +252,33 @@ input[type="checkbox"]:checked+.app-card {
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
     to {
         transform: rotate(360deg);
     }
 }
-
 button[onclick*="goToStep"],
 button[onclick*="showFracture"] {
     font-size: max(0.825rem, 13px) !important;
     letter-spacing: 0.18em !important;
 }
-
-/* ============================================================
-   SPLIT LAYOUT — Tercios fit-to-viewport, cero scroll
-   Regla: instrucciones 1/3 · actividad 2/3, en ambos ejes.
-   El eje (horizontal vs vertical) lo decide la FORMA del
-   viewport (aspect-ratio), no un ancho arbitrario: un monitor
-   en vertical se apila; un móvil en horizontal se divide.
-   --split-h = altura real disponible (viewport − header − stepper).
-   ============================================================ */
-
-
-/* Leyenda de colores Fase 3: compacta para no competir con la matriz. */
-
-
-/* Altura del stepper-nav por breakpoint (dot + label + margin-bottom).
-   Reducida tras compactar el margin-bottom del stepper para dar más
-   alto real a la actividad (evita el recorte del anillo exterior). */
 :root { --stepper-altura: 86px; }
-
-/* El swipe va dentro de un .glass-panel con padding propio: descontarlo
-   del alto del split para que no desborde (vortex/fracture no lo tienen). */
-
-
-
-/* Pie del panel de instrucciones: botones (Atrás/Deshacer, Análisis, Continuar)
-   anclados al final de la columna sin romper el centrado del texto. */
-
-
-/* Fracture llena su panel (su JS ya escala el radio por min(w,h)). */
-
-
-/* Vortex: su JS solo escala las órbitas por ANCHO, no por alto. En un
-   panel ancho y bajo eso recorta el anillo exterior arriba/abajo. Para
-   evitarlo sin tocar JS, forzamos la zona a ser CUADRADA: así su ancho
-   nunca excede su alto y el guardia por ancho del JS protege el recorte
-   vertical. Queda centrada (franjas laterales si el panel es muy ancho). */
-
-
-/* La swipe-zone conserva su aspect-ratio (3/4): se ajusta al alto
-   disponible manteniendo proporción (como en móvil) y se detiene en el
-   tamaño original de desktop (360×480). El tope de alto evita el choque
-   height:100% vs max-width:360px que estiraba la tarjeta en pantallas
-   altas rompiendo el ratio. */
-
-
-/* HORIZONTAL: solo cuando el viewport es apaisado y hay ancho real.
-   Instrucciones 1/3 (izq) · actividad 2/3 (der). */
-
-
-/* ============================================================
-   PÍLDORA DE ID DEL REPORTE FORENSE
-   ------------------------------------------------------------
-   Llevaba `bg-[var(--verde-forense)]` en el markup. Ese token no
-   se remapea en tema oscuro, así que la píldora quedaba a 1.58:1
-   de la página: el ID de auditoría se perdía a simple vista.
-
-   En oscuro invierte a dorado, el acento que el sistema ya usa
-   para el dato identificativo (igual que .legal-pill en móvil).
-   ============================================================ */
-
-
-/* ============================================================
-   REPORTE FORENSE — BLOQUE DE DETALLE (secciones 1 a 4)
-   ------------------------------------------------------------
-   Usaba `bg-white/40`: blanco al 40% FIJO. Sobre el fondo carbón
-   se resolvía en var(--tinta), una placa gris media sobre la que el
-   texto del esquema sombrío caía a 2.26:1 — el "fondo gris con
-   texto gris" del reporte.
-
-   En oscuro pasa a blanco al 6%: superficie apenas elevada, que
-   mantiene la jerarquía sin competir con la franja dorada ni
-   deslumbrar en lectura larga.
-   ============================================================ */
-
-
-/* ─── Chip informativo del reporte ─────────────────────────── */
-/* Era bg-blue-100 / text-blue-800: azul de Tailwind, paleta ajena
-   (prohibición #2), y en tema oscuro una placa clarísima. Pasa a
-   la familia dorada, que es el acento informativo del sistema. */
 .chip-info {
     background-color: color-mix(in srgb, var(--ocre) 16%, transparent);
     color: var(--dorado-oscuro);
     border: 1px solid color-mix(in srgb, var(--ocre) 35%, transparent);
     font-weight: 700;
 }
-
 .chip-info:hover {
     background-color: color-mix(in srgb, var(--ocre) 26%, transparent);
 }
-
-/* ─── Botón primario del reporte ───────────────────────────── */
-/* Tenía `bg-[var(--verde-forense)]`, token no remapeado: 1.58:1
-   contra la página en oscuro, se leía como deshabilitado.
-   Invierte a dorado sólido, igual que .jk-cta y los botones de
-   actividad. */
 .btn-report-primary {
     background-color: var(--verde-forense);
     color: var(--dorado-premium);
 }
-
-/* ─── Tarjetas "Punto Crítico" del reporte ─────────────────── */
-/* Llevaban border-red-100 (casi blanco: una línea clara sobre la
-   placa oscura) y text-red-500, que en oscuro pasa justo el
-   mínimo. Se usan tonos de alerta que funcionan en cada tema. */
 .card-critical {
     border-color: var(--papel);
 }
-
 .text-critical {
     color: var(--ocre);
 }

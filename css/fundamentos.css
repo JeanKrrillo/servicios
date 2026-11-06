@@ -1,14 +1,12 @@
-/* fundamentos.html · informa de un vistazo: principio, qué cambia para ti y lo que falta (ux.krrillo.md) */
+
 .fundamentos { padding-block: var(--space-lg) var(--space-xl); max-width: 60rem; }
 .fundamentos__cabeza { margin-bottom: var(--space-md); }
 .fundamentos__cabeza h1 { margin: 0 0 .3rem; }
-
 .principios { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
 .principio { min-width: 0; display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); align-items: start; gap: .8rem; padding: .75rem .9rem; border: 1.5px solid var(--tinta-15); border-radius: var(--r-md); }
 .principio__dibujo { width: 3.25rem; height: 3.25rem; }
 .principio h2 { margin: 0 0 .15rem; font-size: var(--fs-texto); line-height: 1.25; }
 .principio p { margin: 0; font-size: var(--fs-chico); line-height: 1.4; color: var(--tinta-75); }
-
 .concesiones { margin-top: var(--space-xl); }
 .concesiones h2 { margin: 0 0 .2rem; font-size: var(--fs-h3); }
 .concesiones > .texto-apoyo { margin: 0 0 .6rem; }
@@ -24,12 +22,9 @@
 .concesion p { margin: 0 0 .7rem; font-size: var(--fs-chico); line-height: 1.45; max-width: var(--ancho-texto); }
 .concesion[open] p { animation: concesion-abre var(--t-panel) var(--ease-out) both; }
 @keyframes concesion-abre { from { opacity: 0; transform: translate3d(0, -4px, 0); } to { opacity: 1; transform: none; } }
-
 .fundamentos__pie { margin-top: var(--space-xl); display: grid; gap: .4rem; max-width: var(--ancho-texto); }
 .fundamentos__pie p { margin: 0; }
 .fundamentos__pie a { color: var(--tinta); }
-
-/* Información útil y Principios (2026-10-23): sin título grande, letra chica, una idea por renglón */
 .titulo-chico { font-size: var(--fs-h3); }
 .lista-chica, .lista-principios { margin: 0 0 .7rem; padding-left: 1.1rem; display: grid; gap: .45rem; font-size: var(--fs-chico); line-height: 1.45; max-width: var(--ancho-texto); }
 .lista-principios { font-size: var(--fs-texto); gap: var(--grupo); }
@@ -41,13 +36,10 @@
 .privacidad-enlace { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: .18em; cursor: pointer; }
 @media (hover: hover) { .privacidad-enlace:hover { text-decoration-color: var(--ocre); } }
 .privacidad-enlace:focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
-
 @media (prefers-reduced-motion: reduce) {
   .concesion > summary::after { transition: none; }
   .concesion[open] p, .concesion[open] .lista-chica { animation: none; }
 }
-
-/* Desde cuándo se hace cada servicio (informacion.html): año en Geist Mono, como los números del sitio */
 .desde { margin-bottom: var(--space-lg); max-width: var(--ancho-texto); }
 .desde h2 { margin: 0 0 .2rem; font-size: var(--fs-h3); }
 .desde > .texto-apoyo { margin: 0 0 .6rem; }

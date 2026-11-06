@@ -1,9 +1,3 @@
-/* ============================================================
-   Fractura · fase 2, tercera actividad (ficha A-03)
-   Mueve solo transform, opacity y stroke-dashoffset. Sin sombras,
-   filtros ni desenfoque. El tablero se oscurece cambiando --tinta
-   y --papel, igual que el modo oscuro.
-   ============================================================ */
 
 .fracture-zone {
     position: relative;
@@ -15,9 +9,7 @@
     border: 1px solid color-mix(in srgb, var(--tinta) 12%, transparent);
     transition: background-color .5s ease, color .5s ease;
 }
-/* Arriba de 30 % el vacío domina: el tablero se vuelve de noche */
 .fracture-zone.fracture-dark-mode { --tinta: #ecebe5; --papel: #121217; }
-
 .fracture-void {
     position: absolute;
     top: 50%; left: 50%;
@@ -30,7 +22,6 @@
     pointer-events: none;
     z-index: 1;
 }
-
 .fracture-grietas {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
@@ -40,7 +31,6 @@
     stroke-width: 2;
     stroke-linecap: round;
 }
-
 .fracture-node {
     position: absolute;
     z-index: 50;
@@ -78,8 +68,6 @@
 @media (min-width: 768px) {
     .fracture-node { font-size: 0.8rem; min-height: 40px; padding: 6px 14px 6px 8px; }
 }
-
-/* El SMS se carga con cada app: su fondo pasa de tinta a ocre */
 .fracture-core {
     --carga: 0;
     position: absolute;
@@ -97,7 +85,6 @@
     transition: background-color .4s ease;
 }
 @media (min-width: 768px) { .fracture-core { font-size: 1.25rem; padding: .9rem 2.4rem; } }
-
 .fracture-ui-layer {
     position: absolute;
     top: 10px; left: 14px; right: 14px;
@@ -119,8 +106,6 @@
     .fracture-title h3 { font-size: 1.6rem; }
     #fracture-risk-display { font-size: 2.2rem; }
 }
-
-/* Temblor de 3 cuadros al tocar; su fuerza sube con el nivel crítico */
 @keyframes fractura-tiembla {
     0%, 100% { transform: translate(0); }
     33% { transform: translate(calc(var(--f, 1) * -2px), 1px) skewX(-1deg); }
@@ -129,7 +114,6 @@
 .tiembla { animation: fractura-tiembla .15s steps(3) 1; }
 .fracture-zone[data-glitch="medio"] { --f: 1.5; }
 .fracture-zone[data-glitch="alto"] { --f: 2.5; }
-
 .fracture-glitch-bar {
     position: absolute;
     height: 3px;
@@ -138,19 +122,13 @@
     pointer-events: none;
     z-index: 4;
 }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
-
-/* Zona de la fractura: más alta en celular para que quepan las 21 apps */
 .fracture-zone { width: min(100%, 720px); aspect-ratio: 3 / 4.4; height: auto !important; }
 @media (min-width: 560px) { .fracture-zone { aspect-ratio: 4 / 3.2; } }
-/* Nunca más alta que lo que queda bajo el encabezado */
 .fracture-zone { width: min(100%, 720px, calc((100svh - var(--alto-header, 110px) - 32px) * 3 / 4.4)); }
 @media (min-width: 560px) { .fracture-zone { width: min(100%, 720px, calc((100svh - var(--alto-header, 110px) - 32px) * 4 / 3.2)); } }
-
-/* Angosto: cada app es su logo en círculo y el nombre sale al tocarla, para que quepan los anillos */
 .fracture-zone--compacta .fracture-node { padding: 0; width: 44px; height: 44px; min-height: 44px; justify-content: center; border-radius: 50%; }
 .fracture-zone--compacta .fracture-node-logo { width: 30px; height: 30px; border-radius: 50%; }
 .fracture-zone--compacta .fracture-node > span:last-child { position: absolute; top: calc(100% + 3px); left: 50%; transform: translateX(-50%); padding: 1px 5px; border-radius: 4px; background: var(--tinta); color: var(--papel); font-size: .65rem; opacity: 0; pointer-events: none; transition: opacity var(--t-toque, .25s) ease; }
