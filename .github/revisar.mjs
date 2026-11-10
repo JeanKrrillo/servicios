@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const RAIZ = process.cwd();
 const FUERA = new Set(['.git', '.github', 'node_modules']);
-const PERMITIDOS = new Set(['.html', '.js', '.css', '.json', '.svg', '.png', '.woff2', '.mp3', '.webm', '']);
+const PERMITIDOS = new Set(['.html', '.js', '.css', '.json', '.svg', '.png', '.woff2', '.mp3', '.mp4', '.webm', '']);
 const TOPE = 2 * 1024 * 1024;
 const errores = [];
 
