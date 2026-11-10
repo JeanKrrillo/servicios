@@ -23,13 +23,8 @@
 }
 .rb-video { animation: rb-sale .22s cubic-bezier(.3,1.25,.5,1); }
 @keyframes rb-sale { from { transform: scale(.7); opacity: 0; } }
-.rb-video video { display: block; width: 100%; max-height: 50vh; object-fit: contain; background: var(--papel); }
-.rb-video { width: min(66vw, 380px); }
-.rb-video { translate: var(--dx, 0px) var(--dy, 0px); }
-.rb-video[data-pos="centro"] { right: auto; bottom: auto; left: 50%; top: 55%; translate: calc(-50% + var(--dx, 0px)) calc(-50% + var(--dy, 0px)); width: fit-content; max-width: 94vw; }
-.rb-video[data-pos="centro"] video { height: min(70vh, 900px); width: auto; max-width: 94vw; max-height: none; }
-.rb-video[data-pos="bi"], .rb-video[data-pos="mi"] { right: auto; left: max(12px, env(safe-area-inset-left)); }
-.rb-video[data-pos="md"], .rb-video[data-pos="mi"] { bottom: auto; top: 38%; }
+.rb-video { right: auto; bottom: auto; left: 12px; top: 20vh; width: fit-content; max-width: 90vw; }
+.rb-video video { display: block; height: var(--h, 46vh); width: auto; max-width: 90vw; object-fit: contain; background: var(--papel); }
 .rb-video__x {
   position: absolute; top: 0; right: 0; width: 44px; height: 44px; border: 0; border-radius: 0 0 0 12px;
   background: color-mix(in srgb, var(--papel) 85%, transparent); color: var(--tinta); font: inherit; font-size: 1.5rem; line-height: 1; cursor: pointer;
