@@ -1,1 +1,1 @@
-window.RAGEBAIT_MEDIOS={sonidos:[],videos:[]};
+window.RAGEBAIT_MEDIOS={spam:[{v:"01.mp4",modo:"queda"},{v:"02.mp4",modo:"queda"},{v:"03.mp4",modo:"queda"},{v:"04.mp4",modo:"queda"},{v:"05.mp4",modo:"queda"},{v:"06.mp4",modo:"queda"},{v:"07.mp4",modo:"flash"}],trampa:["10.mp4","11.mp4","12.mp4","13.mp4","15.mp4"],trampaSonido:["17.mp3"],vermas:"18.mp4",sonidos:["08.mp3","09.mp3","14.mp3","16.mp3"]};
